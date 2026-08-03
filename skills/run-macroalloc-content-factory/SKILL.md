@@ -1,8 +1,8 @@
 ---
 name: run-macroalloc-content-factory
-description: Orchestrates the complete US-first MacroAlloc editorial workflow from a 3-to-5-topic shortlist through mandatory human topic selection, drafting, verification, discoverability optimization, editorial review, and final DOCX packaging. Use when ChatGPT needs to coordinate specialist skills and hard human approval gates. Always stop at AWAITING_USER_SELECTION and never draft until the user explicitly selects one shortlisted topic.
+description: Orchestrates the complete US-first MacroAlloc editorial workflow from a 3-to-5-topic shortlist through mandatory human topic selection, drafting, verification, discoverability optimization, editorial review, and two-document Word delivery: a lightweight Publication Package and a separate internal Workflow Report. Use when ChatGPT needs to coordinate specialist skills and hard human approval gates. Always stop at AWAITING_USER_SELECTION and never draft until the user explicitly selects one shortlisted topic.
 metadata:
-  version: 1.1.0
+  version: 1.2.1
   status: TESTING
   owner: MacroAlloc Content Factory
   language: en-US
@@ -12,12 +12,13 @@ metadata:
   required_skills:
     - discover-content-opportunities@1.1.0
     - write-macro-insight@1.1.0
-    - verify-financial-article@0.7.0
-    - optimize-content-discoverability@1.0.0
-    - review-article@1.0.0
-    - generate-article-package@1.0.0
+    - verify-financial-article@1.1.0
+    - optimize-content-discoverability@1.1.0
+    - review-article@1.1.0
+    - generate-article-package@1.2.1
   primary_output:
-    - DOCX
+    - PublicationPackageDOCX
+    - WorkflowReportDOCX
   human_gates:
     - topic_selection
     - final_publication_approval
@@ -27,7 +28,7 @@ metadata:
 
 ## 1. Mission
 
-Orchestrate the complete MacroAlloc editorial production process from content-opportunity discovery to the generation of a final, publication-ready MacroAlloc Article Package in DOCX format.
+Orchestrate the complete MacroAlloc editorial production process from content-opportunity discovery to the generation of two final DOCX files: a publication-ready article-and-SEO document and a separate internal workflow-analysis report.
 
 This orchestrator does not replace specialist skills. It invokes them in the required order, passes normalized outputs between them, interprets status codes, controls revision loops, records traceability, and stops execution when a mandatory quality or human-validation gate is not satisfied.
 
@@ -41,7 +42,7 @@ The orchestrator must never publish content automatically during the launch phas
 4. `verify-financial-article`
 5. `optimize-content-discoverability`
 6. `review-article`
-7. `generate-article-package`
+7. `generate-article-package` produces both required DOCX files
 8. Human final approval
 
 The orchestrator must not skip a stage unless this skill explicitly defines the stage as optional.
@@ -101,7 +102,7 @@ Before execution:
 3. Confirm that web research is available for current-event content.
 4. Set the primary language to `en-US` and record any other requested language as an optional secondary adaptation.
 5. Confirm that topic selection is human and cannot be delegated to the workflow.
-6. Confirm that the final output must be DOCX.
+6. Confirm that the final output must contain both `PublicationPackageDOCX` and `WorkflowReportDOCX`.
 7. Confirm that final human approval remains mandatory.
 8. Create the job ID and initialize logs.
 
@@ -323,7 +324,7 @@ Stop. Do not generate a final package marked as publishable.
 
 The reviewer is the final editorial quality gate but cannot override a failed factual gate.
 
-## 12. Stage 7 — Generate the MacroAlloc Article Package
+## 12. Stage 7 — Generate the two final Word deliverables
 
 Invoke `generate-article-package` only after editorial approval.
 
@@ -344,11 +345,16 @@ Pass all validated artifacts:
 - revision history;
 - job ID.
 
-Primary output: DOCX.
+Required outputs:
+
+- `PublicationPackageDOCX` containing only the complete approved article, reader-facing sources and disclaimer, publication SEO fields, and approved CMS asset details;
+- `WorkflowReportDOCX` containing the shortlist, human-selection evidence, locked brief, source and claim registers, verification, discoverability rationale, editorial review, revisions, diagnostics, provenance and next human action.
+
+The two files must share the same article ID, article version and immutable article hash. Internal material must never appear in the Publication Package.
 
 Expected successful status:
 
-`ARTICLE_PACKAGE_READY_FOR_HUMAN_VALIDATION`
+`DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION`
 
 Routing:
 
@@ -364,7 +370,7 @@ The package generator may format and assemble. It may not invent, rewrite, or ov
 
 ## 13. Stage 8 — Human final-validation gate
 
-Present the final DOCX package and a concise final status report.
+Present both final DOCX files and a concise final status report. Identify the Publication Package as the document for human review and website publication. Identify the Workflow Report as internal and not for publication.
 
 Required human action:
 
@@ -441,7 +447,7 @@ Record for every stage:
 - revision number;
 - model/tool identifiers when available.
 
-Every final package must include the skill versions and job ID.
+The Workflow Report must include the skill versions and job ID. The Publication Package must not expose workflow IDs or skill versions.
 
 ## 18. Mandatory artifacts
 
@@ -454,7 +460,8 @@ The final job record must contain:
 - `DiscoverabilityPackage`
 - `EditorialReview`
 - `FinalApprovedArticle`
-- `ArticlePackageDOCX`
+- `PublicationPackageDOCX`
+- `WorkflowReportDOCX`
 - `ExecutionLog`
 - `RevisionHistory`
 
@@ -469,7 +476,8 @@ If any mandatory artifact is absent, the job cannot be marked complete.
 - `APPROVED_FOR_SEO`
 - `DISCOVERABILITY_READY_FOR_REVIEW`
 - `EDITORIALLY_APPROVED`
-- `ARTICLE_PACKAGE_READY_FOR_HUMAN_VALIDATION`
+- `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION`
+- `PUBLICATION_PACKAGE_READY_FOR_EXPORT`
 - `HUMAN_EDITORIAL_INTERVENTION_REQUIRED`
 - `HUMAN_FINAL_APPROVAL_REQUIRED`
 - `COMPLETED_APPROVED`
@@ -491,7 +499,7 @@ When the user starts the pipeline:
    - revision-limit escalation;
    - final human approval;
    - blocking failure.
-5. At completion, return the final DOCX and a short execution summary.
+5. At completion, return both DOCX files and a short execution summary.
 
 Do not narrate every internal stage unless requested. Show progress only when materially useful.
 
@@ -513,7 +521,8 @@ orchestrator_result:
   warnings: []
   blocking_issues: []
   final_artifacts:
-    docx: null
+    publication_package_docx: null
+    workflow_report_docx: null
     execution_log: null
     review_summary: null
   next_human_action: ""
@@ -532,7 +541,10 @@ The workflow passes only if:
 - revisions were routed to the correct owner;
 - loop limits were respected;
 - the final article is verified, discoverability-optimized, and editorially approved;
-- the final DOCX package is generated;
+- both final DOCX files are generated;
+- the Publication Package contains the complete approved article and publication SEO but no internal workflow material;
+- the Workflow Report contains the process evidence needed for internal evaluation and is clearly marked non-public;
+- both documents reference the same article identity and immutable article hash;
 - human approval remains mandatory before publication;
 - traceability is complete.
 
