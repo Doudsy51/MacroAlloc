@@ -1,8 +1,8 @@
 ---
 name: generate-article-package
-description: Assembles approved US-English MacroAlloc editorial outputs into a traceable article package while preserving the exact human-selected topic, locked angle, article, and metadata. Use after final editorial approval; block non-en-US primary artifacts, missing TOPIC_SELECTED lineage, or topic drift.
+description: Produces two separate Word deliverables from an approved US-English MacroAlloc article: a lightweight Publication Package containing only the complete article and publication-ready SEO fields, and an internal Workflow Report containing process evidence, verification, review, provenance, and diagnostics. Use after final editorial approval; block non-en-US primary artifacts, missing TOPIC_SELECTED lineage, topic drift, or leakage of internal workflow material into the publication document.
 metadata:
-  version: 1.1.0
+  version: 1.2.1
   status: TESTING
   owner: MacroAlloc Content Factory
   language: en-US
@@ -35,15 +35,18 @@ metadata:
 
 ## 1. Mission
 
-Assemble the complete, approved output of the MacroAlloc editorial workflow into a standardized, traceable and publication-ready Article Package.
+Assemble the approved output of the MacroAlloc editorial workflow into two standardized and strictly separated Word documents:
+
+1. `PublicationPackageDOCX` — the lightweight human-review and website-publication document;
+2. `WorkflowReportDOCX` — the internal process, quality and traceability report.
 
 The skill is responsible for document assembly, information mapping, formatting instructions, metadata normalization, provenance, export readiness and package integrity.
 
 It must not perform financial research, rewrite the article, alter verified facts, change the approved SEO strategy, re-score editorial quality, create new analysis, approve publication, publish content or invent missing information.
 
-The primary deliverable is a professional MacroAlloc Article Package in Word format. The same normalized package may also support Markdown, HTML and JSON exports when requested.
+Both DOCX files are mandatory during the v1.2 testing phase. The publication document must preserve the exact approved public article and approved publication metadata. The workflow report must preserve the internal evidence needed to evaluate and improve the Content Factory.
 
-The skill must preserve the exact approved public article while placing internal workflow outputs in clearly separated non-public sections.
+Never combine the two documents. Internal workflow material must not appear anywhere in the Publication Package.
 
 ## 2. Position in the workflow
 
@@ -63,8 +66,8 @@ Expected upstream states:
 
 Required downstream states:
 
-- `ARTICLE_PACKAGE_READY_FOR_HUMAN_VALIDATION` when the package is complete but human publication approval is still required;
-- `ARTICLE_PACKAGE_READY_FOR_EXPORT` when the package is complete and the workflow has explicitly authorized export;
+- `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION` when both documents are complete but human publication approval is still required;
+- `PUBLICATION_PACKAGE_READY_FOR_EXPORT` when the Publication Package is complete and the workflow has explicitly authorized export after human approval;
 - `PACKAGE_REVISION_REQUIRED` when a non-substantive packaging defect can be corrected automatically;
 - `EDITORIAL_INPUT_REQUIRED` when information is missing and cannot be inferred;
 - `BLOCKED` when upstream approvals or mandatory sections are missing or contradictory.
@@ -149,7 +152,7 @@ The package contains two classes of content:
 - update checklist;
 - analytics placeholders.
 
-The Word package may contain both, but internal sections must be visibly identified as non-public production material.
+Public and internal content must be emitted as different files. Labels, color, page breaks or section headings are not sufficient separation inside one DOCX.
 
 ### 3.5 Traceability by design
 
@@ -187,7 +190,7 @@ The skill is responsible for:
 3. normalizing metadata;
 4. mapping approved outputs into standardized sections;
 5. preserving public article integrity;
-6. generating a professional Word document specification;
+6. generating two professional Word document specifications with distinct purposes;
 7. creating a traceability ledger;
 8. assembling SEO and publication metadata;
 9. assembling visual recommendations;
@@ -197,7 +200,7 @@ The skill is responsible for:
 13. assembling distribution assets when supplied;
 14. generating technical and workflow metadata;
 15. running package-level completeness and consistency checks;
-16. producing export-ready DOCX, Markdown, HTML or JSON representations when the execution environment supports them;
+16. producing both required DOCX files and optional Markdown, HTML or JSON representations when requested;
 17. returning explicit handoff states.
 
 ## 5. Non-responsibilities
@@ -333,16 +336,47 @@ Return `EDITORIAL_INPUT_REQUIRED` when:
 - the title and meta title are both valid but a human must choose between approved alternatives;
 - public visibility of the source list is a policy decision not supplied by the workflow.
 
-## 8. Package architecture
+## 8. Dual-document architecture
 
-The standard MacroAlloc Article Package must use the following order.
+Generate two independent DOCX files. Never place Workflow Report sections after the article in the Publication Package.
 
-### 8.1 Cover page
+### 8.0A Publication Package — required order
+
+Keep this document short and directly usable by the human editor and CMS operator:
+
+1. publication header: MacroAlloc, content type, edition, language, final headline and optional approved dek;
+2. complete approved article, including key takeaways, reader-facing tables or FAQ, disclaimer and public sources;
+3. `SEO FOR PUBLICATION` appendix containing only approved CMS and discoverability fields;
+4. optional `PUBLICATION ASSET DETAILS` containing approved hero filename, alt text, caption and rights note.
+
+Do not add a cover sheet, document-control page, table of contents, executive workflow summary, readiness dashboard, scores, claim ledger, AI-review content, technical metadata, workflow identifiers, provenance, revision history, prompts, diagnostics, analytics placeholders or internal lifecycle notes.
+
+### 8.0B Workflow Report — required order
+
+Keep this document internal and optimized for evaluation of the Content Factory:
+
+1. workflow identity, versions and execution status;
+2. discovery shortlist and rejected-candidate summary;
+3. explicit human-selection evidence and locked topic/angle;
+4. research plan, verified source register and freshness checks;
+5. claim ledger, causal-pivot review and verification report;
+6. discoverability assessment and internal SEO rationale;
+7. editorial review, issue register and revision history;
+8. package validation, rendering/accessibility results and limitations;
+9. provenance, hashes, cycle counts, overrides and final human action.
+
+The Workflow Report may reference the Publication Package by filename and hash. It need not duplicate the full article unless a short immutable excerpt or article hash is required for traceability.
+
+When embedding an upstream job record or another historical artifact, label it explicitly as a `HISTORICAL INPUT SNAPSHOT` and preserve its original version values only inside that labeled snapshot. Never present a legacy status or skill version as the current package state. The document-control page, readiness dashboard and final action section must use the current packaging contract and must not conflict with one another.
+
+The detailed mappings below identify the owning document for each component.
+
+### 8.1 Workflow Report cover page
 
 Required fields:
 
 - MacroAlloc brand mark or text logo;
-- `MacroAlloc Article Package` label;
+- `MacroAlloc Workflow Report` label;
 - final article headline;
 - content type;
 - edition when applicable;
@@ -357,7 +391,7 @@ Required fields:
 
 Do not display internal model names or technical costs prominently on the cover page.
 
-### 8.2 Document control page
+### 8.2 Workflow Report document control page
 
 Include:
 
@@ -373,13 +407,13 @@ Include:
 - canonical URL placeholder or confirmed value;
 - document classification.
 
-### 8.3 Table of contents
+### 8.3 Workflow Report table of contents
 
 The Word package must include a Word-compatible automatic table of contents field or a clearly marked placeholder that updates when opened.
 
 Use heading styles consistently so the table of contents can be refreshed automatically.
 
-### 8.4 Executive summary
+### 8.4 Workflow Report executive summary
 
 Include the approved executive summary.
 
@@ -387,7 +421,7 @@ This section must be concise, factual and consistent with the article.
 
 Do not generate a new summary during packaging.
 
-### 8.5 Publication readiness dashboard
+### 8.5 Workflow Report readiness dashboard
 
 Include a compact internal dashboard containing:
 
@@ -403,7 +437,7 @@ Include a compact internal dashboard containing:
 
 Use `NOT_ASSESSED` for unavailable scores. Never invent or average missing values.
 
-### 8.6 SEO and discoverability package
+### 8.6 Publication Package SEO appendix and Workflow Report SEO rationale
 
 Include:
 
@@ -425,9 +459,9 @@ Include:
 - review timing;
 - cannibalization or content-memory notes when assessed.
 
-Clearly label this section `INTERNAL — CMS AND SEO METADATA`.
+In the Publication Package, label this section `SEO FOR PUBLICATION` and include only fields required for human review or CMS entry. Put content-memory notes, cannibalization analysis, scoring, rationale, unresolved options, review timing and lifecycle diagnostics in the Workflow Report only.
 
-### 8.7 Final approved article
+### 8.7 Publication Package approved article
 
 Include the exact final approved article.
 
@@ -445,7 +479,7 @@ Required ordering:
 
 Internal annotations must not appear in the reader-facing article.
 
-### 8.8 Visual package
+### 8.8 Publication asset details and internal visual rationale
 
 Include, when supplied:
 
@@ -463,7 +497,9 @@ Include, when supplied:
 
 The skill must not create a visual prompt that introduces unsupported facts or depicts a misleading market relationship.
 
-### 8.9 Source register
+In the Publication Package, include only the approved filename, alt text, caption, aspect ratio and rights note needed for publication. Put concepts, prompts, alternatives, charts, infographics and social-preview recommendations in the Workflow Report only.
+
+### 8.9 Workflow Report source register
 
 The source register must be normalized into a table.
 
@@ -483,7 +519,9 @@ Recommended columns:
 
 Do not expose internal reliability scores publicly unless explicitly requested.
 
-### 8.10 Fact-check and claim ledger
+Keep the reader-facing public source list in the Publication Package when required. Keep the normalized evidence register and reliability notes in the Workflow Report only.
+
+### 8.10 Workflow Report fact-check and claim ledger
 
 Include:
 
@@ -499,7 +537,7 @@ Include:
 
 The package must preserve causal-pivot and context-reconciliation findings.
 
-### 8.11 AI editorial review summary
+### 8.11 Workflow Report AI editorial review summary
 
 Include the approved AI Review Summary:
 
@@ -519,7 +557,7 @@ Include the approved AI Review Summary:
 
 If the decision is `PUBLISH`, required revisions must be `None` or limited to optional post-package actions.
 
-### 8.12 Detailed editorial review
+### 8.12 Workflow Report detailed editorial review
 
 Include the structured issue register and accepted limitations.
 
@@ -534,7 +572,7 @@ Recommended columns:
 - acceptance test;
 - resolution status.
 
-### 8.13 Distribution package
+### 8.13 Workflow Report distribution package
 
 Include only approved or supplied assets.
 
@@ -553,7 +591,7 @@ Possible fields:
 
 Distribution assets must be marked `INTERNAL — DISTRIBUTION ASSETS`.
 
-### 8.14 Analytics and lifecycle page
+### 8.14 Workflow Report analytics and lifecycle page
 
 Create a structured placeholder for post-publication tracking.
 
@@ -580,7 +618,7 @@ Recommended fields:
 
 Do not populate unknown performance values with zeros. Use blank fields or `PENDING`.
 
-### 8.15 Technical metadata and provenance
+### 8.15 Workflow Report technical metadata and provenance
 
 Include:
 
@@ -775,18 +813,18 @@ Example:
 
 - article ID: `MA-MI-2026-00042`;
 - article version: `1.3`;
-- package skill version: `1.1.0`;
+- package skill version: `1.2.1`;
 - package file revision: `2`.
 
 ### 11.4 Status vocabulary
 
 Allowed package statuses:
 
-- `DRAFT_PACKAGE`
+- `DRAFT_DUAL_ARTIFACTS`
 - `PACKAGE_REVISION_REQUIRED`
 - `EDITORIAL_INPUT_REQUIRED`
-- `ARTICLE_PACKAGE_READY_FOR_HUMAN_VALIDATION`
-- `ARTICLE_PACKAGE_READY_FOR_EXPORT`
+- `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION`
+- `PUBLICATION_PACKAGE_READY_FOR_EXPORT`
 - `EXPORTED`
 - `BLOCKED`
 - `ARCHIVED`
@@ -851,13 +889,13 @@ Choose the correct standard package structure.
 
 Normalize labels, dates, lists, tags and status values.
 
-### Stage 7 — Assemble public content
+### Stage 7 — Assemble Publication Package
 
-Insert the locked final article and approved reader-facing elements.
+Create a standalone DOCX containing the locked final article, reader-facing sources and disclaimer, approved publication SEO fields, and only the asset details required by the CMS operator. Run the public-content allowlist and internal-leakage checks before continuing.
 
-### Stage 8 — Assemble internal production content
+### Stage 8 — Assemble Workflow Report
 
-Insert SEO, verification, review, source, visual, distribution and lifecycle sections.
+Create a separate internal DOCX containing process evidence, selection lineage, source and claim registers, verification, discoverability rationale, editorial review, revisions, diagnostics, lifecycle controls and provenance. Reference the Publication Package by filename and article hash.
 
 ### Stage 9 — Build traceability ledger
 
@@ -871,9 +909,9 @@ Map content to Word styles and section structure.
 
 Validate completeness, consistency, links, placeholders and article immutability.
 
-### Stage 12 — Generate requested exports
+### Stage 12 — Generate required and optional exports
 
-Generate DOCX by default and optional Markdown, HTML or JSON when supported.
+Generate both required DOCX files by default. Generate optional Markdown, HTML or JSON only when requested.
 
 ### Stage 13 — Return manifest
 
@@ -955,7 +993,9 @@ Detect and block unresolved placeholders such as:
 
 ### 15.9 Public/internal separation check
 
-Detect internal scores, workflow notes and prompts in the public article body.
+Fail if any internal score, workflow note, prompt, claim ledger, stage result, run ID, skill version, revision history, provenance field, diagnostic, analytics placeholder or non-public rationale appears anywhere in the Publication Package.
+
+Confirm that the Workflow Report is marked `INTERNAL — NOT FOR PUBLICATION` on its cover and header or footer.
 
 ### 15.10 Hyperlink check
 
@@ -963,7 +1003,7 @@ Verify syntax and presence of supplied links. Do not claim live HTTP validation 
 
 ### 15.11 Export check
 
-Confirm that the generated files open successfully and contain the expected sections when the execution environment supports validation.
+Confirm that both generated DOCX files open successfully and contain only their expected sections when the execution environment supports validation. A successful single-file export is incomplete and must return `PACKAGE_REVISION_REQUIRED`.
 
 ## 16. Quality gates
 
@@ -1060,9 +1100,14 @@ The skill may automatically correct only formatting, ordering, labeling and dete
 
 ### 19.1 DOCX
 
-DOCX is the primary human-review and publication-support format.
+DOCX is the required human-review format.
 
-It must contain the complete package structure and professional MacroAlloc formatting.
+Generate two files:
+
+- `PublicationPackageDOCX` — lightweight, public-facing article and SEO handoff;
+- `WorkflowReportDOCX` — internal process and quality report.
+
+Each file must have professional MacroAlloc formatting appropriate to its purpose. The publication document prioritizes uninterrupted reading and simple CMS handoff. The report prioritizes traceability and analysis.
 
 ### 19.2 Markdown
 
@@ -1095,7 +1140,59 @@ It should preserve every field, provenance entry, issue and state without format
 Return a machine-readable object with the following structure.
 
 ```yaml
-ArticlePackage:
+PublicationPackage:
+  identity:
+    article_id:
+    content_type:
+    edition:
+    language:
+    article_version:
+    generated_at:
+    status:
+  article:
+    headline:
+    subtitle:
+    byline:
+    publication_date:
+    key_takeaways: []
+    article_markdown:
+    faq: []
+    public_sources: []
+    disclaimer:
+  seo_for_publication:
+    final_h1:
+    meta_title:
+    meta_description:
+    url_slug:
+    canonical_url:
+    primary_keyword:
+    secondary_keywords: []
+    search_intent:
+    target_audience:
+    category:
+    tags: []
+    open_graph:
+      title:
+      description:
+    internal_links: []
+    featured_answer:
+    schema_recommendations: []
+  publication_asset_details:
+    filename:
+    alt_text:
+    caption:
+    aspect_ratio:
+    rights_note:
+  validation:
+    article_hash:
+    internal_leakage_check:
+    structural_check:
+    visual_render_check:
+  export:
+    filename:
+    checksum:
+
+WorkflowReport:
   package_identity:
     article_id:
     workflow_run_id:
@@ -1118,15 +1215,10 @@ ArticlePackage:
     classification:
     version_history: []
     skill_versions: {}
-  public_content:
-    headline:
-    subtitle:
-    executive_summary:
-    article_markdown:
-    key_takeaways: []
-    faq: []
-    public_sources: []
-    disclaimer:
+  publication_package_reference:
+    filename:
+    article_hash:
+    package_checksum:
   publication_readiness:
     verification_status:
     discoverability_status:
@@ -1208,35 +1300,39 @@ ArticlePackage:
 
 ## 21. Human-readable output order
 
-Provide the assembled package in this order:
+Return a concise status and manifest, then link the two documents.
 
-1. Package status and file manifest.
-2. Cover page.
-3. Document control.
-4. Table of contents.
-5. Executive summary.
-6. Publication readiness dashboard.
-7. SEO and discoverability package.
-8. Final approved article.
-9. Visual package.
-10. Source register.
-11. Fact-check and claim ledger.
-12. AI editorial review summary.
-13. Detailed editorial review.
-14. Distribution package.
-15. Analytics and lifecycle page.
-16. Technical metadata and provenance.
-17. Package issues and validation results.
+Publication Package order:
+
+1. publication header;
+2. complete approved article;
+3. public sources and disclaimer;
+4. `SEO FOR PUBLICATION`;
+5. optional publication asset details.
+
+Workflow Report order:
+
+1. internal cover and document control;
+2. workflow summary and skill versions;
+3. shortlist, rejected candidates and human-selection evidence;
+4. locked brief, evidence plan and source register;
+5. claim ledger and financial verification;
+6. discoverability rationale and editorial review;
+7. revision, issue and limitation registers;
+8. formatting, accessibility and render QA;
+9. lifecycle, provenance, manifest and next human action.
 
 ## 22. File naming convention
 
 Use:
 
-`MacroAlloc_<content-type>_<YYYY-MM-DD>_<short-slug>_<article-version>_<package-version>.<ext>`
+- `MacroAlloc_<content-type>_<YYYY-MM-DD>_<short-slug>_Publication_<article-version>.docx`
+- `MacroAlloc_<content-type>_<YYYY-MM-DD>_<short-slug>_Workflow-Report_<report-version>.docx`
 
-Example:
+Examples:
 
-`MacroAlloc_Macro-Insight_2026-08-02_fed-inflation-outlook_v1.2_pkg1.0.0.docx`
+- `MacroAlloc_Evening-Macro-Insight_2026-08-03_fed-hawkish-dissents_Publication_v1.0.docx`
+- `MacroAlloc_Evening-Macro-Insight_2026-08-03_fed-hawkish-dissents_Workflow-Report_v1.0.docx`
 
 For the skill distribution package, use:
 
@@ -1246,7 +1342,7 @@ Avoid characters that create cross-platform file-system problems.
 
 ## 23. Package manifest
 
-Every export must include a manifest containing:
+Every export manifest must contain one entry for each document, including:
 
 - file name;
 - format;
@@ -1258,7 +1354,9 @@ Every export must include a manifest containing:
 - package version;
 - validation result;
 - intended use;
-- public or internal classification.
+- public or internal classification;
+- cross-reference to the paired document;
+- article hash shared by both documents.
 
 ## 24. Error handling
 
@@ -1345,7 +1443,7 @@ The workflow should log:
 
 ### Test 1 — Approved standard article
 
-Given complete approved inputs, the skill produces a full package, preserves the article exactly and returns `ARTICLE_PACKAGE_READY_FOR_HUMAN_VALIDATION`.
+Given complete approved inputs, the skill produces both DOCX files, preserves the article exactly, keeps internal material out of the Publication Package and returns `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION`.
 
 ### Test 2 — Article-version mismatch
 
@@ -1383,6 +1481,22 @@ The skill blocks when the claim ledger references a source absent from the regis
 
 Every generated file appears in the manifest with its validation result.
 
+### Test 11 — Internal leakage into publication document
+
+Given a Publication Package containing a workflow ID, score, claim ledger, AI-review note, prompt or provenance table, the skill returns `PACKAGE_REVISION_REQUIRED` and removes the material only through deterministic reassembly from the public allowlist.
+
+### Test 12 — Missing Workflow Report
+
+Given a valid Publication Package but no Workflow Report during the v1.2 testing phase, the skill returns `PACKAGE_REVISION_REQUIRED` rather than declaring the job complete.
+
+### Test 13 — Missing Publication Package
+
+Given a valid Workflow Report but no Publication Package, the skill returns `BLOCKED` because no human-review or CMS handoff document exists.
+
+### Test 14 — Article mismatch across documents
+
+Given different article hashes in the Publication Package and Workflow Report, the skill returns `BLOCKED` and reports the mismatch.
+
 ## 29. Evaluation dataset recommendations
 
 Test the skill with at least:
@@ -1418,13 +1532,14 @@ The skill is complete only when:
 
 - all mandatory upstream states are valid;
 - the authoritative article is identified and locked;
-- all required package sections are present;
-- public and internal content are separated;
+- both required DOCX files are present;
+- all required sections are present in their owning document;
+- public and internal content are separated at file level;
 - the source and claim registers are internally consistent;
 - provenance is recorded;
 - mandatory quality gates pass;
 - requested exports are generated or an explicit export limitation is reported;
-- the package manifest is complete;
+- the two-entry package manifest is complete;
 - the handoff state is explicit;
 - no unresolved mandatory placeholder remains.
 
@@ -1432,8 +1547,9 @@ The skill is complete only when:
 
 When successful, return:
 
-- the complete `ArticlePackage` object;
-- generated file references;
+- the complete `PublicationPackage` object;
+- the complete `WorkflowReport` object;
+- both generated DOCX references;
 - package manifest;
 - package validation report;
 - human-action list;
@@ -1448,9 +1564,9 @@ The skill must never trigger publication itself.
 
 ## 32. Final rule
 
-The purpose of the Article Package is to preserve quality, reduce publication friction and create a stable operational record.
+The purpose of the Publication Package is to minimize human-review and CMS friction. The purpose of the Workflow Report is to preserve the temporary operational evidence needed to improve the Content Factory.
 
-A visually polished package is not valid if it changes the approved article, hides unresolved issues, loses source traceability or confuses internal production material with reader-facing content.
+A visually polished output is not valid if it changes the approved article, hides unresolved issues, loses source traceability, omits either required document during testing, or leaks internal production material into the Publication Package.
 
 Package integrity takes precedence over presentation speed.
 

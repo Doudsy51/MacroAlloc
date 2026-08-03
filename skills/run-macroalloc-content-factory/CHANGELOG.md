@@ -1,4 +1,21 @@
-# Changelog — run-macroalloc-content-factory
+# Changelog - run-macroalloc-content-factory
+
+## 1.2.1 - Packaging-state clarity
+
+### Changed
+
+- Updated the required `generate-article-package` version to 1.2.1.
+- Required current dual-artifact status to remain distinct from labeled historical workflow snapshots.
+
+## 1.2.0 - Dual final deliverables
+
+### Changed
+
+- Replaced the combined final Article Package with a lightweight Publication Package DOCX and a separate internal Workflow Report DOCX.
+- Made both files mandatory during the testing phase.
+- Added file-level public/internal separation and leakage checks.
+- Updated the final human-validation gate, mandatory artifacts, output contract, statuses, and acceptance criteria.
+- Updated required specialist versions to the current v1.1.0 set and `generate-article-package` v1.2.0.
 
 ## [1.1.0] — 2026-08-02
 
