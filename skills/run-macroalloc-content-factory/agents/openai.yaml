@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run MacroAlloc Content Factory"
+  short_description: "Orchestrate the gated editorial workflow"
+  default_prompt: "Use $run-macroalloc-content-factory to run the complete gated MacroAlloc editorial workflow."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify Financial Article"
+  short_description: "Independently verify claims and reasoning"
+  default_prompt: "Use $verify-financial-article to independently verify this MacroAlloc draft and its evidence package."

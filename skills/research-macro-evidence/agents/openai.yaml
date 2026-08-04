@@ -1,0 +1,5 @@
+interface:
+  display_name: "Research Macro Evidence"
+  short_description: "Build a traceable pre-draft evidence dossier"
+  default_prompt: "Use $research-macro-evidence to research the selected MacroAlloc topic and prepare the evidence dossier for writing."
+

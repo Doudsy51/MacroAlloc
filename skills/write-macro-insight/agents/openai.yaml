@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Macro Insight"
+  short_description: "Draft a selected US-English macro insight"
+  default_prompt: "Use $write-macro-insight to draft the selected MacroAlloc insight from the approved brief and evidence."

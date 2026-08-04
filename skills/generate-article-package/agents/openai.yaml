@@ -1,0 +1,4 @@
+interface:
+  display_name: "Generate Article Package"
+  short_description: "Build separate public and internal Word files"
+  default_prompt: "Use $generate-article-package to create the approved public Publication Package and separate internal Workflow Report."

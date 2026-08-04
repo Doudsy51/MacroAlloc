@@ -1,0 +1,399 @@
+# Write Macro Insight — Domain Rules
+
+## Contents
+
+- 4. Editorial scope
+- 5. Core writing standard
+- 6. Evidence and attribution rules
+- 7. Facts, interpretation, scenarios and forecasts
+- 8. MacroAlloc analysis standard
+- 9. Context-completeness control
+- 10. Historical comparisons
+- 11. Title and opening requirements
+- 12. Key takeaways
+- 13. “What to Watch Next” standard
+- 20. Regression fixtures
+- 21. Version notes
+
+## 4. Editorial scope
+
+### 4.1 In scope
+
+- monetary policy;
+- inflation, growth, labor, fiscal policy and public finance;
+- trade, sanctions and industrial policy;
+- commodities and energy;
+- geopolitics with a defensible macroeconomic or cross-asset transmission mechanism;
+- material repricing across equities, rates, credit, currencies or commodities;
+- Morning and Evening Macro Insights for an international audience, with US organic search as the priority market.
+
+### 4.2 Out of scope
+
+- ETF product research;
+- individual-security recommendations;
+- personalized asset allocation;
+- pure political commentary without an economic or market mechanism;
+- unsourced speculation;
+- social-media posts, newsletters, video scripts or French adaptation;
+- SEO metadata generation beyond recording an upstream keyword hypothesis;
+- final Word assembly;
+- publication or CMS actions.
+
+## 5. Core writing standard
+
+### 5.1 Language and tone
+
+Write in clear, professional US English.
+
+US English is the immutable primary-production language. A user request for French or another language may be recorded as a future secondary adaptation request, but it must not change this draft's language. Do not produce the secondary adaptation in this skill.
+
+The tone must be:
+
+- analytical rather than promotional;
+- precise rather than dramatic;
+- accessible to an informed non-specialist;
+- cautious where evidence is provisional;
+- substantive without academic padding;
+- recognizably MacroAlloc: macro-first, mechanism-led, cross-asset aware, and explicit about uncertainty.
+
+Avoid:
+
+- clickbait;
+- generic market commentary;
+- rhetorical exaggeration;
+- unexplained jargon;
+- empty transitions;
+- formulaic AI phrasing;
+- repeated conclusions;
+- recommendations framed as what investors “should” buy, sell or hold.
+
+### 5.2 Target length
+
+- Standard article: 700–1,000 words.
+- Complex topic: 1,000–1,300 words.
+- Maximum: 1,500 words only when the evidence and angle justify the additional length.
+
+Do not lengthen an article merely to meet a target.
+
+### 5.3 Required editorial architecture
+
+The draft should normally include:
+
+1. A descriptive H1 stating the event and the economic or market consequence.
+2. A concise subtitle or dek.
+3. Three key takeaways.
+4. An opening that answers what happened, why it matters now, and what remains uncertain.
+5. Two to five H2 sections organized by analytical logic, not chronology alone.
+6. A substantive MacroAlloc analysis section linking the event to economic and market transmission.
+7. A “What to Watch Next” section with observable indicators, dates or conditions.
+8. The standard informational disclaimer.
+9. A numbered source list.
+10. Internal editorial notes and structured output metadata.
+
+The structure may be adapted when the topic demands it, but the essential functions must remain present.
+
+## 6. Evidence and attribution rules
+
+### 6.1 No unsupported facts
+
+Every externally verifiable claim must be traceable to the research dossier or source register.
+
+This includes:
+
+- numbers;
+- dates;
+- votes;
+- policy decisions;
+- quotations and paraphrases;
+- market levels and movements;
+- causal attributions made by officials, economists or journalists;
+- historical comparisons;
+- institutional roles;
+- legal or regulatory claims;
+- consensus expectations.
+
+Do not infer a missing number, date, quote, position or cause.
+
+### 6.2 Source markers
+
+Use discreet numbered markers such as `[1]`, `[2]` and `[3]` in the body.
+
+- Place markers immediately after the supported sentence or clause.
+- Do not overload every sentence when several adjacent sentences rely on the same source and the attribution remains clear.
+- List full URLs only in the final Sources section.
+- Do not invent or normalize a URL that was not supplied or verified.
+
+### 6.3 Source hierarchy
+
+Prefer:
+
+1. authoritative primary sources;
+2. Reuters, Bloomberg, Financial Times, Wall Street Journal, Associated Press or similarly rigorous financial/news organizations;
+3. recognized institutions, exchanges and research organizations;
+4. other sources only when necessary and explicitly qualified.
+
+A primary source does not eliminate the need for independent corroboration when the interpretation is disputed or when the source is an interested party.
+
+### 6.4 Attribution of uncertain or interested-party claims
+
+Claims from governments, armed forces, companies, political actors, state media or anonymous officials must remain explicitly attributed unless independently established.
+
+Use formulations such as:
+
+- “according to…”;
+- “the ministry said…”;
+- “Reuters reported, citing…”;
+- “the claim could not be independently verified.”
+
+Never convert an attributed allegation into an established fact.
+
+## 7. Facts, interpretation, scenarios and forecasts
+
+The article must distinguish four layers:
+
+### 7.1 Confirmed facts
+
+Events and data supported by the evidence dossier.
+
+### 7.2 Uncertainty
+
+Missing, provisional, disputed or fast-changing information.
+
+### 7.3 MacroAlloc interpretation
+
+The analytical inference drawn from facts. It must be clearly framed as analysis, not fact.
+
+### 7.4 Scenarios or forecasts
+
+Conditional outcomes that depend on future developments. Use explicit conditional language.
+
+Prohibited certainty formulations include:
+
+- “will definitely”;
+- “guarantees”;
+- “proves” when evidence only supports consistency;
+- “the market will”;
+- “investors must.”
+
+## 8. MacroAlloc analysis standard
+
+The article must add more than a news summary.
+
+### 8.1 Required analytical chain
+
+Where relevant, explain:
+
+`event or data → economic mechanism → policy or financial-condition effect → market transmission → observable conditions that could confirm or invalidate the thesis`
+
+The analysis must identify at least two supported transmission channels from the topic brief.
+
+Examples include:
+
+- energy supply → inflation → central-bank reaction → real yields and equity valuations;
+- tariffs → import prices and margins → growth/inflation mix → rates, FX and equities;
+- fiscal issuance → term premium → financing conditions → housing and long-duration assets;
+- labor data → income and demand → policy expectations → curve and currency repricing.
+
+### 8.2 Central causal pivot
+
+Identify the one to three claims on which the central thesis depends.
+
+For each causal pivot:
+
+- ensure the claim exists in the evidence dossier;
+- avoid presenting a disputed interpretation as settled;
+- mention a material counter-interpretation when supplied;
+- do not build a conclusion on a single ambiguous remark or market move;
+- flag the pivot explicitly in internal notes for enhanced verifier scrutiny.
+
+### 8.3 Alternative explanations
+
+When plausible alternatives materially affect the interpretation, include them or explain their exclusion in internal notes.
+
+Do not manufacture false balance. Alternatives must be evidence-based and relevant.
+
+### 8.4 Specificity of market implications
+
+Avoid generic conclusions such as:
+
+> “Bonds may remain volatile, equities could face pressure and the dollar may move.”
+
+Instead, connect each implication to a mechanism supported by the article, such as:
+
+- term-premium repricing;
+- changes in the expected policy path;
+- real-rate sensitivity of long-duration valuations;
+- refinancing costs;
+- margin compression;
+- currency-rate differentials;
+- physical supply constraints;
+- liquidity or funding stress.
+
+If the evidence does not support asset-specific implications, state that limitation rather than filling space.
+
+## 9. Context-completeness control
+
+This control is mandatory before finalizing the draft.
+
+### 9.1 Source-to-draft reconciliation
+
+Review every primary source and every material secondary source used in the research dossier.
+
+For each material contextual factor contained in a cited source, classify it as:
+
+- `INTEGRATED_IN_ARTICLE`;
+- `EXCLUDED_AS_IMMATERIAL`;
+- `EXCLUDED_TO_PRESERVE_SCOPE`;
+- `EXCLUDED_DUE_TO_INSUFFICIENT_CORROBORATION`;
+- `REQUIRES_VERIFIER_REVIEW`.
+
+A material contextual factor includes information that could:
+
+- change the interpretation of a data release;
+- weaken or qualify the article’s thesis;
+- reveal a temporary or base effect;
+- identify a geopolitical, regulatory or supply-side confounder;
+- alter the meaning of an official’s position;
+- affect the stated market transmission.
+
+No material factor present in a cited source may disappear silently between research and drafting.
+
+### 9.2 Central-bank communication granularity
+
+When describing a central bank or policymaker, distinguish when relevant between:
+
+- the formal inflation target;
+- the inflation measure used;
+- the strategic framework;
+- the reaction function;
+- current policy guidance;
+- the interpretation placed on remarks by financial markets or the press.
+
+Do not collapse these into a single claim.
+
+### 9.3 Macro-data decomposition
+
+For important data releases, check whether the headline move reflects:
+
+- base effects;
+- temporary energy or food moves;
+- revisions;
+- seasonal adjustment;
+- one-off government or trade effects;
+- composition changes;
+- divergence between headline and core measures.
+
+Include the decomposition when it materially changes the reader’s interpretation.
+
+## 10. Historical comparisons
+
+Use a historical comparison only when:
+
+- the comparison period is objectively relevant;
+- the source is reliable;
+- the comparison helps readers judge magnitude or regime significance;
+- it does not create a misleading analogy.
+
+Do not force a historical benchmark into every rates, spreads or market-move article.
+
+When no reliable comparison exists, omit it and record `NOT_USED_NO_RELIABLE_BENCHMARK` in internal notes.
+
+## 11. Title and opening requirements
+
+### 11.1 H1
+
+The H1 must be descriptive and analytical.
+
+It should usually state:
+
+- the event or development;
+- the asset, economy or policy area affected;
+- the key consequence or unresolved tension.
+
+Avoid vague titles such as:
+
+- “What Happened Today?”
+- “Markets React”
+- “A Major Shift Is Underway”
+
+Do not optimize for an exact SEO keyword at the expense of factual precision. The SEO skill may later refine presentation without changing meaning.
+
+### 11.2 Opening answer
+
+Within the first 100–150 words, answer:
+
+- What happened?
+- Why does it matter now?
+- What is the MacroAlloc analytical angle?
+- What remains uncertain?
+
+Do not delay the answer with scene-setting or generic background.
+
+## 12. Key takeaways
+
+Provide exactly three concise takeaways.
+
+Each must contain a distinct function:
+
+1. confirmed development;
+2. macro or market mechanism;
+3. principal uncertainty, condition or next indicator.
+
+Do not repeat the title or three versions of the same claim.
+
+## 13. “What to Watch Next” standard
+
+List concrete observables, not generic risks.
+
+Prefer:
+
+- scheduled data releases;
+- policy meetings;
+- specific market levels only when sourced and materially relevant;
+- physical flows;
+- official decisions;
+- implementation dates;
+- conditions that would confirm or weaken the thesis.
+
+Distinguish between:
+
+- confirmed upcoming events;
+- conditional developments;
+- fast-changing items requiring a publication recheck.
+
+## 20. Regression fixtures
+
+At minimum, test this skill against:
+
+1. A central-bank article containing an ambiguous statement about the inflation target, inflation measure, strategic framework and reaction function.
+2. A macro-data release distorted by energy prices, base effects or a temporary geopolitical factor already mentioned in a cited primary source.
+3. A rates article where a historical comparison is useful.
+4. A rates article where a historical comparison would be forced or misleading.
+5. A geopolitical article relying partly on interested-party claims.
+6. A draft with a generic catch-all market conclusion.
+7. A revision request that can be resolved locally.
+8. A revision request that would materially change the locked angle and must return `EDITORIAL_DECISION_REQUIRED`.
+9. A dossier with a material context factor that is silently omitted, which must fail the output gate.
+10. A compliant, fully sourced article that should pass on revision attempt 0.
+
+## 21. Version notes
+
+### 1.1.0
+
+- Requires `TOPIC_SELECTED` plus explicit selection evidence tied to the preserved shortlist.
+- Blocks drafting during `AWAITING_USER_SELECTION` or when the selection is ambiguous.
+- Makes `en-US` immutable for the primary article and defers all translations to a separate downstream adaptation.
+
+### 0.7.0
+
+- Preserves the validated writer/verifier/SEO separation and `DRAFT_READY_FOR_VERIFICATION` status.
+- Adds the structured executive summary required by the future MacroAlloc Article Package.
+- Adds mandatory source-to-draft context reconciliation.
+- Adds central causal-pivot identification for enhanced verification.
+- Adds explicit protection against loss of material context already present in cited sources.
+- Adds central-bank communication granularity.
+- Adds macro-data decomposition checks.
+- Makes historical comparison conditional rather than automatic.
+- Adds a hard check against generic catch-all market conclusions.
+- Defines a strict machine-readable output contract for reliable downstream Word assembly.
+- Clarifies that final Word generation belongs to the orchestrated packaging layer, not the writer.

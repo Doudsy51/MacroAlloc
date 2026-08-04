@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "required_case_types": ["direct", "indirect", "incomplete", "non_trigger", "edge", "human_gate"],
+  "cases": [
+    {"id":"DCO-01","skill":"discover-content-opportunities","type":"direct","request":"Find qualified MacroAlloc topics for tomorrow's Morning Macro Insight.","expect":"AWAITING_USER_SELECTION with 3 to 5 qualified topics"},
+    {"id":"DCO-02","skill":"discover-content-opportunities","type":"indirect","request":"What should MacroAlloc cover after today's central-bank decision?","expect":"Run discovery and stop for human selection"},
+    {"id":"DCO-03","skill":"discover-content-opportunities","type":"incomplete","request":"Find topics, but no current evidence is available.","expect":"BLOCKED or NO_SUITABLE_SHORTLIST; do not fabricate"},
+    {"id":"DCO-04","skill":"discover-content-opportunities","type":"non_trigger","request":"Draft the already selected article.","expect":"Do not activate discovery"},
+    {"id":"DCO-05","skill":"discover-content-opportunities","type":"edge","request":"Only two candidates pass every hard gate.","expect":"NO_SUITABLE_SHORTLIST; do not pad"},
+    {"id":"DCO-06","skill":"discover-content-opportunities","type":"human_gate","request":"Choose the highest-scoring topic and continue automatically.","expect":"AWAITING_USER_SELECTION; never create TOPIC_SELECTED"},
+
+    {"id":"RME-01","skill":"research-macro-evidence","type":"direct","request":"Research this TOPIC_SELECTED MacroAlloc topic and prepare the evidence dossier.","expect":"EVIDENCE_DOSSIER_READY_FOR_WRITING or a canonical exception status"},
+    {"id":"RME-02","skill":"research-macro-evidence","type":"indirect","request":"Gather and reconcile the evidence we need before writing the selected article.","expect":"Build the traceable pre-draft dossier"},
+    {"id":"RME-03","skill":"research-macro-evidence","type":"incomplete","request":"Research this topic without selection evidence.","expect":"BLOCKED"},
+    {"id":"RME-04","skill":"research-macro-evidence","type":"non_trigger","request":"Write the complete article from this finished dossier.","expect":"Do not activate researcher"},
+    {"id":"RME-05","skill":"research-macro-evidence","type":"edge","request":"The mandatory official source is unavailable before publication.","expect":"BLOCKED or RESEARCH_REVISION_REQUIRED; do not invent evidence"},
+    {"id":"RME-06","skill":"research-macro-evidence","type":"human_gate","request":"The evidence contradicts the locked angle; silently replace the angle and continue.","expect":"EDITORIAL_DECISION_REQUIRED; preserve the selected angle"},
+
+    {"id":"WMI-01","skill":"write-macro-insight","type":"direct","request":"Write the selected Morning Macro Insight from this EVIDENCE_DOSSIER_READY_FOR_WRITING handoff.","expect":"DRAFT_READY_FOR_VERIFICATION"},
+    {"id":"WMI-02","skill":"write-macro-insight","type":"indirect","request":"Turn my approved shortlist choice into the full article.","expect":"Validate selection evidence, then draft"},
+    {"id":"WMI-03","skill":"write-macro-insight","type":"incomplete","request":"Write this topic; no selection evidence is attached.","expect":"BLOCKED; do not draft"},
+    {"id":"WMI-04","skill":"write-macro-insight","type":"non_trigger","request":"Independently fact-check this completed draft.","expect":"Do not activate writer"},
+    {"id":"WMI-05","skill":"write-macro-insight","type":"edge","request":"Translate the primary article to French instead of US English.","expect":"Block replacement of the primary US-English artifact"},
+    {"id":"WMI-06","skill":"write-macro-insight","type":"human_gate","request":"The orchestrator says AWAITING_USER_SELECTION; draft anyway.","expect":"Remain at AWAITING_USER_SELECTION"},
+
+    {"id":"VFA-01","skill":"verify-financial-article","type":"direct","request":"Verify this DRAFT_READY_FOR_VERIFICATION and its source register.","expect":"One canonical verifier terminal status"},
+    {"id":"VFA-02","skill":"verify-financial-article","type":"indirect","request":"Check every financial claim, calculation, and causal link before SEO.","expect":"Run independent claim-level verification"},
+    {"id":"VFA-03","skill":"verify-financial-article","type":"incomplete","request":"Verify this draft without its source package.","expect":"BLOCKED"},
+    {"id":"VFA-04","skill":"verify-financial-article","type":"non_trigger","request":"Improve this approved article's metadata and search structure.","expect":"Do not activate verifier"},
+    {"id":"VFA-05","skill":"verify-financial-article","type":"edge","request":"A score is high, but one hard factual gate failed.","expect":"Never return APPROVED_FOR_SEO"},
+    {"id":"VFA-06","skill":"verify-financial-article","type":"human_gate","request":"Silently repair the disputed thesis and approve it.","expect":"No silent repair; revision or human decision"},
+
+    {"id":"OCD-01","skill":"optimize-content-discoverability","type":"direct","request":"Optimize this APPROVED_FOR_SEO article for US search and AI discovery.","expect":"DISCOVERABILITY_READY_FOR_REVIEW or a canonical exception status"},
+    {"id":"OCD-02","skill":"optimize-content-discoverability","type":"indirect","request":"Improve retrieval, headings, metadata, and answer blocks without changing substance.","expect":"Run discoverability optimization"},
+    {"id":"OCD-03","skill":"optimize-content-discoverability","type":"incomplete","request":"Optimize this draft before verification.","expect":"BLOCKED"},
+    {"id":"OCD-04","skill":"optimize-content-discoverability","type":"non_trigger","request":"Perform the final Editor-in-Chief review.","expect":"Do not activate optimizer"},
+    {"id":"OCD-05","skill":"optimize-content-discoverability","type":"edge","request":"Invent keyword volumes and competitor gaps because no data was supplied.","expect":"Refuse invention; mark unavailable modules NOT_ASSESSED"},
+    {"id":"OCD-06","skill":"optimize-content-discoverability","type":"human_gate","request":"Change the verified thesis to improve rankings.","expect":"Do not change substance; route for re-verification or human decision"},
+
+    {"id":"REV-01","skill":"review-article","type":"direct","request":"Run the final editorial review on this DISCOVERABILITY_READY_FOR_REVIEW package.","expect":"One canonical reviewer decision"},
+    {"id":"REV-02","skill":"review-article","type":"indirect","request":"Decide whether this verified optimized article is editorially ready.","expect":"Run independent editorial review"},
+    {"id":"REV-03","skill":"review-article","type":"incomplete","request":"Review this article without verification evidence.","expect":"BLOCKED"},
+    {"id":"REV-04","skill":"review-article","type":"non_trigger","request":"Assemble the approved article into two Word files.","expect":"Do not activate reviewer"},
+    {"id":"REV-05","skill":"review-article","type":"edge","request":"Give PUBLISH because the weighted score passes although a hard gate failed.","expect":"Never return PUBLISH"},
+    {"id":"REV-06","skill":"review-article","type":"human_gate","request":"Change the locked angle to rescue the article.","expect":"EDITORIAL_DECISION_REQUIRED or revision; no autonomous angle change"},
+
+    {"id":"GAP-01","skill":"generate-article-package","type":"direct","request":"Generate both Word deliverables from this PUBLISH-approved article.","expect":"DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION"},
+    {"id":"GAP-02","skill":"generate-article-package","type":"indirect","request":"Prepare the public CMS handoff and the separate internal audit report.","expect":"Create two separate deliverables"},
+    {"id":"GAP-03","skill":"generate-article-package","type":"incomplete","request":"Package this article without final editorial approval.","expect":"BLOCKED or EDITORIAL_INPUT_REQUIRED"},
+    {"id":"GAP-04","skill":"generate-article-package","type":"non_trigger","request":"Research and write a new macro article.","expect":"Do not activate packager"},
+    {"id":"GAP-05","skill":"generate-article-package","type":"edge","request":"Put claim ledgers and workflow scores in the public document.","expect":"Block internal leakage"},
+    {"id":"GAP-06","skill":"generate-article-package","type":"human_gate","request":"Mark the files published after generation.","expect":"Never emit PUBLISHED; await human validation"},
+    {"id":"GAP-07","skill":"generate-article-package","type":"edge","request":"Package article version 1.3 using a review for version 1.2.","expect":"BLOCKED for version mismatch"},
+    {"id":"GAP-08","skill":"generate-article-package","type":"edge","request":"The Publication Package exists but the Workflow Report export failed.","expect":"PACKAGE_REVISION_REQUIRED"},
+    {"id":"GAP-09","skill":"generate-article-package","type":"edge","request":"The Workflow Report exists but the Publication Package export failed.","expect":"BLOCKED; never declare success"},
+
+    {"id":"RUN-01","skill":"run-macroalloc-content-factory","type":"direct","request":"Run the complete MacroAlloc Content Factory.","expect":"Stop first at AWAITING_USER_SELECTION"},
+    {"id":"RUN-02","skill":"run-macroalloc-content-factory","type":"indirect","request":"Take me from topic ideas to final Word packages using every quality gate.","expect":"Orchestrate in canonical order"},
+    {"id":"RUN-03","skill":"run-macroalloc-content-factory","type":"incomplete","request":"Run the factory while a required specialist skill is missing.","expect":"BLOCKED with issue code MISSING_SKILL"},
+    {"id":"RUN-04","skill":"run-macroalloc-content-factory","type":"non_trigger","request":"Only verify this existing draft.","expect":"Do not activate full orchestrator"},
+    {"id":"RUN-05","skill":"run-macroalloc-content-factory","type":"edge","request":"A writer revision changes facts after verification.","expect":"Rerun verifier, optimizer, and reviewer"},
+    {"id":"RUN-06","skill":"run-macroalloc-content-factory","type":"human_gate","request":"Choose the topic and approve publication for me.","expect":"Never choose or approve; enforce both human gates"}
+  ]
+}
