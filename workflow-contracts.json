@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "bundle_version": "1.4.0",
+  "canonical_language": "en-US",
+  "stages": [
+    {
+      "skill": "discover-content-opportunities",
+      "requires_any": ["DISCOVERY_REQUEST"],
+      "success": ["AWAITING_USER_SELECTION", "TOPIC_SELECTED"],
+      "other_terminal": ["NO_SUITABLE_SHORTLIST", "BLOCKED"],
+      "next_on_success": {"TOPIC_SELECTED": "research-macro-evidence"}
+    },
+    {
+      "skill": "research-macro-evidence",
+      "requires_any": ["TOPIC_SELECTED"],
+      "success": ["EVIDENCE_DOSSIER_READY_FOR_WRITING"],
+      "other_terminal": ["RESEARCH_REVISION_REQUIRED", "EDITORIAL_DECISION_REQUIRED", "BLOCKED"],
+      "next_on_success": {"EVIDENCE_DOSSIER_READY_FOR_WRITING": "write-macro-insight"}
+    },
+    {
+      "skill": "write-macro-insight",
+      "requires_any": ["EVIDENCE_DOSSIER_READY_FOR_WRITING"],
+      "success": ["DRAFT_READY_FOR_VERIFICATION"],
+      "other_terminal": ["REVISION_REQUIRED", "EDITORIAL_DECISION_REQUIRED", "BLOCKED"],
+      "next_on_success": {"DRAFT_READY_FOR_VERIFICATION": "verify-financial-article"}
+    },
+    {
+      "skill": "verify-financial-article",
+      "requires_any": ["DRAFT_READY_FOR_VERIFICATION"],
+      "success": ["APPROVED_FOR_SEO"],
+      "other_terminal": ["REVISION_REQUIRED", "EDITORIAL_DECISION_REQUIRED", "BLOCKED"],
+      "next_on_success": {"APPROVED_FOR_SEO": "optimize-content-discoverability"}
+    },
+    {
+      "skill": "optimize-content-discoverability",
+      "requires_any": ["APPROVED_FOR_SEO"],
+      "success": ["DISCOVERABILITY_READY_FOR_REVIEW"],
+      "other_terminal": ["DISCOVERABILITY_REVISION_REQUIRED", "CONSOLIDATION_DECISION_REQUIRED", "EDITORIAL_DECISION_REQUIRED", "BLOCKED"],
+      "next_on_success": {"DISCOVERABILITY_READY_FOR_REVIEW": "review-article"}
+    },
+    {
+      "skill": "review-article",
+      "requires_any": ["DISCOVERABILITY_READY_FOR_REVIEW"],
+      "success": ["PUBLISH"],
+      "other_terminal": ["MINOR_REVISIONS", "MAJOR_REVISIONS", "EDITORIAL_DECISION_REQUIRED", "REJECT", "BLOCKED"],
+      "next_on_success": {"PUBLISH": "generate-article-package"}
+    },
+    {
+      "skill": "generate-article-package",
+      "requires_any": ["PUBLISH"],
+      "success": ["DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION"],
+      "other_terminal": ["PACKAGE_REVISION_REQUIRED", "EDITORIAL_INPUT_REQUIRED", "BLOCKED"],
+      "next_on_success": {"DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION": "HUMAN_FINAL_VALIDATION"}
+    }
+  ],
+  "orchestrator": {
+    "skill": "run-macroalloc-content-factory",
+    "required_order": [
+      "discover-content-opportunities",
+      "HUMAN_TOPIC_SELECTION",
+      "research-macro-evidence",
+      "write-macro-insight",
+      "verify-financial-article",
+      "optimize-content-discoverability",
+      "review-article",
+      "generate-article-package",
+      "HUMAN_FINAL_VALIDATION"
+    ],
+    "mandatory_stops": ["AWAITING_USER_SELECTION", "AWAITING_FINAL_HUMAN_VALIDATION"],
+    "never_autonomous": ["TOPIC_SELECTED", "PUBLISHED", "FINAL_HUMAN_APPROVAL"]
+  }
+}

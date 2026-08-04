@@ -1,0 +1,4 @@
+interface:
+  display_name: "Optimize Content Discoverability"
+  short_description: "Improve search and AI discovery safely"
+  default_prompt: "Use $optimize-content-discoverability to optimize this approved MacroAlloc article without changing its verified substance."

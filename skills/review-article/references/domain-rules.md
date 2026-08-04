@@ -1,0 +1,464 @@
+# Review Article — Domain Rules
+
+## Contents
+
+- 0. Workflow invariants
+- 8. Editorial review modules
+- 10. Scoring model
+- 12. Decision rules
+- 17. Human-readable AI Review Summary
+- 18. Writing requirements for the review report
+- 20. Content-type adaptations
+- 22. Evaluation dataset recommendations
+
+## 0. Workflow invariants
+
+- Require traceable upstream status `TOPIC_SELECTED` and explicit user-selection evidence tied to the preserved shortlist.
+- Require the primary article and metadata to remain in US English (`en-US`).
+- Return `BLOCKED` if the topic or angle differs materially from the human-selected topic or locked brief.
+- Do not translate, replace, broaden or reselect the topic during review.
+- Any requested language adaptation belongs to a separate downstream artifact after approval of the US-English package.
+
+## 8. Editorial review modules
+
+### 8.1 Editorial Quality Engine
+
+Evaluate the article as a complete piece of professional financial publishing.
+
+Dimensions:
+
+- coherence;
+- precision;
+- economy;
+- flow;
+- hierarchy;
+- balance;
+- editorial discipline;
+- completeness.
+
+Questions:
+
+- Does every section have a clear purpose?
+- Does the argument progress?
+- Is the central thesis stable?
+- Is the strongest evidence given appropriate prominence?
+- Are side issues controlled?
+- Can any section be removed without loss?
+- Does the article feel edited rather than merely generated?
+
+### 8.2 Reader Experience Engine
+
+Evaluate:
+
+- ease of entry;
+- sustained engagement;
+- navigability;
+- paragraph rhythm;
+- sentence variation;
+- information pacing;
+- clarity of transitions;
+- usefulness of headings;
+- fatigue risk;
+- satisfaction at the end.
+
+The target is not entertainment. The target is efficient, rewarding comprehension.
+
+### 8.3 Educational Value Engine
+
+Evaluate whether the article improves the reader's mental model.
+
+A strong article should help the reader understand at least one of:
+
+- a causal mechanism;
+- a data relationship;
+- a policy trade-off;
+- a market-pricing dynamic;
+- a cross-asset transmission channel;
+- a scenario framework;
+- a monitoring framework.
+
+### 8.4 Insight Quality Engine
+
+Rate the insight as:
+
+- `DISTINCTIVE`;
+- `STRONG`;
+- `ADEQUATE`;
+- `LIMITED`;
+- `GENERIC`.
+
+A `GENERIC` result is a hard barrier to `PUBLISH` unless the content type is a basic educational article whose purpose is purely explanatory and the explanation itself is unusually clear.
+
+### 8.5 Narrative Flow Engine
+
+Map each section to a function:
+
+- `CONTEXT`;
+- `EVENT`;
+- `MECHANISM`;
+- `EVIDENCE`;
+- `IMPLICATION`;
+- `COUNTERPOINT`;
+- `WATCHLIST`;
+- `CONCLUSION`.
+
+Identify missing functions, duplicate functions and illogical ordering.
+
+### 8.6 Reader Questions Engine
+
+Produce a table containing:
+
+- question;
+- importance;
+- answer status;
+- answer location;
+- deficiency;
+- required fix.
+
+Any unanswered high-importance question must prevent `PUBLISH` unless it falls clearly outside the locked angle.
+
+### 8.7 Cognitive Load Engine
+
+Classify cognitive load as:
+
+- `LOW`;
+- `CONTROLLED`;
+- `HIGH_BUT_JUSTIFIED`;
+- `EXCESSIVE`.
+
+`EXCESSIVE` prevents `PUBLISH`.
+
+### 8.8 Objectivity and Trust Engine
+
+Evaluate:
+
+- neutrality;
+- attribution;
+- calibration;
+- uncertainty;
+- separation of fact and interpretation;
+- absence of sensationalism;
+- absence of advice language;
+- consistency with source quality.
+
+### 8.9 Brand Consistency Engine
+
+Evaluate whether the article reflects MacroAlloc's positioning:
+
+- macro analysis;
+- ETF and portfolio relevance where appropriate;
+- educational clarity;
+- institutional-quality discipline;
+- accessible language;
+- no unsupported bravado;
+- no artificial personalization.
+
+### 8.10 Publication Decision Engine
+
+Use scores and hard gates to select the final decision.
+
+The decision must not be based on the global score alone.
+
+A high average cannot compensate for a critical defect.
+
+## 10. Scoring model
+
+Score each dimension from 0 to 100.
+
+### 10.1 Editorial Quality — 20%
+
+Measures:
+
+- coherence;
+- discipline;
+- structure;
+- economy;
+- polish.
+
+### 10.2 Reader Experience — 15%
+
+Measures:
+
+- readability;
+- flow;
+- pacing;
+- navigability;
+- fatigue.
+
+### 10.3 Educational Value — 15%
+
+Measures:
+
+- explanatory depth;
+- conceptual clarity;
+- mechanism understanding;
+- usefulness.
+
+### 10.4 Insight Quality — 15%
+
+Measures:
+
+- distinctiveness;
+- analytical contribution;
+- prioritization;
+- cross-asset or macro relevance.
+
+### 10.5 Objectivity and Trust — 10%
+
+Measures:
+
+- calibration;
+- neutrality;
+- uncertainty;
+- attribution;
+- non-promotional tone.
+
+### 10.6 MacroAlloc Brand Fit — 10%
+
+Measures:
+
+- macro-first identity;
+- mechanism-led analysis;
+- pedagogical quality;
+- professional tone;
+- audience fit.
+
+### 10.7 Structural and Metadata Alignment — 5%
+
+Measures:
+
+- title/body alignment;
+- takeaway consistency;
+- conclusion alignment;
+- metadata fidelity.
+
+### 10.8 Originality and Added Value — 5%
+
+Measures:
+
+- reason to exist;
+- differentiated contribution;
+- avoidance of commodity commentary.
+
+### 10.9 Package Completeness — 5%
+
+Measures:
+
+- presence and consistency of required deliverables.
+
+### 10.10 Global score
+
+Compute the weighted score.
+
+Use one decimal place.
+
+Do not fabricate mathematical precision. The score supports judgment; it does not replace it.
+
+## 12. Decision rules
+
+### 12.1 PUBLISH
+
+Return `PUBLISH` only when:
+
+- every mandatory gate passes;
+- no `CRITICAL`, `MAJOR` or unresolved `MODERATE` issue remains;
+- global score is at least 88;
+- Editorial Quality is at least 85;
+- Objectivity and Trust is at least 90;
+- MacroAlloc Brand Fit is at least 85;
+- Insight Quality meets the content-type threshold;
+- the reviewer can explain the article's distinctive value in one sentence.
+
+Output state:
+
+- `PUBLISH`.
+
+### 12.2 MINOR_REVISIONS
+
+Return `MINOR_REVISIONS` when:
+
+- no `CRITICAL` or `MAJOR` issue exists;
+- one or more correctable `MODERATE` or `MINOR` issues remain;
+- the central thesis, facts and angle do not need to change;
+- corrections can be completed through targeted editing;
+- global score is normally 80–87.9, or higher with an unresolved mandatory gate.
+
+Output state:
+
+- `MINOR_REVISIONS`.
+
+### 12.3 MAJOR_REVISIONS
+
+Return `MAJOR_REVISIONS` when:
+
+- one or more `MAJOR` issues exist;
+- the article's structure, insight, reader-question coverage or educational value is materially insufficient;
+- significant sections must be rewritten;
+- the article remains salvageable without selecting a new topic;
+- global score is normally 65–79.9.
+
+Output state:
+
+- `MAJOR_REVISIONS`.
+
+### 12.4 REJECT
+
+Return `REJECT` when:
+
+- the article lacks a defensible reason to exist;
+- the insight is `GENERIC` and cannot be repaired without rebuilding the article;
+- the locked angle is not supported by the final content;
+- the article is structurally incoherent;
+- the content substantially duplicates another article without a valid purpose;
+- revision would effectively require a new article;
+- global score is below 65;
+- repeated revision attempts have failed to resolve material defects.
+
+Output state:
+
+- `REJECT`.
+
+### 12.5 EDITORIAL_DECISION_REQUIRED
+
+Return when a human editorial decision is necessary under Section 6.3.
+
+### 12.6 BLOCKED
+
+Return when the review cannot be performed reliably because mandatory inputs or valid upstream states are missing.
+
+## 17. Human-readable AI Review Summary
+
+Produce a concise page-ready summary for the MacroAlloc Article Package.
+
+Required format:
+
+### AI Editorial Review Summary
+
+- **Decision:**
+- **Global Score:**
+- **Editorial Quality:**
+- **Reader Experience:**
+- **Educational Value:**
+- **Insight Quality:**
+- **Objectivity & Trust:**
+- **MacroAlloc Brand Fit:**
+- **Publication Readiness:**
+
+#### Principal strengths
+
+Three to five evidence-based strengths.
+
+#### Principal weaknesses
+
+Zero to five material weaknesses.
+
+#### Required revisions
+
+List only mandatory revisions. If none, write `None`.
+
+#### Editorial rationale
+
+A concise explanation of why the article did or did not receive approval.
+
+The summary must not conceal material issues behind the global score.
+
+## 18. Writing requirements for the review report
+
+The report must be:
+
+- direct;
+- specific;
+- evidence-based;
+- actionable;
+- concise relative to the article;
+- free from praise inflation;
+- free from vague criticism;
+- professional in tone.
+
+Avoid:
+
+- “could be improved” without explaining how;
+- generic comments such as “add more detail”;
+- style preferences presented as mandatory rules;
+- repeating the article;
+- excessive commentary on minor wording;
+- pretending to know reader behavior without evidence.
+
+## 20. Content-type adaptations
+
+### 20.1 Morning Macro Insight
+
+Prioritize:
+
+- immediacy;
+- clear overnight or recent development;
+- concise mechanism;
+- observable day-ahead watchlist;
+- avoidance of stale recap.
+
+### 20.2 Evening Macro Insight
+
+Prioritize:
+
+- synthesis of the session;
+- explanation of what changed during the day;
+- distinction between event and market interpretation;
+- next-session or next-data watchlist.
+
+### 20.3 Market Analysis
+
+Require:
+
+- stronger depth;
+- multi-factor reasoning;
+- cross-asset consistency;
+- alternatives and risks;
+- a clear time horizon.
+
+### 20.4 ETF Research
+
+Require:
+
+- product relevance;
+- methodology clarity;
+- objective comparison;
+- no product promotion;
+- clear separation between index, fund and market exposure;
+- appropriate risk disclosure.
+
+### 20.5 Education Article
+
+Prioritize:
+
+- conceptual progression;
+- definitions;
+- examples;
+- prerequisite awareness;
+- avoidance of unnecessary market commentary;
+- long-term usefulness.
+
+## 22. Evaluation dataset recommendations
+
+Test the skill against at least:
+
+- 20 high-quality approved articles;
+- 20 factually correct but editorially weak articles;
+- 10 articles with generic conclusions;
+- 10 articles with title/body mismatch;
+- 10 articles with excessive jargon;
+- 10 articles with strong facts but weak insight;
+- 10 articles with SEO over-optimization;
+- 10 articles containing subtle advice language;
+- 10 articles with missing reader questions;
+- 10 revised articles containing regressions.
+
+Measure:
+
+- agreement with expert editors;
+- false approval rate;
+- false rejection rate;
+- issue-location accuracy;
+- revision usefulness;
+- consistency across repeated runs;
+- sensitivity to content type;
+- ability to distinguish critical defects from preferences.
