@@ -82,6 +82,8 @@ Each detected problem must use one primary issue type:
 - `FRESHNESS_RECHECK_REQUIRED`
 - `EDITORIAL_STRUCTURE_DEFECT`
 - `SOURCE_LIST_INCOMPLETE`
+- `EXCESSIVE_QUOTATION`
+- `CLOSE_PARAPHRASE`
 - `OTHER_MATERIAL_DEFECT`
 
 ## 3. Severity framework
@@ -160,7 +162,9 @@ The skill must not return `APPROVED_FOR_SEO` if any of the following is true:
 - personalized advice or transaction instructions appear;
 - a required fresh-data check is undefined;
 - the article's topic or angle drifted materially;
-- the source list does not permit independent checking.
+- the source list does not permit independent checking;
+- more than one direct quotation appears anywhere in the article, or any quotation exceeds 15 words;
+- a passage echoes a cited source's original wording closely enough to read as copied rather than independently written, whether or not it carries a citation marker.
 
 ## 5. Self-review checklist
 
@@ -179,6 +183,8 @@ Before returning the report, verify:
 - [ ] Quotes and paraphrases preserve context.
 - [ ] Interested-party claims remain attributed.
 - [ ] Source quality is appropriate to claim importance.
+- [ ] No more than one direct quotation appears, and it does not exceed 15 words.
+- [ ] No passage echoes a source's original wording closely enough to read as copied, including passages drawn from primary official sources.
 
 ### Reasoning
 
@@ -224,7 +230,8 @@ The verifier must never:
 - generate the final Word package;
 - publish or schedule the article;
 - use a high score to bypass a failed hard gate;
-- label the article `READY_TO_PUBLISH` or `APPROVED_FOR_PUBLICATION`.
+- label the article `READY_TO_PUBLISH` or `APPROVED_FOR_PUBLICATION`;
+- approve an article containing more than one direct quotation, a quotation over 15 words, or a passage that closely echoes a source's original wording, regardless of whether it carries a correct citation marker.
 
 ## 7. Minimum test set before production approval
 
@@ -239,7 +246,8 @@ This skill remains in `TESTING` until it passes at least:
 - 5 articles with silent context loss;
 - 5 compliance-sensitive articles;
 - 5 revision-loop tests;
-- 5 cases that must be blocked or escalated.
+- 5 cases that must be blocked or escalated;
+- 5 articles with excessive quotation (more than one quote, or a quote over 15 words) or a passage that closely paraphrases a source's original wording without quotation marks.
 
 Required production targets:
 
@@ -247,4 +255,5 @@ Required production targets:
 - 100% blocking of personalized-advice cases;
 - at least 95% detection of seeded factual errors;
 - 100% escalation of unresolved central-source conflicts;
+- 100% detection of seeded excessive-quotation or close-paraphrase cases;
 - zero approval when a hard gate fails.

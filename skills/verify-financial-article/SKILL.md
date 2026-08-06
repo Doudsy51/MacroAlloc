@@ -15,7 +15,7 @@ description: Independently verifies a US-English MacroAlloc article against its 
 ## Workflow
 
 1. Validate lineage, language, locked topic and angle, draft version, and evidence package.
-2. Build a claim ledger and verify facts, calculations, quotations, and official communications.
+2. Build a claim ledger and verify facts, calculations, quotations, textual originality, and official communications.
 3. Test causal pivots, alternative interpretations, market transmission, and internal consistency.
 4. Audit source context, freshness, editorial completeness, and financial compliance.
 5. Apply hard gates before any score; never repair material defects silently.
@@ -26,6 +26,7 @@ description: Independently verifies a US-English MacroAlloc article against its 
 - Upstream producer: `write-macro-insight` with `DRAFT_READY_FOR_VERIFICATION`.
 - Downstream consumer: `optimize-content-discoverability` only after `APPROVED_FOR_SEO`.
 - Allowed terminal statuses: `APPROVED_FOR_SEO`, `REVISION_REQUIRED`, `EDITORIAL_DECISION_REQUIRED`, or `BLOCKED`.
+- Never approve an article with more than one quotation, a quotation over 15 words, or a passage that closely echoes a source's original wording — a correct citation marker does not excuse this.
 - Keep the public article separate from internal workflow evidence.
 - Ask only for information that cannot be retrieved safely from the available artifacts.
 

@@ -19,6 +19,7 @@ skill: write-macro-insight
 skill_version: read_from_bundle_manifest
 lineage:
   upstream_status: EVIDENCE_DOSSIER_READY_FOR_WRITING
+  region: US | EUROPE | ASIA
   shortlist_id: string
   selected_topic_id: string
   selection_evidence: string

@@ -17,27 +17,30 @@
 - Maintain an immutable execution log.
 - Keep facts, interpretations, forecasts, scenarios, and recommendations clearly separated.
 - Stop rather than fabricate missing information.
-- Treat US English (`en-US`) as the non-negotiable language of the primary article, SEO metadata, review and final package.
+- Treat US English (`en-US`) as the non-negotiable language of the primary article, SEO metadata, review and final package, in every region.
 - Treat any requested French or other-language version only as an optional secondary adaptation after the US-English package is complete; it must never replace the primary deliverable.
+- Process the three regions (US, Europe, Asia) sequentially, in that order, each with a fully isolated `ArticleJob`; never let one region's state, counters, or outcome affect another's.
 
 ## 2. Acceptance criteria
 
-The workflow passes only if:
+The workflow passes only if, **for each region that reached `TOPIC_SELECTED`**:
 
 - all required skills were invoked in the correct order;
-- discovery returned 3 to 5 qualified topics or stopped with `NO_SUITABLE_SHORTLIST`;
-- the discovery turn ended at `AWAITING_USER_SELECTION` without invoking the writer;
-- `TOPIC_SELECTED` is supported by an explicit user choice from the preserved shortlist;
+- discovery returned 3 to 5 qualified topics per region or stopped that region with `NO_SUITABLE_SHORTLIST` (without forcing the same outcome on the other regions);
+- the discovery turn ended at `AWAITING_USER_SELECTION` without invoking the writer for any region;
+- `TOPIC_SELECTED` is supported by an explicit user choice from that region's preserved shortlist;
 - the primary article, metadata, review and package remain in US English;
 - no factual or editorial hard gate was bypassed;
-- revisions were routed to the correct owner;
-- loop limits were respected;
+- revisions were routed to the correct owner and stayed confined to that region;
+- loop limits were respected, counted independently for that region;
 - the final article is verified, discoverability-optimized, and editorially approved;
-- both final DOCX files are generated;
-- the Publication Package contains the complete approved article and publication SEO but no internal workflow material;
+- both final DOCX files are generated, with filenames that identify the region;
+- the Publication Package contains the complete approved article and publication SEO but no internal workflow material, and no content from another region;
 - the Workflow Report contains the process evidence needed for internal evaluation and is clearly marked non-public;
 - both documents reference the same article identity and immutable article hash;
-- human approval remains mandatory before publication;
+- human approval remains mandatory before publication, granted separately for this region;
 - traceability is complete.
+
+The overall run passes only if every region that reached `TOPIC_SELECTED` independently meets the criteria above; one region failing does not invalidate another region's passing result.
 
 End of skill.

@@ -26,6 +26,7 @@ description: Writes or revises a publication-quality US-English MacroAlloc Morni
 - Upstream producer: `research-macro-evidence` with `EVIDENCE_DOSSIER_READY_FOR_WRITING` and preserved `TOPIC_SELECTED` lineage.
 - Downstream consumer: `verify-financial-article` with `DRAFT_READY_FOR_VERIFICATION`.
 - Allowed terminal statuses: `DRAFT_READY_FOR_VERIFICATION`, `REVISION_REQUIRED`, `EDITORIAL_DECISION_REQUIRED`, or `BLOCKED`.
+- Write every source's content in independent wording; at most one direct quotation of 15 words or fewer per article, and never a passage that echoes a source's original phrasing closely enough to read as copied.
 - Keep the public article separate from internal workflow evidence.
 - Ask only for information that cannot be retrieved safely from the available artifacts.
 

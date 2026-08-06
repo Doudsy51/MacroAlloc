@@ -239,6 +239,7 @@ status: DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION | PACKAGE_REVISION_REQUIRED | 
 PublicationPackage:
   identity:
     article_id:
+    region: US | EUROPE | ASIA
     content_type:
     edition:
     language:
@@ -292,6 +293,7 @@ WorkflowReport:
   package_identity:
     article_id:
     workflow_run_id:
+    region: US | EUROPE | ASIA
     content_type:
     edition:
     language:
@@ -303,6 +305,7 @@ WorkflowReport:
     human_approval_required:
   selection_lineage:
     upstream_status: TOPIC_SELECTED
+    region: US | EUROPE | ASIA
     shortlist_id:
     selected_topic_id:
     selection_evidence:
@@ -427,13 +430,16 @@ Workflow Report order:
 
 Use:
 
-- `MacroAlloc_<content-type>_<YYYY-MM-DD>_<short-slug>_Publication_<article-version>.docx`
-- `MacroAlloc_<content-type>_<YYYY-MM-DD>_<short-slug>_Workflow-Report_<report-version>.docx`
+- `MacroAlloc_<content-type>_<region>_<YYYY-MM-DD>_<short-slug>_Publication_<article-version>.docx`
+- `MacroAlloc_<content-type>_<region>_<YYYY-MM-DD>_<short-slug>_Workflow-Report_<report-version>.docx`
+
+`<region>` is `US`, `Europe`, or `Asia`. It is mandatory whenever the orchestrator's run covers more than one region, so that two regions' files for the same content type and date are never confused with each other.
 
 Examples:
 
-- `MacroAlloc_Evening-Macro-Insight_2026-08-03_fed-hawkish-dissents_Publication_v1.0.docx`
-- `MacroAlloc_Evening-Macro-Insight_2026-08-03_fed-hawkish-dissents_Workflow-Report_v1.0.docx`
+- `MacroAlloc_Evening-Macro-Insight_US_2026-08-03_fed-hawkish-dissents_Publication_v1.0.docx`
+- `MacroAlloc_Evening-Macro-Insight_US_2026-08-03_fed-hawkish-dissents_Workflow-Report_v1.0.docx`
+- `MacroAlloc_Morning-Macro-Insight_Europe_2026-08-06_ecb-rate-path_Publication_v1.0.docx`
 
 For the skill distribution package, use:
 

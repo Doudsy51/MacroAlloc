@@ -7,34 +7,43 @@
 
 ## 1. Normalized workflow state
 
-Create and maintain one `ArticleJob` object for every run.
+Create and maintain one `Run` object for every invocation, containing one independent `ArticleJob` per region (US, Europe, Asia). The discovery phase is shared; from `TOPIC_SELECTED` onward, each region's `ArticleJob` is a fully separate object with its own stage, status, counters, and artifacts.
 
 ```yaml
-article_job:
-  job_id: "MA-CF-YYYYMMDD-HHMMSS-<short-id>"
+run:
+  run_id: "MA-CF-YYYYMMDD-HHMMSS-<short-id>"
   created_at_utc: "ISO-8601"
   requested_content_type: null
   requested_language: "en-US"
   requested_window: null
   current_stage: "DISCOVERY"
-  current_status: "RUNNING"
-  selected_topic_id: null
-  human_topic_approval: false
-  human_final_approval: false
-  revision_counters:
-    writer: 0
-    verifier: 0
-    discoverability: 0
-    reviewer: 0
-    package: 0
-  skill_versions: {}
-  artifacts: {}
-  decisions: []
-  warnings: []
-  errors: []
+  regions:
+    US:
+      article_job:
+        job_id: "MA-CF-YYYYMMDD-HHMMSS-<short-id>-US"
+        current_stage: "DISCOVERY"
+        current_status: "RUNNING"
+        selected_topic_id: null
+        human_topic_approval: false
+        human_final_approval: false
+        revision_counters:
+          writer: 0
+          verifier: 0
+          discoverability: 0
+          reviewer: 0
+          package: 0
+        skill_versions: {}
+        artifacts: {}
+        decisions: []
+        warnings: []
+        errors: []
+    EUROPE:
+      article_job: { ... same shape as US, job_id suffixed -EUROPE ... }
+    ASIA:
+      article_job: { ... same shape as US, job_id suffixed -ASIA ... }
 ```
 
-The `ArticleJob` object is the source of truth for the run.
+Each region's `article_job` is the source of truth for that region's production only. A region with no confirmed `TOPIC_SELECTED` after Stage 2 stays at `current_stage: "DISCOVERY"` and is never advanced. No field under one region's `article_job` may read from or write to another region's.
 
 ## 2. Error handling
 

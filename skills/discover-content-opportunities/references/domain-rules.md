@@ -97,23 +97,23 @@ Education opportunities should build topical authority and support more advanced
 
 ## 2. Discovery architecture
 
-Every execution must follow this sequence:
+Every execution evaluates three regional focuses — US, Europe, Asia — within a single pass, and must follow this sequence:
 
 1. Load editorial constraints.
-2. Build the candidate universe.
-3. Normalize and cluster candidates.
-4. Eliminate ineligible or weak candidates.
-5. Evaluate materiality and audience relevance.
-6. Check evidence availability and source quality.
-7. define potential MacroAlloc angles.
-8. Check duplication, cannibalization and calendar conflicts.
-9. Score and rank opportunities.
-10. Apply category and frequency constraints.
-11. Prepare a shortlist of 3 to 5 qualified opportunities.
-12. Return `AWAITING_USER_SELECTION` and stop.
-13. Record rejected candidates and reasons.
+2. Build the candidate universe across all three regions.
+3. Normalize and cluster candidates, tagging each with its region from `GEOGRAPHY` (§3.2). A candidate with cross-regional relevance is assigned to the region where its primary economic or market effect is concentrated, not duplicated across regions.
+4. Eliminate ineligible or weak candidates, applying every gate identically regardless of region.
+5. Evaluate materiality and audience relevance, per region.
+6. Check evidence availability and source quality, per region.
+7. define potential MacroAlloc angles, per region.
+8. Check duplication, cannibalization and calendar conflicts, per region.
+9. Score and rank opportunities, per region.
+10. Apply category and frequency constraints, per region.
+11. Prepare a shortlist of 3 to 5 qualified opportunities **for each region independently**. A region that cannot reach 3 qualified opportunities returns its own `NO_SUITABLE_SHORTLIST` note (§17.1) without altering the other two regions' shortlists.
+12. Return `AWAITING_USER_SELECTION` and stop, presenting all three regional shortlists (or no-shortlist notes) together in one turn.
+13. Record rejected candidates and reasons, per region.
 
-No scoring step may replace editorial judgment. Hard gates always override the numerical score.
+No scoring step may replace editorial judgment. Hard gates always override the numerical score. The materiality engine, scoring model, and eligibility gates are identical across regions — only the candidate universe and geography differ.
 
 ## 3. Candidate universe
 
@@ -146,7 +146,7 @@ Each candidate must be normalized into:
 - `SOURCE_IDS`
 - `SOURCE_TYPES`
 - `CATEGORY_HYPOTHESIS`
-- `GEOGRAPHY`
+- `GEOGRAPHY`: also determines the candidate's regional bucket (`US`, `EUROPE`, or `ASIA`) for the three parallel shortlists
 - `ENTITIES`
 - `INITIAL_MATERIALITY`
 - `KNOWN_UNCERTAINTIES`
@@ -493,9 +493,9 @@ Never recommend a new URL when updating an existing canonical article would bett
 
 ## 14. Category and frequency control
 
-Apply the approved MacroAlloc editorial schedule.
+Apply the approved MacroAlloc editorial schedule **independently within each of the three regions** — a region reaching its Macro Insight quota does not reduce or inflate another region's quota.
 
-Default strategic framework where confirmed by project settings:
+Default strategic framework where confirmed by project settings, per region:
 
 - Macro Insights: two per day, Morning and Evening;
 - Market Analysis: one per day to three per week depending on opportunity quality;
@@ -569,7 +569,7 @@ Priority must reflect both value and timing.
 
 ### 17.1 Mandatory shortlist mode
 
-Return the best 3 to 5 qualified candidates with:
+For **each of the three regions (US, Europe, Asia) independently**, return the best 3 to 5 qualified candidates with:
 
 - score;
 - category;
@@ -582,24 +582,24 @@ Return the best 3 to 5 qualified candidates with:
 
 Do not conceal rejected alternatives that initially appeared important; summarize why they failed.
 
-Do not label one candidate as the winner, recommended choice, preferred topic or automatic selection. Ranking communicates comparative editorial strength; it does not authorize the skill to choose for the user.
+Do not label one candidate as the winner, recommended choice, preferred topic or automatic selection, in any region. Ranking communicates comparative editorial strength; it does not authorize the skill to choose for the user. Do not label one region's shortlist as stronger or more urgent than another's — regions are presented as independent, parallel options, not as a ranked competition against each other.
 
-If at least 3 candidates qualify, return the top 3 to 5. If fewer than 3 candidates qualify, return `NO_SUITABLE_SHORTLIST`. Never add weak, ineligible or duplicative candidates merely to reach three.
+If at least 3 candidates qualify **in a region**, return the top 3 to 5 for that region. If fewer than 3 candidates qualify in a region, return `region_status: NO_SUITABLE_SHORTLIST` for that region only — the other regions proceed normally with their own shortlists. Never add weak, ineligible or duplicative candidates merely to reach three, in any region. Only return the top-level `status: NO_SUITABLE_SHORTLIST` when every region fails to qualify.
 
 ### 17.2 Selection-confirmation mode
 
-Accept a selection only when all conditions are true:
+Accept a selection **for a given region** only when all conditions are true:
 
-- an active shortlist from the immediately preceding discovery turn exists;
+- an active shortlist for that region from the immediately preceding discovery turn exists;
 - the prior status is `AWAITING_USER_SELECTION`;
-- the user explicitly identifies exactly one listed option;
+- the user explicitly identifies exactly one listed option from that region's shortlist;
 - the selected option has not been altered, merged or replaced.
 
-On success, return `TOPIC_SELECTED` and generate the locked research brief for the selected option only.
+Evaluate each region's selection independently. The user is not required to select from every region in the same turn: a region left unaddressed simply remains `AWAITING_USER_SELECTION` for that region, while `TOPIC_SELECTED` is returned for the regions the user did address. On success for a region, return `TOPIC_SELECTED` for that region and generate the locked research brief for the selected option only.
 
-If the response is ambiguous, keep `AWAITING_USER_SELECTION` and ask for a number, `OPPORTUNITY_ID`, or exact title. If the user names a topic outside the shortlist, do not substitute it silently; return `BLOCKED` and require a new discovery run or an explicit editorial exception outside this workflow.
+If the response for a region is ambiguous, keep that region at `AWAITING_USER_SELECTION` and ask for a number, `OPPORTUNITY_ID`, or exact title. If the user names a topic outside a region's shortlist, do not substitute it silently; return `BLOCKED` for that region and require a new discovery run or an explicit editorial exception outside this workflow — this does not affect the other regions' already-confirmed selections.
 
-The highest score, greatest urgency or strongest evidence never counts as human selection.
+The highest score, greatest urgency or strongest evidence never counts as human selection, in any region.
 
 ## 18. Research-brief generator
 
@@ -607,6 +607,7 @@ For `TOPIC_SELECTED`, generate a structured research brief only after explicit h
 
 ### 18.1 Identity
 
+- `REGION`: `US`, `EUROPE`, or `ASIA`
 - `OPPORTUNITY_ID`
 - `CONTENT_TYPE`
 - `EDITION`
@@ -717,7 +718,7 @@ When credible interpretations conflict:
 - preserve the disagreement in the brief;
 - specify evidence for each side;
 - avoid a title that states one interpretation as fact;
-- disqualify the affected angle when the emphasis is inherently subjective or reputationally sensitive; if fewer than three candidates remain, return `NO_SUITABLE_SHORTLIST`.
+- disqualify the affected angle when the emphasis is inherently subjective or reputationally sensitive; if fewer than three candidates remain in that region, return `region_status: NO_SUITABLE_SHORTLIST` for that region only.
 
 ## 21. Breaking-news protocol
 

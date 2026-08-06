@@ -169,7 +169,7 @@ Recalculate percentages, basis-point changes, spreads and simple derived metrics
 
 Do not approve an approximately correct number when the wording implies exactness.
 
-### Step 4 — Verify quotations and official communications
+### Step 4 — Verify quotations, originality, and official communications
 
 For every direct quote or close paraphrase:
 
@@ -187,6 +187,15 @@ For central banks, distinguish where relevant between:
 - reaction function;
 - current policy guidance;
 - market-implied interpretation.
+
+#### Textual originality check (mandatory)
+
+Independently of factual accuracy, check that the article is written in independent wording rather than lightly rearranged source text:
+
+- count every direct quotation in the article; flag if more than one appears, or if any exceeds 15 words;
+- for each material claim, compare its phrasing against the cited source; flag a passage where more than roughly 8-10 words appear in the same order as the source, even without quotation marks;
+- apply this check to primary official sources (central-bank or government statements) as well as to news organizations' own analysis — official operative language is not exempt;
+- do not accept a source-echoing passage merely because it carries a correct citation marker; correct attribution does not resolve an originality defect.
 
 ### Step 5 — Verify causal pivots
 

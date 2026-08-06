@@ -28,17 +28,29 @@ The orchestrator must never publish content automatically during the launch phas
 
 ## 2. Required execution chain
 
-1. `discover-content-opportunities`
-2. Mandatory human topic selection in a separate turn
-3. `research-macro-evidence`
-4. `write-macro-insight`
-5. `verify-financial-article`
-6. `optimize-content-discoverability`
-7. `review-article`
-8. `generate-article-package` produces both required DOCX files
-9. Human final approval
+1. `discover-content-opportunities` — one call, producing three regional shortlists (US, Europe, Asia)
+2. Mandatory human topic selection in a separate turn — one selection per region the user wants to proceed with
+3. For each region with a confirmed selection, **in sequence: US, then Europe, then Asia**, run steps 3 through 9 to full completion before moving to the next region:
+   1. `research-macro-evidence`
+   2. `write-macro-insight`
+   3. `verify-financial-article`
+   4. `optimize-content-discoverability`
+   5. `review-article`
+   6. `generate-article-package` produces both required DOCX files for that region
+   7. Human final approval for that region
 
-The orchestrator must not skip a stage unless this skill explicitly defines the stage as optional.
+The orchestrator must not skip a stage unless this skill explicitly defines the stage as optional. It must not start a region's step 3-9 sequence before the previous region's sequence has reached its own human final-validation gate.
+
+### 2.1 Region isolation (mandatory)
+
+Each region's `ArticleJob` — lineage, evidence dossier, draft, verification report, discoverability package, editorial review, revision-loop counters, and package — is a fully separate object. Before starting a region's step-3 sequence, confirm the previous region's object is closed (its human final-validation gate has returned `APPROVE`, `REQUEST_CHANGES` fully routed and resolved or explicitly deferred, or `REJECT`). Never:
+
+- reuse or carry over a revision-loop counter from one region into another;
+- let a `BLOCKED`, `REJECT`, or loop-limit escalation in one region change, pause, or cancel another region's independent progress;
+- merge two regions' evidence, sources, or drafts into a single article;
+- present one region's internal data (scores, ledgers, workflow IDs) inside another region's Publication Package.
+
+If a region has no confirmed selection (the user did not select a topic for it), skip that region's step 3-9 sequence entirely — this is not a blocking condition for the regions that were selected.
 
 ## 3. Stage 0 — Preflight
 
@@ -49,11 +61,11 @@ Before execution:
 3. Confirm that web research is available for current-event content.
 4. Set the primary language to `en-US` and record any other requested language as an optional secondary adaptation.
 5. Confirm that topic selection is human and cannot be delegated to the workflow.
-6. Confirm that the final output must contain both `PublicationPackageDOCX` and `WorkflowReportDOCX`.
-7. Confirm that final human approval remains mandatory.
-8. Create the job ID and initialize logs.
+6. Confirm that the final output must contain both `PublicationPackageDOCX` and `WorkflowReportDOCX` for each region that reaches `TOPIC_SELECTED`.
+7. Confirm that final human approval remains mandatory, granted separately per region.
+8. Create the run ID and initialize logs; each region will derive its own job ID from it once selected.
 
-Resolve discovery inputs from user-provided artifacts or canonical project defaults. When absent, use these safe minimums: current system date/time; `en-US`; US priority market; approved MacroAlloc categories; no forced publication frequency; the next reasonable publication window; official-primary-source-first policy; no known editorial-calendar conflict; the brand and compliance rules bundled with the relevant skills. Treat content memory, recent-content library, analytics, and competitor data as unavailable rather than inventing them. Ask the user only when an unavailable input creates a material duplication, timing, category, brand, or compliance decision.
+Resolve discovery inputs from user-provided artifacts or canonical project defaults. When absent, use these safe minimums: current system date/time; `en-US`; the three regional focuses US, Europe, and Asia evaluated independently; approved MacroAlloc categories; no forced publication frequency; the next reasonable publication window; official-primary-source-first policy; no known editorial-calendar conflict; the brand and compliance rules bundled with the relevant skills. Treat content memory, recent-content library, analytics, and competitor data as unavailable rather than inventing them. Ask the user only when an unavailable input creates a material duplication, timing, category, brand, or compliance decision.
 
 If any required skill is unavailable, return:
 
@@ -63,7 +75,7 @@ Do not replace a missing skill with improvised instructions.
 
 ## 4. Stage 1 — Discover content opportunities
 
-Invoke `discover-content-opportunities`.
+Invoke `discover-content-opportunities` **once**.
 
 Pass:
 
@@ -78,20 +90,20 @@ Pass:
 
 Expected successful status:
 
-`AWAITING_USER_SELECTION`
+`AWAITING_USER_SELECTION`, carrying three grouped shortlists — one per region (US, Europe, Asia).
 
 Other statuses:
 
-- `NO_SUITABLE_SHORTLIST` → stop cleanly; do not force or pad the shortlist.
+- `NO_SUITABLE_SHORTLIST` → applies only when every region failed to qualify; stop cleanly, do not force or pad any region's shortlist. A single region lacking a shortlist while the others have one does not trigger this — proceed with the regions that do have a shortlist.
 - `BLOCKED` → stop and report the blocking reason.
 
-Preserve the complete shortlist and research brief.
+Preserve the complete shortlist and research brief, per region.
 
 ## 5. Stage 2 — Topic-selection gate
 
 Human selection is mandatory and is the only permitted mode.
 
-Present the strongest 3–5 candidates with:
+Present the strongest 3–5 candidates **for each region (US, Europe, Asia)**, grouped under clearly labeled regional headings, with:
 
 - proposed headline or topic;
 - content type;
@@ -104,13 +116,13 @@ Present the strongest 3–5 candidates with:
 - total score;
 - key risks.
 
-Return the exact status `AWAITING_USER_SELECTION`, request one number or exact title, and end the turn immediately. Do not invoke research, writing, verification, SEO, review or packaging in the same turn.
+Return the exact status `AWAITING_USER_SELECTION`, request one number or exact title **per region**, and end the turn immediately. Do not invoke research, writing, verification, SEO, review or packaging in the same turn.
 
-Wait for explicit topic selection. A request to run the complete workflow, choose the best option, proceed automatically, meet a deadline or produce the final article does not satisfy this gate. Ranking, score and urgency never constitute user selection.
+Wait for explicit topic selection. A request to run the complete workflow, choose the best option, proceed automatically, meet a deadline or produce the final article does not satisfy this gate, for any region. Ranking, score and urgency never constitute user selection.
 
-Resume only when the user's next message unambiguously identifies exactly one option from the active shortlist. Record `TOPIC_SELECTED` before Stage 3. If the reply is ambiguous, remain at `AWAITING_USER_SELECTION`. If it identifies an unlisted topic, stop and require a new discovery run.
+Resume only when the user's next message unambiguously identifies exactly one option per region from that region's active shortlist. The user is not required to select all three regions in the same reply — a region left unaddressed simply remains pending and does not block the regions that were selected. Record `TOPIC_SELECTED` for each region addressed, before that region's Stage 3. If a region's reply is ambiguous, that region alone remains at `AWAITING_USER_SELECTION`. If it identifies an unlisted topic for a region, stop that region and require a new discovery run for it — this does not affect the other regions' confirmed selections.
 
-Record:
+Record, per region:
 
 - selected topic;
 - explicit user selection evidence;
@@ -118,9 +130,13 @@ Record:
 - rejected candidates;
 - decision rationale.
 
+Once at least one region has `TOPIC_SELECTED`, proceed to Stage 3 **for that region**, in the order US, then Europe, then Asia, processing only the regions that have a confirmed selection.
+
 ## 6. Stage 3 — Research the selected topic
 
-Invoke `research-macro-evidence` after `TOPIC_SELECTED`.
+*(Run once per region that has `TOPIC_SELECTED`, in order: US, then Europe, then Asia. The region currently in production is called "the active region" throughout Stages 3-9.)*
+
+Invoke `research-macro-evidence` after the active region's `TOPIC_SELECTED`.
 
 Pass the complete shortlist, selection evidence, selected topic ID, locked topic and angle, selected research plan, planned sources, publication window, approved source policy, content memory, and current date/time.
 
@@ -184,9 +200,9 @@ Continue to Stage 6.
 ### `REVISION_REQUIRED`
 Route the exact revision instructions to `write-macro-insight` in revision mode.
 
-Increment `revision_counters.writer`.
+Increment `revision_counters.writer` **for the active region only**.
 
-Maximum writer-verifier loops: 2.
+Maximum writer-verifier loops: 2, tracked independently per region.
 
 After the Writer revises, rerun the complete verification stage. Do not patch only selected claims without rerunning the verifier.
 
@@ -232,7 +248,7 @@ Determine ownership of each issue:
 - factual issue discovered incidentally → return to verifier;
 - strategic consolidation or cannibalization decision → human gate.
 
-Maximum discoverability-only retries: 1.
+Maximum discoverability-only retries: 1, tracked independently per region.
 
 ### `CONSOLIDATION_DECISION_REQUIRED`
 Pause for human decision.
@@ -275,7 +291,7 @@ After any factual change, rerun verification, discoverability, and review.
 
 After discoverability-only changes that do not alter the article body, rerun review.
 
-Maximum final-review correction cycles: 2.
+Maximum final-review correction cycles: 2, tracked independently per region.
 
 ### `MAJOR_REVISIONS`
 Return to writer with the complete editorial revision plan. Then rerun:
@@ -316,7 +332,7 @@ Required outputs:
 - `PublicationPackageDOCX` containing only the complete approved article, reader-facing sources and disclaimer, publication SEO fields, and approved CMS asset details;
 - `WorkflowReportDOCX` containing the shortlist, human-selection evidence, locked brief, source and claim registers, verification, discoverability rationale, editorial review, revisions, diagnostics, provenance and next human action.
 
-The two files must share the same article ID, article version and immutable article hash. Internal material must never appear in the Publication Package.
+The two files must share the same article ID, article version and immutable article hash, and their filenames must identify the active region (e.g. a `-US-`, `-Europe-`, or `-Asia-` slug segment) so a region's pair is never confused with another's. Internal material must never appear in the Publication Package.
 
 Expected successful status:
 
@@ -327,26 +343,30 @@ Routing:
 ### `PACKAGE_REVISION_REQUIRED`
 Return packaging issues to `generate-article-package`.
 
-Maximum package retries: 1.
+Maximum package retries: 1, tracked independently per region.
 
 ### `BLOCKED`
-Stop and report missing or inconsistent artifacts.
+Stop and report missing or inconsistent artifacts. This blocks only the active region; proceed to the next region's Stage 3 once the block is reported.
 
 The package generator may format and assemble. It may not invent, rewrite, or override approved content.
 
 ## 12. Stage 9 — Human final-validation gate
 
-Present both final DOCX files and a concise final status report. Identify the Publication Package as the document for human review and website publication. Identify the Workflow Report as internal and not for publication.
+*(This gate runs separately for each region, immediately after that region's Stage 8. It is never combined across regions: US's two files are presented and resolved on their own, then Europe's, then Asia's.)*
 
-Required human action:
+Present the active region's two final DOCX files and a concise final status report for that region alone. Identify the Publication Package as the document for human review and website publication. Identify the Workflow Report as internal and not for publication.
+
+Required human action, for this region:
 
 - `APPROVE`
 - `REQUEST_CHANGES`
 - `REJECT`
 
-No CMS or social publication may occur without `APPROVE`.
+No CMS or social publication may occur for this region without its own `APPROVE`.
 
-If changes are requested, route them according to issue ownership and rerun all affected downstream gates.
+If changes are requested, route them according to issue ownership and rerun all affected downstream gates **for this region only**, then return to this same gate for this region before moving on.
+
+Once this region's gate resolves (`APPROVE`, `REJECT`, or an explicitly deferred `REQUEST_CHANGES`), proceed to the next region in order (US → Europe → Asia) that has a confirmed `TOPIC_SELECTED`, starting again at Stage 3. A region resolved as `REJECT` or `BLOCKED` does not cancel or delay the remaining regions. When every selected region has passed through this gate, return `COMPLETED` with a summary covering all regions.
 
 ## 13. Revision-routing matrix
 
@@ -365,30 +385,31 @@ If changes are requested, route them according to issue ownership and rerun all 
 
 ## 14. Loop limits
 
-Hard limits per job:
+Hard limits **per region** (US, Europe, and Asia each get their own full budget; nothing is shared or summed across regions):
 
 - writer-verifier loops: 2
 - discoverability-only retries: 1
 - editorial-review correction cycles: 2
 - package retries: 1
 
-Never reset counters by creating a hidden new job.
+Never reset counters by creating a hidden new job. Never let a region borrow from another region's remaining budget.
 
-When a limit is reached, pause and require human intervention.
+When a region's limit is reached, pause and require human intervention **for that region**; the other regions continue on their own counters, unaffected.
 
 ## 15. User-facing execution behavior
 
 When the user starts the pipeline:
 
-1. Run discovery.
-2. Present 3 to 5 qualified topic choices, return `AWAITING_USER_SELECTION`, and end the turn.
-3. After selection, continue automatically through all machine-controlled stages.
+1. Run discovery once, across all three regions.
+2. Present 3 to 5 qualified topic choices per region (US, Europe, Asia), return `AWAITING_USER_SELECTION`, and end the turn.
+3. After the user selects one topic per region they want to proceed with, process the selected regions **sequentially, in the order US, then Europe, then Asia** — continuing automatically through each region's machine-controlled stages.
 4. Interrupt only for:
-   - topic selection;
-   - editorial decision;
-   - revision-limit escalation;
-   - final human approval;
-   - blocking failure.
-5. At completion, return both DOCX files and a short execution summary.
+   - topic selection (once, covering all three regions);
+   - a given region's editorial decision;
+   - a given region's revision-limit escalation;
+   - a given region's final human approval;
+   - a given region's blocking failure.
+5. Present each region's final human-validation gate on its own, right after that region's two DOCX files are ready — do not wait for all three regions to finish before asking for the first region's approval.
+6. At completion of all selected regions, return a short summary covering each region's outcome.
 
-Do not narrate every internal stage unless requested. Show progress only when materially useful.
+Do not narrate every internal stage unless requested. Show progress only when materially useful. When moving from one region to the next, a brief transition note (e.g. "US package approved — starting Europe now") is materially useful and should be shown.

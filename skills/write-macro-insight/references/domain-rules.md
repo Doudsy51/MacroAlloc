@@ -148,6 +148,16 @@ Use formulations such as:
 
 Never convert an attributed allegation into an established fact.
 
+### 3.5 Textual originality and quotation limits
+
+The article must be written in MacroAlloc's own independent wording, not in the source's wording lightly rearranged. This applies to every source type, including primary official sources such as central-bank or government statements, whose operative language is easy to echo without noticing.
+
+- At most one direct quotation may appear in the entire article, and it must not exceed 15 words.
+- Do not use a second direct quotation; convert every other attributed statement into indirect speech ("Hammack argued that...", "the ministry said..."), preserving the substance and the attribution without reproducing the source's exact sentence.
+- Treat a passage as too close to a source, even without quotation marks, when more than roughly 8-10 words appear in the same order as in the cited source. Rewrite such a passage in genuinely independent phrasing rather than lightly reordering or swapping a few words.
+- This rule applies to a news organization's own analysis or framing (a real plagiarism and copyright risk) and to a primary source's official statement language (a lower legal risk, but still a required house-style and originality standard) alike.
+- When a fact can only be expressed precisely using a source's specific term of art, prefer the single permitted short quotation over a diluted near-copy of a longer passage.
+
 ## 4. Facts, interpretation, scenarios and forecasts
 
 The article must distinguish four layers:

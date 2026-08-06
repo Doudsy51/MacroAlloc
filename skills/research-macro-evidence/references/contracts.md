@@ -12,6 +12,7 @@
 ```yaml
 lineage:
   upstream_status: TOPIC_SELECTED
+  region: US | EUROPE | ASIA
   shortlist_id:
   selected_topic_id:
   selection_evidence:
@@ -28,6 +29,7 @@ Every field is mandatory and immutable during research.
 status: EVIDENCE_DOSSIER_READY_FOR_WRITING | RESEARCH_REVISION_REQUIRED | EDITORIAL_DECISION_REQUIRED | BLOCKED
 lineage:
   upstream_status: TOPIC_SELECTED
+  region: US | EUROPE | ASIA
   shortlist_id:
   selected_topic_id:
   selection_evidence:

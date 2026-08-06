@@ -19,6 +19,7 @@ skill: verify-financial-article
 skill_version: read_from_bundle_manifest
 lineage:
   upstream_status: DRAFT_READY_FOR_VERIFICATION
+  region: US | EUROPE | ASIA
   shortlist_id: string
   selected_topic_id: string
   selection_evidence: string
