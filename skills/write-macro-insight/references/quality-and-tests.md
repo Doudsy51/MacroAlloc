@@ -2,11 +2,11 @@
 
 ## Contents
 
-- 14. Financial-compliance boundaries
-- 18. Self-review checklist
-- 19. Prohibited behavior
+- 1. Financial-compliance boundaries
+- 2. Self-review checklist
+- 3. Prohibited behavior
 
-## 14. Financial-compliance boundaries
+## 1. Financial-compliance boundaries
 
 The article is informational content only.
 
@@ -24,7 +24,7 @@ Required disclaimer:
 
 > This content is provided for informational purposes only and does not constitute investment advice or a personalized recommendation.
 
-## 18. Self-review checklist
+## 2. Self-review checklist
 
 Before returning the draft, perform the following checks:
 
@@ -65,7 +65,7 @@ Before returning the draft, perform the following checks:
 - [ ] Status is exactly `DRAFT_READY_FOR_VERIFICATION` when successful.
 - [ ] Downstream action is exactly `verify-financial-article`.
 
-## 19. Prohibited behavior
+## 3. Prohibited behavior
 
 The skill must never:
 

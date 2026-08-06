@@ -7,10 +7,10 @@ description: Identifies and ranks 3 to 5 qualified MacroAlloc content opportunit
 
 ## Preconditions
 
-- Confirm the primary artifact and metadata are in US English.
-- Preserve `TOPIC_SELECTED`, the explicit selection evidence, the selected topic, and the locked angle.
-- Treat missing mandatory evidence, ambiguous human decisions, and contract mismatches as blocking.
-- Never invent a human approval, external fact, source, status, or completed action.
+- Confirm the primary output language is US English with the US market as the discovery priority.
+- Require the editorial categories, frequency rules, and target publication window before building a shortlist.
+- In selection-confirmation mode, accept a choice only when it exactly matches one option from the immediately preceding `AWAITING_USER_SELECTION` shortlist.
+- Never invent a source, trend signal, audience metric, or completed action.
 
 ## Workflow
 
@@ -26,7 +26,7 @@ description: Identifies and ranks 3 to 5 qualified MacroAlloc content opportunit
 - Upstream producer: A manual request or scheduled editorial discovery trigger.
 - Downstream consumer: `research-macro-evidence` after an explicit `TOPIC_SELECTED` handoff.
 - Allowed terminal statuses: `AWAITING_USER_SELECTION`, `TOPIC_SELECTED`, `NO_SUITABLE_SHORTLIST`, or `BLOCKED`.
-- Keep the public article separate from internal workflow evidence.
+- Never treat ranking, score, urgency, or a request to run the full workflow as human selection.
 - Ask only for information that cannot be retrieved safely from the available artifacts.
 
 ## Load references

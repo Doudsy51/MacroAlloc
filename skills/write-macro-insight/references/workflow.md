@@ -5,7 +5,7 @@
 - 1. Mission
 - 2. Position in the workflow
 - 3. Inputs
-- 15. Revision mode
+- 4. Revision mode
 
 ## 1. Mission
 
@@ -86,7 +86,7 @@ Return `BLOCKED` without drafting when:
 
 When blocked, state only the missing or conflicting inputs required to continue.
 
-## 15. Revision mode
+## 4. Revision mode
 
 In `REVISION` mode:
 

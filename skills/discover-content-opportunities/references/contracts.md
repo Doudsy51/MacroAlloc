@@ -2,10 +2,14 @@
 
 ## Contents
 
-- 32. Output contract
-- 33. Human-readable output
+- 1. Output contract
+- 2. Human-readable output
 
-## 32. Output contract
+## Version field resolution
+
+Populate any field marked `read_from_bundle_manifest` from this deployment's `skill-versions.json` bundle manifest (the `version` entry for `discover-content-opportunities`). If no bundle manifest is reachable, for example when this skill runs as a standalone package, state the version declared in this skill's own package metadata instead. If neither is available, use `UNKNOWN` rather than inventing a version number.
+
+## 1. Output contract
 
 Return a structured object with the following top-level fields.
 
@@ -87,7 +91,7 @@ rejected_candidates:
 next_action:
 ```
 
-## 33. Human-readable output
+## 2. Human-readable output
 
 Alongside the structured object, provide a concise editorial report containing:
 

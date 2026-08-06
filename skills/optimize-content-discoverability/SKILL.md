@@ -8,7 +8,7 @@ description: Optimizes a financially approved US-English MacroAlloc article for 
 ## Preconditions
 
 - Confirm the primary artifact and metadata are in US English.
-- Preserve `TOPIC_SELECTED`, the explicit selection evidence, the selected topic, and the locked angle.
+- Require `APPROVED_FOR_SEO` from `verify-financial-article` and preserve the `TOPIC_SELECTED` lineage, explicit selection evidence, and locked angle it carries.
 - Treat missing mandatory evidence, ambiguous human decisions, and contract mismatches as blocking.
 - Never invent a human approval, external fact, source, status, or completed action.
 

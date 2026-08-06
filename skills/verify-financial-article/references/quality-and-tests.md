@@ -2,35 +2,35 @@
 
 ## Contents
 
-- 4. Verification principles
-- 6. Issue taxonomy
-- 7. Severity framework
-- 13. Hard verification gates
-- 14. Self-review checklist
-- 15. Prohibited behavior
-- 17. Minimum test set before production approval
+- 1. Verification principles
+- 2. Issue taxonomy
+- 3. Severity framework
+- 4. Hard verification gates
+- 5. Self-review checklist
+- 6. Prohibited behavior
+- 7. Minimum test set before production approval
 
-## 4. Verification principles
+## 1. Verification principles
 
-### 4.1 Independence
+### 1.1 Independence
 
 Do not assume the Writer is correct.
 
 Reconstruct the article's factual and analytical logic from the evidence supplied. Treat every material claim as unverified until checked.
 
-### 4.2 Evidence hierarchy
+### 1.2 Evidence hierarchy
 
 Use the following hierarchy:
 
 1. authoritative primary sources;
-2. verified market or economic data from recognized providers;
-3. Reuters, Bloomberg, Financial Times, Wall Street Journal, Associated Press or similarly rigorous financial/news organizations;
-4. recognized research institutions, exchanges and official databases;
-5. other sources only when clearly qualified.
+2. recognized official data providers and exchanges;
+3. Reuters, Bloomberg, Financial Times, Wall Street Journal, Associated Press or similarly rigorous financial news organizations;
+4. recognized research institutions, index providers and ETF issuers;
+5. other sources only when necessary and clearly qualified.
 
 A primary source can establish what an institution said or published. It does not automatically establish that the institution's interpretation, allegation or forecast is correct.
 
-### 4.3 Claim-level traceability
+### 1.3 Claim-level traceability
 
 Every material claim must be linked to one or more source IDs.
 
@@ -46,13 +46,13 @@ Material claims include:
 - legal, regulatory or institutional statements;
 - claims about the significance of an event.
 
-### 4.4 No silent repair
+### 1.4 No silent repair
 
 The verifier may suggest exact corrections, but must not silently rewrite the article and return it as approved.
 
 All material defects must appear in the report with an issue ID, location, severity and required action.
 
-## 6. Issue taxonomy
+## 2. Issue taxonomy
 
 Each detected problem must use one primary issue type:
 
@@ -84,7 +84,7 @@ Each detected problem must use one primary issue type:
 - `SOURCE_LIST_INCOMPLETE`
 - `OTHER_MATERIAL_DEFECT`
 
-## 7. Severity framework
+## 3. Severity framework
 
 Assign one severity to every issue.
 
@@ -141,7 +141,7 @@ Examples:
 
 Minor issues alone do not prevent approval for SEO, but must be recorded for downstream cleanup.
 
-## 13. Hard verification gates
+## 4. Hard verification gates
 
 The skill must not return `APPROVED_FOR_SEO` if any of the following is true:
 
@@ -162,7 +162,7 @@ The skill must not return `APPROVED_FOR_SEO` if any of the following is true:
 - the article's topic or angle drifted materially;
 - the source list does not permit independent checking.
 
-## 14. Self-review checklist
+## 5. Self-review checklist
 
 Before returning the report, verify:
 
@@ -209,7 +209,7 @@ Before returning the report, verify:
 - [ ] Downstream action is valid.
 - [ ] The verifier has not declared the article published or publication-ready.
 
-## 15. Prohibited behavior
+## 6. Prohibited behavior
 
 The verifier must never:
 
@@ -226,7 +226,7 @@ The verifier must never:
 - use a high score to bypass a failed hard gate;
 - label the article `READY_TO_PUBLISH` or `APPROVED_FOR_PUBLICATION`.
 
-## 17. Minimum test set before production approval
+## 7. Minimum test set before production approval
 
 This skill remains in `TESTING` until it passes at least:
 

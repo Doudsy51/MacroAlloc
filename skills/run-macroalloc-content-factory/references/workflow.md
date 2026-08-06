@@ -4,19 +4,19 @@
 
 - 1. Mission
 - 2. Required execution chain
-- 5. Stage 0 — Preflight
-- 6. Stage 1 — Discover content opportunities
-- 7. Stage 2 — Topic-selection gate
-- 8. Stage 3 — Research the selected topic
-- 8A. Stage 4 — Write the article
-- 9. Stage 4 — Financial verification
-- 10. Stage 5 — Discoverability optimization
-- 11. Stage 6 — Final editorial review
-- 12. Stage 7 — Generate the two final Word deliverables
-- 13. Stage 8 — Human final-validation gate
-- 14. Revision-routing matrix
-- 15. Loop limits
-- 20. User-facing execution behavior
+- 3. Stage 0 — Preflight
+- 4. Stage 1 — Discover content opportunities
+- 5. Stage 2 — Topic-selection gate
+- 6. Stage 3 — Research the selected topic
+- 7. Stage 4 — Write the article
+- 8. Stage 5 — Financial verification
+- 9. Stage 6 — Discoverability optimization
+- 10. Stage 7 — Final editorial review
+- 11. Stage 8 — Generate the two final Word deliverables
+- 12. Stage 9 — Human final-validation gate
+- 13. Revision-routing matrix
+- 14. Loop limits
+- 15. User-facing execution behavior
 
 ## 1. Mission
 
@@ -40,7 +40,7 @@ The orchestrator must never publish content automatically during the launch phas
 
 The orchestrator must not skip a stage unless this skill explicitly defines the stage as optional.
 
-## 5. Stage 0 — Preflight
+## 3. Stage 0 — Preflight
 
 Before execution:
 
@@ -61,7 +61,7 @@ Return `BLOCKED` with issue code `MISSING_SKILL`.
 
 Do not replace a missing skill with improvised instructions.
 
-## 6. Stage 1 — Discover content opportunities
+## 4. Stage 1 — Discover content opportunities
 
 Invoke `discover-content-opportunities`.
 
@@ -87,7 +87,7 @@ Other statuses:
 
 Preserve the complete shortlist and research brief.
 
-## 7. Stage 2 — Topic-selection gate
+## 5. Stage 2 — Topic-selection gate
 
 Human selection is mandatory and is the only permitted mode.
 
@@ -118,7 +118,7 @@ Record:
 - rejected candidates;
 - decision rationale.
 
-## 8. Stage 3 — Research the selected topic
+## 6. Stage 3 — Research the selected topic
 
 Invoke `research-macro-evidence` after `TOPIC_SELECTED`.
 
@@ -136,7 +136,7 @@ Routing:
 
 Preserve the evidence dossier, source register, lineage, uncertainties, prohibited claims, and recheck items.
 
-## 8A. Stage 4 — Write the article
+## 7. Stage 4 — Write the article
 
 Invoke `write-macro-insight`.
 
@@ -162,7 +162,7 @@ If the writer returns an incomplete draft, missing sources, unsupported claims, 
 
 Preserve the complete `ArticleDraft`, source ledger, context reconciliation, causal-pivot register, and writer notes.
 
-## 9. Stage 4 — Financial verification
+## 8. Stage 5 — Financial verification
 
 Invoke `verify-financial-article`.
 
@@ -179,7 +179,7 @@ Pass:
 Routing:
 
 ### `APPROVED_FOR_SEO`
-Continue to Stage 5.
+Continue to Stage 6.
 
 ### `REVISION_REQUIRED`
 Route the exact revision instructions to `write-macro-insight` in revision mode.
@@ -202,7 +202,7 @@ Stop. Explain the blocking issue and required evidence.
 
 The orchestrator must not reinterpret verification findings.
 
-## 10. Stage 5 — Discoverability optimization
+## 9. Stage 6 — Discoverability optimization
 
 Invoke `optimize-content-discoverability` only after `APPROVED_FOR_SEO`.
 
@@ -242,7 +242,7 @@ Stop and report the blocking dependency.
 
 The discoverability skill must never silently alter verified claims, numbers, or conclusions.
 
-## 11. Stage 6 — Final editorial review
+## 10. Stage 7 — Final editorial review
 
 Invoke `review-article`.
 
@@ -290,7 +290,7 @@ Stop. Do not generate a final package marked as publishable.
 
 The reviewer is the final editorial quality gate but cannot override a failed factual gate.
 
-## 12. Stage 7 — Generate the two final Word deliverables
+## 11. Stage 8 — Generate the two final Word deliverables
 
 Invoke `generate-article-package` only after editorial approval.
 
@@ -334,7 +334,7 @@ Stop and report missing or inconsistent artifacts.
 
 The package generator may format and assemble. It may not invent, rewrite, or override approved content.
 
-## 13. Stage 8 — Human final-validation gate
+## 12. Stage 9 — Human final-validation gate
 
 Present both final DOCX files and a concise final status report. Identify the Publication Package as the document for human review and website publication. Identify the Workflow Report as internal and not for publication.
 
@@ -348,7 +348,7 @@ No CMS or social publication may occur without `APPROVE`.
 
 If changes are requested, route them according to issue ownership and rerun all affected downstream gates.
 
-## 14. Revision-routing matrix
+## 13. Revision-routing matrix
 
 | Issue type | Owner | Mandatory downstream reruns |
 |---|---|---|
@@ -363,7 +363,7 @@ If changes are requested, route them according to issue ownership and rerun all 
 | Source unavailable or contradictory | Verifier / Human | Full downstream chain |
 | Topic cannibalization | Human / Discoverability | Resume after decision |
 
-## 15. Loop limits
+## 14. Loop limits
 
 Hard limits per job:
 
@@ -376,7 +376,7 @@ Never reset counters by creating a hidden new job.
 
 When a limit is reached, pause and require human intervention.
 
-## 20. User-facing execution behavior
+## 15. User-facing execution behavior
 
 When the user starts the pipeline:
 

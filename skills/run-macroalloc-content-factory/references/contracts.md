@@ -2,12 +2,12 @@
 
 ## Contents
 
-- 17. Traceability requirements
-- 18. Mandatory artifacts
-- 19. Final orchestrator statuses
-- 21. Output contract
+- 1. Traceability requirements
+- 2. Mandatory artifacts
+- 3. Final orchestrator statuses
+- 4. Output contract
 
-## 17. Traceability requirements
+## 1. Traceability requirements
 
 Record for every stage:
 
@@ -26,7 +26,7 @@ Record for every stage:
 
 The Workflow Report must include the skill versions and job ID. The Publication Package must not expose workflow IDs or skill versions.
 
-## 18. Mandatory artifacts
+## 2. Mandatory artifacts
 
 The final job record must contain:
 
@@ -46,7 +46,7 @@ The final job record must contain:
 
 If any mandatory artifact is absent, the job cannot be marked complete.
 
-## 19. Final orchestrator statuses
+## 3. Final orchestrator statuses
 
 - `AWAITING_USER_SELECTION`
 - `TOPIC_SELECTED`
@@ -69,7 +69,7 @@ If any mandatory artifact is absent, the job cannot be marked complete.
 - `BLOCKED`
 - `FAILED`
 
-## 21. Output contract
+## 4. Output contract
 
 Return:
 

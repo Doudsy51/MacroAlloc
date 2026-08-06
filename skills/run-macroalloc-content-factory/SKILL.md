@@ -7,9 +7,9 @@ description: Orchestrates the complete US-first MacroAlloc editorial workflow ac
 
 ## Preconditions
 
-- Confirm the primary artifact and metadata are in US English.
-- Preserve `TOPIC_SELECTED`, the explicit selection evidence, the selected topic, and the locked angle.
-- Treat missing mandatory evidence, ambiguous human decisions, and contract mismatches as blocking.
+- Confirm the primary artifact and metadata are produced in US English throughout every stage.
+- Create and preserve one `ArticleJob` state per run, including `TOPIC_SELECTED`, the explicit selection evidence, the selected topic, and the locked angle.
+- Treat a missing specialist skill, an ambiguous human decision, or a contract mismatch between stages as blocking.
 - Never invent a human approval, external fact, source, status, or completed action.
 
 ## Workflow

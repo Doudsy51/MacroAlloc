@@ -2,14 +2,14 @@
 
 ## Contents
 
-- 3. Core operating principles
-- 33. Mandatory quality gates
-- 35. Failure taxonomy
-- 41. Completion criteria
+- 1. Core operating principles
+- 2. Mandatory quality gates
+- 3. Failure taxonomy
+- 4. Completion criteria
 
-## 3. Core operating principles
+## 1. Core operating principles
 
-### 3.1 Substance preservation
+### 1.1 Substance preservation
 
 The verified article is authoritative for:
 
@@ -27,7 +27,7 @@ The verified article is authoritative for:
 
 The skill may improve discoverability, structure and presentation. It must not change the verified substance.
 
-### 3.2 No factual invention
+### 1.2 No factual invention
 
 Never add:
 
@@ -43,7 +43,7 @@ Never add:
 
 When an optimization opportunity requires new factual content, return it as a research or editorial recommendation. Do not insert it into the article.
 
-### 3.3 No optimization theatre
+### 1.3 No optimization theatre
 
 Do not claim that an article will rank, be cited by an AI system, appear in Google Discover, win a featured snippet, or outperform competitors.
 
@@ -55,7 +55,7 @@ Use calibrated language:
 - `reduces ambiguity`;
 - `strengthens topical alignment`.
 
-### 3.4 Human-first quality
+### 1.4 Human-first quality
 
 Search optimization must improve or preserve reader value.
 
@@ -71,7 +71,7 @@ Reject any change that:
 - creates clickbait;
 - overstates confidence.
 
-### 3.5 Evidence-aware optimization
+### 1.5 Evidence-aware optimization
 
 Do not treat every external optimization signal as equally reliable.
 
@@ -81,7 +81,7 @@ Do not treat every external optimization signal as equally reliable.
 - Existing MacroAlloc content must be identified from a supplied content inventory or connected knowledge base.
 - Missing tool data must be marked `NOT ASSESSED`, not guessed.
 
-## 33. Mandatory quality gates
+## 2. Mandatory quality gates
 
 ### Gate 1 — Upstream verification
 
@@ -125,7 +125,7 @@ Pass only when the informational disclaimer remains and no advice or performance
 
 If any mandatory gate fails, return `DISCOVERABILITY_REVISION_REQUIRED` or `BLOCKED` as appropriate.
 
-## 35. Failure taxonomy
+## 3. Failure taxonomy
 
 Use these issue codes:
 
@@ -160,7 +160,7 @@ Every issue must include:
 - required action;
 - whether re-verification is required.
 
-## 41. Completion criteria
+## 4. Completion criteria
 
 The skill is complete only when:
 

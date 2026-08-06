@@ -2,14 +2,14 @@
 
 ## Contents
 
-- 9. Eligibility gates
-- 30. Quality gates
-- 31. Failure modes
-- 35. Test scenarios
-- 36. Governance
-- 37. Final principles
+- 1. Eligibility gates
+- 2. Quality gates
+- 3. Failure modes
+- 4. Test scenarios
+- 5. Governance
+- 6. Final principles
 
-## 9. Eligibility gates
+## 1. Eligibility gates
 
 A candidate must pass every applicable eligibility gate before scoring.
 
@@ -55,7 +55,7 @@ For fast-moving events, pass only when the remaining publication window is suffi
 
 Pass only when the opportunity adds a distinct angle, update or educational layer relative to recent MacroAlloc content.
 
-## 30. Quality gates
+## 2. Quality gates
 
 Before returning a shortlist or confirming a selected opportunity, confirm:
 
@@ -93,51 +93,51 @@ Before returning a shortlist or confirming a selected opportunity, confirm:
 
 Any failed hard gate disqualifies that candidate. Human selection cannot override a failed hard gate inside this workflow.
 
-## 31. Failure modes
+## 3. Failure modes
 
-### 31.1 False trend detection
+### 3.1 False trend detection
 
 Symptom: many headlines but no material underlying event.
 
 Action: cluster the headlines, identify the common event and reassess materiality.
 
-### 31.2 Headline chasing
+### 3.2 Headline chasing
 
 Symptom: the proposed angle simply repeats the most dramatic claim.
 
 Action: require confirmation, mechanism and reader value; reject if unavailable.
 
-### 31.3 Topic overbreadth
+### 3.3 Topic overbreadth
 
 Symptom: the candidate combines several unrelated events.
 
 Action: narrow to one central question or split into separate opportunities.
 
-### 31.4 Predetermined thesis
+### 3.4 Predetermined thesis
 
 Symptom: the research brief demands evidence for a conclusion already chosen.
 
 Action: rewrite neutral research questions and include falsification conditions.
 
-### 31.5 Weak differentiation
+### 3.5 Weak differentiation
 
 Symptom: MacroAlloc would add no value beyond existing coverage.
 
 Action: find a mechanism, data decomposition, cross-asset or educational angle; otherwise reject.
 
-### 31.6 Cannibalization
+### 3.6 Cannibalization
 
 Symptom: a recent article already satisfies the same intent.
 
 Action: update, merge, reposition or reject.
 
-### 31.7 Forced publication
+### 3.7 Forced publication
 
 Symptom: no candidate clears the threshold but a slot is scheduled.
 
 Action: return `NO_SUITABLE_SHORTLIST`.
 
-## 35. Test scenarios
+## 4. Test scenarios
 
 The skill should be evaluated on at least:
 
@@ -158,7 +158,7 @@ The skill should be evaluated on at least:
 - a scheduled event where the best opportunity is a pre-event explainer;
 - a market move with no defensible single cause.
 
-## 36. Governance
+## 5. Governance
 
 Every execution must log:
 
@@ -176,7 +176,7 @@ Human overrides must state the overridden rule and the reason.
 
 Do not alter the scoring weights or eligibility gates silently. Changes require versioning and regression testing.
 
-## 37. Final principles
+## 6. Final principles
 
 - Quality beats publishing frequency.
 - Evidence feasibility precedes drafting.

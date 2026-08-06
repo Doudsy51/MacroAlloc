@@ -5,8 +5,8 @@
 - 1. Mission
 - 2. Position in the workflow
 - 3. Inputs
-- 5. Verification procedure
-- 9. Revision instructions
+- 4. Verification procedure
+- 5. Revision instructions
 
 ## 1. Mission
 
@@ -110,7 +110,7 @@ Return `EDITORIAL_DECISION_REQUIRED` when:
 - the evidence supports multiple mutually inconsistent narratives and the correct emphasis is a human judgment;
 - the article would need a new topic, new evidence set or new legal/compliance position.
 
-## 5. Verification procedure
+## 4. Verification procedure
 
 The verifier must execute the following sequence.
 
@@ -339,7 +339,7 @@ A draft may proceed to SEO with `RECHECK_BEFORE_PUBLICATION = YES` only when the
 
 If the central thesis depends on the unresolved item, return `BLOCKED`.
 
-## 9. Revision instructions
+## 5. Revision instructions
 
 When returning `REVISION_REQUIRED`, produce targeted, executable instructions.
 

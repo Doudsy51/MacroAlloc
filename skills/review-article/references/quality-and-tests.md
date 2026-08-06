@@ -2,16 +2,16 @@
 
 ## Contents
 
-- 3. Core operating principles
-- 9. Issue taxonomy
-- 11. Mandatory quality gates
-- 15. Regression checks
-- 19. Acceptance-test examples
-- 23. Final rule
+- 1. Core operating principles
+- 2. Issue taxonomy
+- 3. Mandatory quality gates
+- 4. Regression checks
+- 5. Acceptance-test examples
+- 6. Final rule
 
-## 3. Core operating principles
+## 1. Core operating principles
 
-### 3.1 Independent editorial judgment
+### 1.1 Independent editorial judgment
 
 Do not assume that the Writer, Verifier or Discoverability skill is correct merely because an upstream state says it passed.
 
@@ -19,7 +19,7 @@ Review the final reader-facing article independently.
 
 Use upstream reports as evidence and constraints, not as substitutes for judgment.
 
-### 3.2 No duplication of upstream responsibilities
+### 1.2 No duplication of upstream responsibilities
 
 This skill must not repeat full factual verification or rebuild the SEO package.
 
@@ -32,7 +32,7 @@ Examples:
 - weak causal explanation → route to `write-macro-insight` unless the verifier already identified it;
 - broken article-package field → route to the workflow/package builder.
 
-### 3.3 Reader-first standard
+### 1.3 Reader-first standard
 
 The article must serve the reader before it serves the workflow.
 
@@ -47,7 +47,7 @@ Reject editorial changes that make the article:
 - less useful;
 - more obviously AI-generated.
 
-### 3.4 MacroAlloc brand standard
+### 1.4 MacroAlloc brand standard
 
 The final article must feel recognizably MacroAlloc:
 
@@ -62,7 +62,7 @@ The final article must feel recognizably MacroAlloc:
 - useful to informed retail and professional readers;
 - free from hype, sensationalism and personalized investment advice.
 
-### 3.5 No silent repair
+### 1.5 No silent repair
 
 The reviewer may make limited copy edits only when explicitly authorized by the workflow.
 
@@ -79,7 +79,7 @@ Every material issue must be recorded with:
 - responsible upstream skill;
 - acceptance test.
 
-### 3.6 Proportionality
+### 1.6 Proportionality
 
 Do not block publication for cosmetic preferences.
 
@@ -91,7 +91,7 @@ Differentiate between:
 
 The review must be demanding without becoming perfectionistic or arbitrary.
 
-## 9. Issue taxonomy
+## 2. Issue taxonomy
 
 Use the following issue categories:
 
@@ -126,7 +126,7 @@ Severity levels:
 - `MINOR` — small improvement required or strongly recommended;
 - `OPTIONAL` — useful but not required.
 
-## 11. Mandatory quality gates
+## 3. Mandatory quality gates
 
 All mandatory gates must pass for `PUBLISH`.
 
@@ -216,7 +216,7 @@ Pass only if:
 
 - all mandatory article-package components required at this stage are present.
 
-## 15. Regression checks
+## 4. Regression checks
 
 When a previous version exists, verify that revisions did not:
 
@@ -233,7 +233,7 @@ When a previous version exists, verify that revisions did not:
 
 Record every regression check as `PASS`, `FAIL` or `NOT_APPLICABLE`.
 
-## 19. Acceptance-test examples
+## 5. Acceptance-test examples
 
 Bad issue:
 
@@ -251,7 +251,7 @@ Good issue:
 
 > `ED-021 — MODERATE — Section “Term Premium and the Long End”`: The section introduces term premium, duration supply and real-rate decomposition within two paragraphs without defining term premium. Add a one-sentence definition before the decomposition and split the second paragraph. Acceptance test: a non-specialist can identify what term premium represents and why it matters for long-dated yields.
 
-## 23. Final rule
+## 6. Final rule
 
 The reviewer exists to protect reader trust and the MacroAlloc brand.
 

@@ -4,12 +4,12 @@
 
 - 1. Mission
 - 2. Position in the workflow
-- 4. Responsibilities
-- 5. Non-responsibilities
-- 6. Inputs
-- 7. Review sequence
-- 13. Revision routing
-- 14. Revision-loop rules
+- 3. Responsibilities
+- 4. Non-responsibilities
+- 5. Inputs
+- 6. Review sequence
+- 7. Revision routing
+- 8. Revision-loop rules
 
 ## 1. Mission
 
@@ -57,7 +57,7 @@ Required downstream action:
 
 No automatic publication is allowed.
 
-## 4. Responsibilities
+## 3. Responsibilities
 
 The skill is responsible for:
 
@@ -78,7 +78,7 @@ The skill is responsible for:
 15. issuing the final editorial decision;
 16. producing the normalized `EditorialReview` object for Word assembly and workflow logging.
 
-## 5. Non-responsibilities
+## 4. Non-responsibilities
 
 This skill must not:
 
@@ -100,9 +100,9 @@ This skill must not:
 - make legal or regulatory determinations;
 - claim certainty about audience performance, rankings or conversion.
 
-## 6. Inputs
+## 5. Inputs
 
-### 6.1 Mandatory inputs
+### 5.1 Mandatory inputs
 
 The skill must receive:
 
@@ -128,7 +128,7 @@ The skill must receive:
 - `VERIFIER_SKILL_VERSION`;
 - `DISCOVERABILITY_SKILL_VERSION`.
 
-### 6.2 Optional inputs
+### 5.2 Optional inputs
 
 Where available, also accept:
 
@@ -149,7 +149,7 @@ Where available, also accept:
 - content performance data for similar articles;
 - publication priority.
 
-### 6.3 Blocking conditions
+### 5.3 Blocking conditions
 
 Return `BLOCKED` when:
 
@@ -174,7 +174,7 @@ Return `EDITORIAL_DECISION_REQUIRED` when:
 - the publication deadline conflicts with the minimum quality standard;
 - the article is strong but materially overlaps another scheduled MacroAlloc publication and the correct action requires editorial prioritization.
 
-## 7. Review sequence
+## 6. Review sequence
 
 The skill must execute the following sequence in order.
 
@@ -533,7 +533,7 @@ Apply all scoring rules and hard gates.
 
 Produce the final decision and exact downstream routing.
 
-## 13. Revision routing
+## 7. Revision routing
 
 Every issue must identify the responsible component.
 
@@ -591,7 +591,7 @@ Route to human editor when the issue concerns:
 - unresolved overlap between equally valid articles;
 - scope change.
 
-## 14. Revision-loop rules
+## 8. Revision-loop rules
 
 - A maximum of two automated editorial revision cycles is allowed after the first review.
 - Each cycle must address only the issue IDs listed in the review unless a correction introduces a new defect.

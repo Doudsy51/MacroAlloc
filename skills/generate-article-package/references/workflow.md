@@ -4,12 +4,12 @@
 
 - 1. Mission
 - 2. Position in the workflow
-- 4. Responsibilities
-- 5. Non-responsibilities
-- 6. Mandatory inputs
-- 13. Assembly process
-- 18. Revision routing
-- 31. Handoff
+- 3. Responsibilities
+- 4. Non-responsibilities
+- 5. Mandatory inputs
+- 6. Assembly process
+- 7. Revision routing
+- 8. Handoff
 
 ## 1. Mission
 
@@ -52,7 +52,7 @@ Required downstream states:
 
 No automatic publication is allowed.
 
-## 4. Responsibilities
+## 3. Responsibilities
 
 The skill is responsible for:
 
@@ -74,7 +74,7 @@ The skill is responsible for:
 16. producing both required DOCX files and optional Markdown, HTML or JSON representations when requested;
 17. returning explicit handoff states.
 
-## 5. Non-responsibilities
+## 4. Non-responsibilities
 
 This skill must not:
 
@@ -98,11 +98,11 @@ This skill must not:
 - claim that the article is live;
 - mark the article finally approved without human authorization.
 
-## 6. Mandatory inputs
+## 5. Mandatory inputs
 
 The skill must receive the following normalized inputs.
 
-### 6.1 Identity and workflow inputs
+### 5.1 Identity and workflow inputs
 
 - `ARTICLE_ID`
 - `WORKFLOW_RUN_ID`
@@ -117,7 +117,7 @@ The skill must receive the following normalized inputs.
 - `HUMAN_APPROVAL_REQUIRED`
 - `SKILL_VERSION_REGISTER`
 
-### 6.2 Approved public-content inputs
+### 5.2 Approved public-content inputs
 
 - `FINAL_APPROVED_HEADLINE`
 - `FINAL_APPROVED_ARTICLE`
@@ -136,7 +136,7 @@ Optional public inputs:
 - `PUBLIC_TABLES`
 - `PUBLIC_CALLOUTS`
 
-### 6.3 Verification inputs
+### 5.3 Verification inputs
 
 - `VERIFICATION_STATUS`
 - `VERIFICATION_REPORT`
@@ -146,7 +146,7 @@ Optional public inputs:
 - `CONTEXT_RECONCILIATION`
 - `VERIFICATION_LIMITATIONS`
 
-### 6.4 Discoverability inputs
+### 5.4 Discoverability inputs
 
 - `DISCOVERABILITY_STATUS`
 - `DISCOVERABILITY_PACKAGE`
@@ -161,7 +161,7 @@ Optional public inputs:
 - `VISUAL_PACKAGE`
 - `CONTENT_LIFECYCLE_PLAN`
 
-### 6.5 Editorial review inputs
+### 5.5 Editorial review inputs
 
 - `EDITORIAL_DECISION`
 - `EDITORIAL_REVIEW`
@@ -170,7 +170,7 @@ Optional public inputs:
 - `ACCEPTED_LIMITATIONS`
 - `REQUIRED_HUMAN_NOTES`
 
-### 6.6 Optional distribution and analytics inputs
+### 5.6 Optional distribution and analytics inputs
 
 - `DISTRIBUTION_PACKAGE`
 - `LINKEDIN_ASSET`
@@ -181,7 +181,7 @@ Optional public inputs:
 - `ANALYTICS_PLACEHOLDERS`
 - `POST_PUBLICATION_REVIEW_DATES`
 
-## 13. Assembly process
+## 6. Assembly process
 
 Execute the following stages in order.
 
@@ -237,7 +237,7 @@ Generate both required DOCX files by default. Generate optional Markdown, HTML o
 
 Return package status, file manifest, validation results and handoff metadata.
 
-## 18. Revision routing
+## 7. Revision routing
 
 Route issues as follows:
 
@@ -251,7 +251,7 @@ Route issues as follows:
 
 The skill may automatically correct only formatting, ordering, labeling and deterministic rendering defects.
 
-## 31. Handoff
+## 8. Handoff
 
 When successful, return:
 

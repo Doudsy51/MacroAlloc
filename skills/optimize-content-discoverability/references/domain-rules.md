@@ -2,33 +2,33 @@
 
 ## Contents
 
-- 0. Workflow invariants
-- 7. Allowed transformations
-- 9. Content fingerprint and preservation ledger
-- 10. Module 1 — Search intent engine
-- 11. Module 2 — Keyword and question strategy engine
-- 12. Module 3 — Semantic coverage engine
-- 13. Module 4 — Entity recognition and consistency engine
-- 14. Module 5 — E-E-A-T and trust engine
-- 15. Module 6 — AI search and retrieval engine
-- 16. Module 7 — Google AI Overview readiness
-- 17. Module 8 — Featured-snippet engine
-- 18. Module 9 — Google Discover readiness engine
-- 19. Module 10 — Knowledge graph engine
-- 20. Module 11 — Schema recommendation engine
-- 21. Module 12 — Internal linking engine
-- 22. Module 13 — Image and visual optimization engine
-- 23. Module 14 — Content structure and readability engine
-- 24. Module 15 — Competitor intelligence engine
-- 25. Module 16 — Topical authority engine
-- 26. Module 17 — Content memory and cannibalization engine
-- 27. Module 18 — Content decay and refresh engine
-- 28. Module 19 — Editorial distribution intelligence
-- 31. FAQ and question coverage
-- 32. Scoring model
-- 38. Final optimized article rules
+- 1. Workflow invariants
+- 2. Allowed transformations
+- 3. Content fingerprint and preservation ledger
+- 4. Module 1 — Search intent engine
+- 5. Module 2 — Keyword and question strategy engine
+- 6. Module 3 — Semantic coverage engine
+- 7. Module 4 — Entity recognition and consistency engine
+- 8. Module 5 — E-E-A-T and trust engine
+- 9. Module 6 — AI search and retrieval engine
+- 10. Module 7 — Google AI Overview readiness
+- 11. Module 8 — Featured-snippet engine
+- 12. Module 9 — Google Discover readiness engine
+- 13. Module 10 — Knowledge graph engine
+- 14. Module 11 — Schema recommendation engine
+- 15. Module 12 — Internal linking engine
+- 16. Module 13 — Image and visual optimization engine
+- 17. Module 14 — Content structure and readability engine
+- 18. Module 15 — Competitor intelligence engine
+- 19. Module 16 — Topical authority engine
+- 20. Module 17 — Content memory and cannibalization engine
+- 21. Module 18 — Content decay and refresh engine
+- 22. Module 19 — Editorial distribution intelligence
+- 23. FAQ and question coverage
+- 24. Scoring model
+- 25. Final optimized article rules
 
-## 0. Workflow invariants
+## 1. Workflow invariants
 
 - Require traceable upstream status `TOPIC_SELECTED` and explicit user-selection evidence tied to the preserved shortlist.
 - Require the primary article and all primary metadata to remain in US English (`en-US`) with US organic search as the priority market.
@@ -36,7 +36,7 @@
 - Do not translate, replace, broaden or reselect the topic during optimization.
 - Treat French or other-language SEO as a separate secondary adaptation, never as a replacement for the US-English package.
 
-## 7. Allowed transformations
+## 2. Allowed transformations
 
 The skill may:
 
@@ -65,7 +65,7 @@ The skill may not:
 - change a number, unit, period or comparison;
 - modify citation-to-claim relationships without re-verification.
 
-## 9. Content fingerprint and preservation ledger
+## 3. Content fingerprint and preservation ledger
 
 Before editing, record:
 
@@ -94,9 +94,9 @@ Every material change must be classified as:
 
 Any item in the last category fails the preservation gate and must be removed or returned for re-verification.
 
-## 10. Module 1 — Search intent engine
+## 4. Module 1 — Search intent engine
 
-### 10.1 Objective
+### 4.1 Objective
 
 Identify why a reader would search for the article and ensure that the article directly satisfies one dominant intent.
 
@@ -114,7 +114,7 @@ Supported primary intents:
 - `NAVIGATIONAL`;
 - `TRANSACTIONAL_INFORMATION` only when consistent with non-advisory content.
 
-### 10.2 Procedure
+### 4.2 Procedure
 
 - Extract all explicit questions answered by the article.
 - Infer likely questions from the locked topic and article structure.
@@ -124,7 +124,7 @@ Supported primary intents:
 - Confirm that the opening answers the primary intent promptly.
 - Confirm that the conclusion resolves, rather than merely repeats, the central question.
 
-### 10.3 Output
+### 4.3 Output
 
 - primary intent;
 - secondary intents;
@@ -136,13 +136,13 @@ Supported primary intents:
 
 Do not broaden the article solely to cover every adjacent query.
 
-## 11. Module 2 — Keyword and question strategy engine
+## 5. Module 2 — Keyword and question strategy engine
 
-### 11.1 Objective
+### 5.1 Objective
 
 Create a natural search vocabulary based on article meaning, audience and verified entities.
 
-### 11.2 Keyword classes
+### 5.2 Keyword classes
 
 - primary keyword;
 - secondary keywords;
@@ -154,7 +154,7 @@ Create a natural search vocabulary based on article meaning, audience and verifi
 - semantic alternatives;
 - terms to avoid because they misstate the article.
 
-### 11.3 Rules
+### 5.3 Rules
 
 - Relevance outranks volume.
 - Search intent outranks superficial keyword matching.
@@ -165,7 +165,7 @@ Create a natural search vocabulary based on article meaning, audience and verifi
 - Preserve standard financial terminology.
 - Do not replace precise terms with popular but inaccurate phrases.
 
-### 11.4 Placement review
+### 5.4 Placement review
 
 Review the primary concept in:
 
@@ -180,9 +180,9 @@ Review the primary concept in:
 
 No exact-match repetition is mandatory.
 
-## 12. Module 3 — Semantic coverage engine
+## 6. Module 3 — Semantic coverage engine
 
-### 12.1 Objective
+### 6.1 Objective
 
 Improve conceptual completeness without adding unverified facts.
 
@@ -197,7 +197,7 @@ Build a semantic map linking:
 - uncertainty;
 - next observable catalyst.
 
-### 12.2 Checks
+### 6.2 Checks
 
 - Are essential terms defined or clear from context?
 - Are abbreviations introduced once before reuse?
@@ -208,7 +208,7 @@ Build a semantic map linking:
 
 When a required concept is absent, recommend research or editorial expansion; do not invent it.
 
-### 12.3 Output
+### 6.3 Output
 
 - semantic map;
 - covered concepts;
@@ -217,9 +217,9 @@ When a required concept is absent, recommend research or editorial expansion; do
 - redundant concepts;
 - semantic-completeness score.
 
-## 13. Module 4 — Entity recognition and consistency engine
+## 7. Module 4 — Entity recognition and consistency engine
 
-### 13.1 Entity classes
+### 7.1 Entity classes
 
 - countries and regions;
 - central banks;
@@ -237,7 +237,7 @@ When a required concept is absent, recommend research or editorial expansion; do
 - asset classes;
 - investment styles.
 
-### 13.2 Rules
+### 7.2 Rules
 
 For each entity:
 
@@ -249,7 +249,7 @@ For each entity:
 - avoid repetitive full naming after the abbreviation is established;
 - do not infer legal entity relationships not present in the verified content.
 
-### 13.3 Output
+### 7.3 Output
 
 - entity inventory;
 - canonical-name table;
@@ -258,13 +258,13 @@ For each entity:
 - missing disambiguation;
 - entity-consistency score.
 
-## 14. Module 5 — E-E-A-T and trust engine
+## 8. Module 5 — E-E-A-T and trust engine
 
-### 14.1 Objective
+### 8.1 Objective
 
 Strengthen supported signals of experience, expertise, authoritativeness and trust without inventing credentials or overstating authority.
 
-### 14.2 Signals to evaluate
+### 8.2 Signals to evaluate
 
 - source quality and transparency;
 - distinction between evidence and interpretation;
@@ -279,7 +279,7 @@ Strengthen supported signals of experience, expertise, authoritativeness and tru
 - accessible source list;
 - balanced treatment of competing interpretations.
 
-### 14.3 Prohibitions
+### 8.3 Prohibitions
 
 Never invent:
 
@@ -292,7 +292,7 @@ Never invent:
 - first-hand market access;
 - endorsements.
 
-### 14.4 Output
+### 8.4 Output
 
 - supported trust signals;
 - missing but legitimate implementation signals;
@@ -300,15 +300,15 @@ Never invent:
 - E-E-A-T assessment;
 - recommendations for the CMS or author page.
 
-## 15. Module 6 — AI search and retrieval engine
+## 9. Module 6 — AI search and retrieval engine
 
-### 15.1 Objective
+### 9.1 Objective
 
 Improve the probability that retrieval-based systems can understand, extract and cite the article accurately.
 
 The skill must not claim guaranteed inclusion or citation.
 
-### 15.2 Retrieval checks
+### 9.2 Retrieval checks
 
 Determine whether a system can identify:
 
@@ -324,7 +324,7 @@ Determine whether a system can identify:
 - implications;
 - what to watch next.
 
-### 15.3 Section independence
+### 9.3 Section independence
 
 Each major section should:
 
@@ -337,7 +337,7 @@ Each major section should:
 
 Do not make every paragraph unnaturally self-contained.
 
-### 15.4 Answer blocks
+### 9.4 Answer blocks
 
 Create answer blocks only from verified content.
 
@@ -350,7 +350,7 @@ A candidate answer block should:
 - avoid promotional language;
 - avoid claims that require missing context.
 
-### 15.5 Output
+### 9.5 Output
 
 - retrieval-readiness assessment;
 - candidate questions;
@@ -359,7 +359,7 @@ A candidate answer block should:
 - ambiguous sections;
 - AI-discoverability score.
 
-## 16. Module 7 — Google AI Overview readiness
+## 10. Module 7 — Google AI Overview readiness
 
 Assess whether the article offers:
 
@@ -386,9 +386,9 @@ Output:
 
 Do not represent the score as a probability of inclusion.
 
-## 17. Module 8 — Featured-snippet engine
+## 11. Module 8 — Featured-snippet engine
 
-### 17.1 Candidate types
+### 11.1 Candidate types
 
 - paragraph definition;
 - concise explanation;
@@ -398,7 +398,7 @@ Do not represent the score as a probability of inclusion.
 - timeline;
 - FAQ-style answer.
 
-### 17.2 Procedure
+### 11.2 Procedure
 
 For each H2, determine:
 
@@ -410,7 +410,7 @@ For each H2, determine:
 
 Reject a candidate if shortening would materially distort the meaning.
 
-### 17.3 Output
+### 11.3 Output
 
 For each candidate:
 
@@ -422,13 +422,13 @@ For each candidate:
 - priority;
 - risk of oversimplification.
 
-## 18. Module 9 — Google Discover readiness engine
+## 12. Module 9 — Google Discover readiness engine
 
-### 18.1 Objective
+### 12.1 Objective
 
 Assess whether a timely or evergreen article has strong reader value and presentation signals for content recommendation surfaces.
 
-### 18.2 Evaluate
+### 12.2 Evaluate
 
 - timeliness;
 - enduring relevance;
@@ -441,7 +441,7 @@ Assess whether a timely or evergreen article has strong reader value and present
 - source authority;
 - title-to-content alignment.
 
-### 18.3 Headline rules
+### 12.3 Headline rules
 
 A Discover-oriented headline must not:
 
@@ -452,7 +452,7 @@ A Discover-oriented headline must not:
 - imitate tabloid language;
 - use curiosity gaps that obscure meaning.
 
-### 18.4 Output
+### 12.4 Output
 
 - content-type classification;
 - freshness assessment;
@@ -462,7 +462,7 @@ A Discover-oriented headline must not:
 - readiness score;
 - practical recommendations.
 
-## 19. Module 10 — Knowledge graph engine
+## 13. Module 10 — Knowledge graph engine
 
 Map explicit relationships among verified entities.
 
@@ -490,9 +490,9 @@ Output:
 - missing context requiring research;
 - knowledge-graph clarity score.
 
-## 20. Module 11 — Schema recommendation engine
+## 14. Module 11 — Schema recommendation engine
 
-### 20.1 Objective
+### 14.1 Objective
 
 Recommend structured-data types for implementation by the CMS or developer.
 
@@ -511,7 +511,7 @@ Possible types include:
 - `FAQPage` only when the page genuinely contains visible FAQs and implementation remains appropriate;
 - product or fund schema only when supported by the page type and implementation policy.
 
-### 20.2 Rules
+### 14.2 Rules
 
 - Do not generate false ratings, reviews or author credentials.
 - Do not recommend schema solely to pursue rich results.
@@ -519,7 +519,7 @@ Possible types include:
 - Distinguish recommended type from implementation-ready data.
 - Record missing required properties.
 
-### 20.3 Output
+### 14.3 Output
 
 - recommended types;
 - rationale;
@@ -529,13 +529,13 @@ Possible types include:
 - implementation warnings;
 - schema-readiness score.
 
-## 21. Module 12 — Internal linking engine
+## 15. Module 12 — Internal linking engine
 
-### 21.1 Objective
+### 15.1 Objective
 
 Improve reader navigation, topical authority and crawl paths using meaningful links to existing MacroAlloc content.
 
-### 21.2 Required evidence
+### 15.2 Required evidence
 
 Recommendations must rely on:
 
@@ -546,7 +546,7 @@ Recommendations must rely on:
 
 Never invent a published URL.
 
-### 21.3 Link classes
+### 15.3 Link classes
 
 - prerequisite explanation;
 - deeper analysis;
@@ -558,7 +558,7 @@ Never invent a published URL.
 - sibling topic;
 - conversion-oriented product page only when editorially appropriate.
 
-### 21.4 Rules
+### 15.4 Rules
 
 - prioritize reader utility;
 - use descriptive anchor text;
@@ -568,7 +568,7 @@ Never invent a published URL.
 - identify exact insertion location;
 - distinguish confirmed destination from proposed future article.
 
-### 21.5 Output
+### 15.5 Output
 
 - source section;
 - recommended anchor;
@@ -579,13 +579,13 @@ Never invent a published URL.
 - rationale;
 - topical-cluster impact.
 
-## 22. Module 13 — Image and visual optimization engine
+## 16. Module 13 — Image and visual optimization engine
 
-### 22.1 Objective
+### 16.1 Objective
 
 Prepare a visual metadata and recommendation package. The skill does not generate the final image.
 
-### 22.2 Hero image output
+### 16.2 Hero image output
 
 - visual concept;
 - informational purpose;
@@ -599,7 +599,7 @@ Prepare a visual metadata and recommendation package. The skill does not generat
 - Discover suitability;
 - accessibility warnings.
 
-### 22.3 Additional visual opportunities
+### 16.3 Additional visual opportunities
 
 Recommend only visuals that improve comprehension, such as:
 
@@ -614,7 +614,7 @@ Recommend only visuals that improve comprehension, such as:
 
 Do not invent chart data. Specify required verified data and source.
 
-### 22.4 Alt-text rules
+### 16.4 Alt-text rules
 
 Alt text must:
 
@@ -625,7 +625,7 @@ Alt text must:
 - not include unverified interpretation;
 - be empty for purely decorative images when appropriate.
 
-## 23. Module 14 — Content structure and readability engine
+## 17. Module 14 — Content structure and readability engine
 
 Evaluate:
 
@@ -657,9 +657,9 @@ Output:
 - remaining recommendations;
 - structure score.
 
-## 24. Module 15 — Competitor intelligence engine
+## 18. Module 15 — Competitor intelligence engine
 
-### 24.1 Activation
+### 18.1 Activation
 
 Run only when:
 
@@ -668,11 +668,11 @@ Run only when:
 
 Otherwise return `NOT_ASSESSED`.
 
-### 24.2 Objective
+### 18.2 Objective
 
 Determine whether the article offers differentiated and complete value relative to current high-quality content without copying competitors.
 
-### 24.3 Competitor classification
+### 18.3 Competitor classification
 
 Classify each result as:
 
@@ -687,7 +687,7 @@ Classify each result as:
 
 Prioritize authoritative and intent-matched competitors, not merely the first ten links.
 
-### 24.4 Extract
+### 18.4 Extract
 
 - title;
 - URL;
@@ -704,7 +704,7 @@ Prioritize authoritative and intent-matched competitors, not merely the first te
 - source quality;
 - differentiating angle.
 
-### 24.5 Gap classification
+### 18.5 Gap classification
 
 For each material topic classify:
 
@@ -717,7 +717,7 @@ For each material topic classify:
 
 Never recommend adding a competitor topic that conflicts with the locked angle or lacks verified evidence.
 
-### 24.6 Output
+### 18.6 Output
 
 - competitive landscape;
 - intent-matched competitors;
@@ -729,17 +729,17 @@ Never recommend adding a competitor topic that conflicts with the locked angle o
 - competitiveness assessment;
 - evidence timestamp.
 
-## 25. Module 16 — Topical authority engine
+## 19. Module 16 — Topical authority engine
 
-### 25.1 Activation
+### 19.1 Activation
 
 Requires a site taxonomy or content inventory. Otherwise provide category-level recommendations and mark exact cluster analysis `NOT_ASSESSED`.
 
-### 25.2 Objective
+### 19.2 Objective
 
 Ensure that the article strengthens the MacroAlloc knowledge architecture rather than existing as an isolated page.
 
-### 25.3 Classification
+### 19.3 Classification
 
 Assign:
 
@@ -752,7 +752,7 @@ Assign:
 - advanced follow-up topics;
 - related entities.
 
-### 25.4 Analyze
+### 19.4 Analyze
 
 - coverage depth;
 - coverage breadth;
@@ -764,7 +764,7 @@ Assign:
 - disconnected articles;
 - publication priority.
 
-### 25.5 Output
+### 19.5 Output
 
 - topic classification;
 - cluster placement;
@@ -776,15 +776,15 @@ Assign:
 
 Future-article recommendations must be strategic, not an uncontrolled list of adjacent keywords.
 
-## 26. Module 17 — Content memory and cannibalization engine
+## 20. Module 17 — Content memory and cannibalization engine
 
-### 26.1 Activation
+### 20.1 Activation
 
 Requires a content inventory containing at least title, URL, status, primary topic and publication date. Semantic metadata is strongly preferred.
 
 Without the inventory, return `NOT_ASSESSED` and do not claim that cannibalization is absent.
 
-### 26.2 Article fingerprint
+### 20.2 Article fingerprint
 
 Record:
 
@@ -801,7 +801,7 @@ Record:
 - time horizon;
 - expected lifespan.
 
-### 26.3 Compare
+### 20.3 Compare
 
 Assess:
 
@@ -813,7 +813,7 @@ Assess:
 - conclusion overlap;
 - educational-function overlap.
 
-### 26.4 Classification
+### 20.4 Classification
 
 - `NO_MATERIAL_OVERLAP`;
 - `HEALTHY_REINFORCEMENT`;
@@ -823,7 +823,7 @@ Assess:
 - `CANNIBALIZATION_RISK`;
 - `CONSOLIDATION_DECISION_REQUIRED`.
 
-### 26.5 Allowed recommendations
+### 20.5 Allowed recommendations
 
 - differentiate intent;
 - narrow or broaden scope;
@@ -834,13 +834,13 @@ Assess:
 - redirect after human approval;
 - retire or archive after human approval.
 
-### 26.6 Terminology consistency
+### 20.6 Terminology consistency
 
 Create a canonical terminology table for recurring entities and concepts.
 
 Do not require unnatural repetition of the full canonical name. Preserve readable abbreviation practices.
 
-### 26.7 Output
+### 20.7 Output
 
 - overlap report;
 - closest pages;
@@ -850,13 +850,13 @@ Do not require unnatural repetition of the full canonical name. Preserve readabl
 - ecosystem impact;
 - human decisions required.
 
-## 27. Module 18 — Content decay and refresh engine
+## 21. Module 18 — Content decay and refresh engine
 
-### 27.1 Objective
+### 21.1 Objective
 
 Assign a realistic maintenance plan based on the article's claims, content type and dependence on changing data.
 
-### 27.2 Freshness classes
+### 21.2 Freshness classes
 
 Use one of:
 
@@ -871,7 +871,7 @@ Use one of:
 
 Adjust the class when the article contains time-sensitive numbers, policy assumptions, ETF characteristics, regulation or market structure.
 
-### 27.3 Decay factors
+### 21.3 Decay factors
 
 - publication age;
 - data age;
@@ -884,7 +884,7 @@ Adjust the class when the article contains time-sensitive numbers, policy assump
 - competitor update frequency;
 - search-performance trend when supplied.
 
-### 27.4 Actions
+### 21.4 Actions
 
 - no action;
 - metadata refresh;
@@ -899,7 +899,7 @@ Adjust the class when the article contains time-sensitive numbers, policy assump
 - redirect;
 - historical-label addition.
 
-### 27.5 Output
+### 21.5 Output
 
 - freshness class;
 - decay-risk assessment;
@@ -912,9 +912,9 @@ Adjust the class when the article contains time-sensitive numbers, policy assump
 
 Do not fabricate future dates when publication timing is unknown. Use relative schedules.
 
-## 28. Module 19 — Editorial distribution intelligence
+## 22. Module 19 — Editorial distribution intelligence
 
-### 28.1 Scope
+### 22.1 Scope
 
 This module prepares derivative publication assets only when requested. It does not post them.
 
@@ -932,7 +932,7 @@ Supported outputs may include:
 - push-notification candidate;
 - visual-carousel outline.
 
-### 28.2 Preservation rules
+### 22.2 Preservation rules
 
 Every derivative must:
 
@@ -945,7 +945,7 @@ Every derivative must:
 - identify the source article;
 - remain consistent with brand tone.
 
-### 28.3 Channel rules
+### 22.3 Channel rules
 
 - LinkedIn: professional, analytical, substantive; no engagement bait.
 - X: concise and explicit; no sensational compression.
@@ -953,7 +953,7 @@ Every derivative must:
 - YouTube or short video: create a content outline, not unverified narration.
 - Push notification: use only for genuinely timely content and preserve accurate framing.
 
-### 28.4 Output
+### 22.4 Output
 
 - recommended primary channel;
 - secondary channels;
@@ -963,7 +963,7 @@ Every derivative must:
 - consistency checklist;
 - distribution-readiness score.
 
-## 31. FAQ and question coverage
+## 23. FAQ and question coverage
 
 FAQ content is optional.
 
@@ -985,7 +985,7 @@ For each FAQ:
 
 Reject FAQ generation when the article is too narrow, highly time-sensitive or would require speculative answers.
 
-## 32. Scoring model
+## 24. Scoring model
 
 Scores are diagnostic, not guarantees.
 
@@ -1011,13 +1011,13 @@ Use `NOT_ASSESSED` when required data is unavailable.
 
 Do not convert `NOT_ASSESSED` to zero.
 
-### 32.1 Overall score
+### 24.1 Overall score
 
 Calculate an overall score only from assessed dimensions and disclose which dimensions were excluded.
 
 A high score cannot override a failed hard gate.
 
-## 38. Final optimized article rules
+## 25. Final optimized article rules
 
 The final optimized article must:
 

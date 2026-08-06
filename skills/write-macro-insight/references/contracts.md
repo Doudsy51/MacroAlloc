@@ -2,10 +2,14 @@
 
 ## Contents
 
-- 16. Output contract
-- 17. Hard output gates
+- 1. Output contract
+- 2. Hard output gates
 
-## 16. Output contract
+## Version field resolution
+
+Populate any field marked `read_from_bundle_manifest` from this deployment's `skill-versions.json` bundle manifest (the `version` entry for `write-macro-insight`). If no bundle manifest is reachable, for example when this skill runs as a standalone package, state the version declared in this skill's own package metadata instead. If neither is available, use `UNKNOWN` rather than inventing a version number.
+
+## 1. Output contract
 
 The skill must return a structured object with all fields below. No required field may be omitted.
 
@@ -84,13 +88,13 @@ internal_editorial_notes:
     - verify-financial-article
 ```
 
-### 16.1 Executive summary purpose
+### 1.1 Executive summary purpose
 
 The `executive_summary` is an internal 100–180 word summary for the future MacroAlloc Article Package. It must accurately summarize the article and uncertainty without introducing new facts.
 
 It is not a substitute for the article opening and is not automatically published in the CMS.
 
-### 16.2 Word-package responsibility
+### 1.2 Word-package responsibility
 
 This skill does not create the final `.docx` file.
 
@@ -103,7 +107,7 @@ The final Word package is assembled only after:
 
 This separation prevents the writer from labeling its own work as verified.
 
-## 17. Hard output gates
+## 2. Hard output gates
 
 The skill may return `DRAFT_READY_FOR_VERIFICATION` only if all conditions are true:
 

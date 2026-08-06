@@ -7,7 +7,7 @@
 - 3. Responsibilities
 - 4. Non-responsibilities
 - 5. Inputs
-- 34. Handoff contract
+- 6. Handoff contract
 
 ## 1. Mission
 
@@ -165,7 +165,7 @@ Return `BLOCKED` when:
 - timestamps are missing for a fast-moving event;
 - the current date or edition cannot be established.
 
-## 34. Handoff contract
+## 6. Handoff contract
 
 When `TOPIC_SELECTED`, the next component may receive:
 

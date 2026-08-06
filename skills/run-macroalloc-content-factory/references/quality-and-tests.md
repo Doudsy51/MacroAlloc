@@ -2,10 +2,10 @@
 
 ## Contents
 
-- 3. Core operating principles
-- 22. Acceptance criteria
+- 1. Core operating principles
+- 2. Acceptance criteria
 
-## 3. Core operating principles
+## 1. Core operating principles
 
 - Use the installed specialist skill corresponding to each stage.
 - Never imitate or manually summarize a specialist skill when the actual skill is available.
@@ -20,7 +20,7 @@
 - Treat US English (`en-US`) as the non-negotiable language of the primary article, SEO metadata, review and final package.
 - Treat any requested French or other-language version only as an optional secondary adaptation after the US-English package is complete; it must never replace the primary deliverable.
 
-## 22. Acceptance criteria
+## 2. Acceptance criteria
 
 The workflow passes only if:
 
