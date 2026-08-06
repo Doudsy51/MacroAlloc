@@ -2,33 +2,33 @@
 
 ## Contents
 
-- 6. Editorial scope
-- 7. Discovery architecture
-- 8. Candidate universe
-- 10. Signal interpretation rules
-- 11. Materiality engine
-- 12. Audience-demand engine
-- 13. Angle-generation engine
-- 14. MacroAlloc differentiation engine
-- 15. Source-feasibility engine
-- 16. Freshness and timing engine
-- 17. Seasonality and calendar engine
-- 18. Content-gap engine
-- 19. Content-memory and cannibalization engine
-- 20. Category and frequency control
-- 21. Opportunity scoring model
-- 22. Priority engine
-- 23. Editorial selection rules
-- 24. Research-brief generator
-- 25. Research questions
-- 26. Handling uncertainty and disputed narratives
-- 27. Breaking-news protocol
-- 28. Evergreen opportunity protocol
-- 29. ETF opportunity protocol
+- 1. Editorial scope
+- 2. Discovery architecture
+- 3. Candidate universe
+- 4. Signal interpretation rules
+- 5. Materiality engine
+- 6. Audience-demand engine
+- 7. Angle-generation engine
+- 8. MacroAlloc differentiation engine
+- 9. Source-feasibility engine
+- 10. Freshness and timing engine
+- 11. Seasonality and calendar engine
+- 12. Content-gap engine
+- 13. Content-memory and cannibalization engine
+- 14. Category and frequency control
+- 15. Opportunity scoring model
+- 16. Priority engine
+- 17. Editorial selection rules
+- 18. Research-brief generator
+- 19. Research questions
+- 20. Handling uncertainty and disputed narratives
+- 21. Breaking-news protocol
+- 22. Evergreen opportunity protocol
+- 23. ETF opportunity protocol
 
-## 6. Editorial scope
+## 1. Editorial scope
 
-### 6.1 Core categories
+### 1.1 Core categories
 
 The skill may select opportunities for:
 
@@ -37,7 +37,7 @@ The skill may select opportunities for:
 - `ETF Research`
 - `Education`
 
-### 6.2 Macro Insights
+### 1.2 Macro Insights
 
 Use for a material recent development requiring timely explanation.
 
@@ -52,7 +52,7 @@ Typical subjects:
 
 Morning and Evening editions must not become generic recaps. Each edition needs one dominant subject and one differentiated angle.
 
-### 6.3 Market Analysis
+### 1.3 Market Analysis
 
 Use for broader or more durable market interpretation requiring deeper context than a rapid Macro Insight.
 
@@ -65,7 +65,7 @@ Examples:
 - structural risk transmission;
 - comparative regional analysis.
 
-### 6.4 ETF Research
+### 1.4 ETF Research
 
 Use for product, index, structure, implementation or category analysis.
 
@@ -79,7 +79,7 @@ Examples:
 
 ETF Research must not be selected merely because a specific fund is receiving publicity.
 
-### 6.5 Education
+### 1.5 Education
 
 Use for durable reader questions and knowledge gaps.
 
@@ -95,7 +95,7 @@ Examples:
 
 Education opportunities should build topical authority and support more advanced MacroAlloc content.
 
-## 7. Discovery architecture
+## 2. Discovery architecture
 
 Every execution must follow this sequence:
 
@@ -115,9 +115,9 @@ Every execution must follow this sequence:
 
 No scoring step may replace editorial judgment. Hard gates always override the numerical score.
 
-## 8. Candidate universe
+## 3. Candidate universe
 
-### 8.1 Candidate types
+### 3.1 Candidate types
 
 Candidates may originate from:
 
@@ -135,7 +135,7 @@ Candidates may originate from:
 - historical or seasonal opportunities;
 - material contradictions between market pricing and economic data.
 
-### 8.2 Required candidate record
+### 3.2 Required candidate record
 
 Each candidate must be normalized into:
 
@@ -153,7 +153,7 @@ Each candidate must be normalized into:
 - `POTENTIAL_TRANSMISSION_CHANNELS`
 - `FRESHNESS_WINDOW`
 
-### 8.3 Deduplication
+### 3.3 Deduplication
 
 Cluster candidates that describe the same underlying event or reader need.
 
@@ -171,9 +171,9 @@ Deduplicate by:
 
 Preserve source diversity inside the merged event cluster.
 
-## 10. Signal interpretation rules
+## 4. Signal interpretation rules
 
-### 10.1 Trend is not materiality
+### 4.1 Trend is not materiality
 
 High social engagement, search interest or headline volume may indicate attention, not significance.
 
@@ -184,7 +184,7 @@ The skill must ask:
 - Does it change the economic, policy, market or educational picture?
 - Can MacroAlloc explain a mechanism rather than amplify attention?
 
-### 10.2 Market move is not cause
+### 4.2 Market move is not cause
 
 Do not assume a market move was caused by the nearest headline.
 
@@ -196,19 +196,19 @@ Separate:
 - alternative explanations;
 - unresolved uncertainty.
 
-### 10.3 Scheduled event is not automatically an opportunity
+### 4.3 Scheduled event is not automatically an opportunity
 
 A central-bank meeting, CPI release or earnings period is only a valid opportunity when there is a meaningful question, surprise, contradiction or educational angle.
 
-### 10.4 Novelty is not quality
+### 4.4 Novelty is not quality
 
 A new subject may be weak. A familiar subject may be highly valuable when the evidence, reader need or angle has changed.
 
-## 11. Materiality engine
+## 5. Materiality engine
 
 Evaluate the potential importance of each candidate across the following dimensions.
 
-### 11.1 Economic materiality
+### 5.1 Economic materiality
 
 Assess effects on:
 
@@ -223,7 +223,7 @@ Assess effects on:
 - energy supply;
 - business or consumer behavior.
 
-### 11.2 Market materiality
+### 5.2 Market materiality
 
 Assess whether the candidate affects or helps explain:
 
@@ -238,7 +238,7 @@ Assess whether the candidate affects or helps explain:
 - cross-asset correlations;
 - ETF flows or implementation choices.
 
-### 11.3 Reader materiality
+### 5.3 Reader materiality
 
 Assess whether the candidate answers a real question for:
 
@@ -247,7 +247,7 @@ Assess whether the candidate answers a real question for:
 - readers learning macroeconomics or ETFs;
 - portfolio decision-makers seeking context rather than advice.
 
-### 11.4 Strategic materiality
+### 5.4 Strategic materiality
 
 Assess whether the content strengthens MacroAlloc's positioning in:
 
@@ -259,7 +259,7 @@ Assess whether the content strengthens MacroAlloc's positioning in:
 
 Return a `MATERIALITY_SCORE` from 0 to 100, but block candidates that fail any hard gate regardless of score.
 
-## 12. Audience-demand engine
+## 6. Audience-demand engine
 
 Identify the reader's likely question before selecting the topic.
 
@@ -283,7 +283,7 @@ A strong opportunity allows the article to deliver a clear outcome such as:
 
 Do not infer search volume or audience demand without supplied evidence. When no quantitative audience data exists, classify the demand assessment as editorial judgment.
 
-## 13. Angle-generation engine
+## 7. Angle-generation engine
 
 For each eligible candidate, generate two to four potential angles.
 
@@ -320,7 +320,7 @@ Reject angles that:
 - duplicate a recent MacroAlloc article;
 - cannot be explained to the target audience.
 
-## 14. MacroAlloc differentiation engine
+## 8. MacroAlloc differentiation engine
 
 The selected opportunity must offer at least one clear form of differentiation:
 
@@ -339,11 +339,11 @@ Record the proposed differentiation in `MACROALLOC_EDGE`.
 
 Generic statements such as “better analysis” or “more detail” are not sufficient.
 
-## 15. Source-feasibility engine
+## 9. Source-feasibility engine
 
 Before selection, build a preliminary evidence map.
 
-### 15.1 Source hierarchy
+### 9.1 Source hierarchy
 
 Prefer:
 
@@ -353,7 +353,7 @@ Prefer:
 4. recognized research institutions, index providers and ETF issuers;
 5. other sources only when necessary and clearly qualified.
 
-### 15.2 Preliminary source package
+### 9.2 Preliminary source package
 
 For each shortlisted opportunity provide:
 
@@ -364,7 +364,7 @@ For each shortlisted opportunity provide:
 - sources requiring recheck near publication;
 - known access limitations.
 
-### 15.3 Evidence risk
+### 9.3 Evidence risk
 
 Classify:
 
@@ -375,7 +375,7 @@ Classify:
 
 An `UNACCEPTABLE` evidence risk blocks selection.
 
-## 16. Freshness and timing engine
+## 10. Freshness and timing engine
 
 For each candidate determine:
 
@@ -388,7 +388,7 @@ For each candidate determine:
 - whether a Morning or Evening edition is appropriate;
 - whether a deeper later article should replace a rushed immediate article.
 
-### 16.1 Timing classes
+### 10.1 Timing classes
 
 - `IMMEDIATE`: useful only within hours;
 - `SAME_DAY`: useful during the current session;
@@ -397,7 +397,7 @@ For each candidate determine:
 - `EVERGREEN`: durable educational or structural demand;
 - `SEASONAL`: tied to a recurring calendar window.
 
-### 16.2 Stale-event rule
+### 10.2 Stale-event rule
 
 Do not select a late article that merely repeats an event already fully covered by stronger sources.
 
@@ -409,7 +409,7 @@ A late article may still be selected when MacroAlloc offers:
 - a durable educational conversion;
 - a material update.
 
-## 17. Seasonality and calendar engine
+## 11. Seasonality and calendar engine
 
 Use the editorial and economic calendar to anticipate, not fabricate, opportunities.
 
@@ -436,7 +436,7 @@ For scheduled topics define:
 
 Do not create duplicate articles across these windows unless each has a distinct reader question.
 
-## 18. Content-gap engine
+## 12. Content-gap engine
 
 Compare candidates with MacroAlloc's current content architecture.
 
@@ -459,7 +459,7 @@ Classify each opportunity as:
 - `EVENT_DRIVEN_EXTENSION`
 - `DUPLICATE_OR_LOW_INCREMENT`
 
-## 19. Content-memory and cannibalization engine
+## 13. Content-memory and cannibalization engine
 
 Search the available content library for:
 
@@ -491,7 +491,7 @@ When overlap exists, choose among:
 
 Never recommend a new URL when updating an existing canonical article would better serve the reader and the site's authority.
 
-## 20. Category and frequency control
+## 14. Category and frequency control
 
 Apply the approved MacroAlloc editorial schedule.
 
@@ -512,11 +512,11 @@ Rules:
 - balance timely content with durable authority-building content;
 - document when a slot is intentionally skipped.
 
-## 21. Opportunity scoring model
+## 15. Opportunity scoring model
 
 Score each eligible opportunity from 0 to 100.
 
-### 21.1 Weighted dimensions
+### 15.1 Weighted dimensions
 
 - Materiality: 20 points
 - Audience value: 15 points
@@ -528,7 +528,7 @@ Score each eligible opportunity from 0 to 100.
 - Cross-channel potential: 5 points
 - Production feasibility: 5 points
 
-### 21.2 Penalties
+### 15.2 Penalties
 
 Apply transparent penalties for:
 
@@ -541,7 +541,7 @@ Apply transparent penalties for:
 - dependence on sensational framing;
 - risk that the central thesis will change before publication.
 
-### 21.3 Score interpretation
+### 15.3 Score interpretation
 
 - `85–100`: exceptional opportunity;
 - `75–84`: strong opportunity;
@@ -553,7 +553,7 @@ The qualification threshold is 75, subject to all hard gates.
 
 A lower-scoring topic may not outrank a stronger one merely because it is newer.
 
-## 22. Priority engine
+## 16. Priority engine
 
 Assign one operational priority:
 
@@ -565,9 +565,9 @@ Assign one operational priority:
 
 Priority must reflect both value and timing.
 
-## 23. Editorial selection rules
+## 17. Editorial selection rules
 
-### 23.1 Mandatory shortlist mode
+### 17.1 Mandatory shortlist mode
 
 Return the best 3 to 5 qualified candidates with:
 
@@ -586,7 +586,7 @@ Do not label one candidate as the winner, recommended choice, preferred topic or
 
 If at least 3 candidates qualify, return the top 3 to 5. If fewer than 3 candidates qualify, return `NO_SUITABLE_SHORTLIST`. Never add weak, ineligible or duplicative candidates merely to reach three.
 
-### 23.2 Selection-confirmation mode
+### 17.2 Selection-confirmation mode
 
 Accept a selection only when all conditions are true:
 
@@ -601,11 +601,11 @@ If the response is ambiguous, keep `AWAITING_USER_SELECTION` and ask for a numbe
 
 The highest score, greatest urgency or strongest evidence never counts as human selection.
 
-## 24. Research-brief generator
+## 18. Research-brief generator
 
 For `TOPIC_SELECTED`, generate a structured research brief only after explicit human selection.
 
-### 24.1 Identity
+### 18.1 Identity
 
 - `OPPORTUNITY_ID`
 - `CONTENT_TYPE`
@@ -618,7 +618,7 @@ For `TOPIC_SELECTED`, generate a structured research brief only after explicit h
 - `PRIMARY_AUDIENCE`
 - `PRIMARY_SEARCH_INTENT`
 
-### 24.2 Strategic rationale
+### 18.2 Strategic rationale
 
 - `WHY_NOW`
 - `READER_VALUE`
@@ -627,7 +627,7 @@ For `TOPIC_SELECTED`, generate a structured research brief only after explicit h
 - `CONTENT_CLUSTER`
 - `RELATED_CONTENT`
 
-### 24.3 Thesis and mechanism
+### 18.3 Thesis and mechanism
 
 - `MACROALLOC_THESIS`
 - `TRANSMISSION_CHANNELS`: two to four mechanisms
@@ -636,7 +636,7 @@ For `TOPIC_SELECTED`, generate a structured research brief only after explicit h
 - `ALTERNATIVE_INTERPRETATIONS`
 - `WHAT_WOULD_INVALIDATE_THE_ANGLE`
 
-### 24.4 Evidence plan
+### 18.4 Evidence plan
 
 - `PRIMARY_SOURCES_TO_RETRIEVE`
 - `SECONDARY_SOURCES_TO_RETRIEVE`
@@ -648,7 +648,7 @@ For `TOPIC_SELECTED`, generate a structured research brief only after explicit h
 - `DISPUTED_OR_AMBIGUOUS_POINTS`
 - `PROHIBITED_CLAIMS`
 
-### 24.5 Editorial plan
+### 18.5 Editorial plan
 
 - expected word range;
 - suggested structure;
@@ -660,45 +660,45 @@ For `TOPIC_SELECTED`, generate a structured research brief only after explicit h
 
 The brief is an instruction for research and writing, not a substitute for evidence gathering.
 
-## 25. Research questions
+## 19. Research questions
 
 Generate precise, non-leading research questions.
 
 Required classes:
 
-### 25.1 Event verification
+### 19.1 Event verification
 
 - What exactly happened?
 - When did it happen?
 - Which institution or source confirms it?
 - What remains unverified or disputed?
 
-### 25.2 Baseline and surprise
+### 19.2 Baseline and surprise
 
 - What was expected beforehand?
 - What changed relative to the prior release, decision or consensus?
 - Were revisions, base effects or temporary components material?
 
-### 25.3 Mechanism
+### 19.3 Mechanism
 
 - Through which economic and market channels could the event matter?
 - Which links are established, which are interpretations and which are scenarios?
 
-### 25.4 Alternative explanation
+### 19.4 Alternative explanation
 
 - What other credible factors may explain the observed market or economic response?
 - Which evidence would distinguish the competing interpretations?
 
-### 25.5 Historical context
+### 19.5 Historical context
 
 - Is the proposed comparison genuinely analogous?
 - Which structural differences limit the comparison?
 
-### 25.6 Forward indicators
+### 19.6 Forward indicators
 
 - Which observable data, dates or conditions should readers monitor next?
 
-## 26. Handling uncertainty and disputed narratives
+## 20. Handling uncertainty and disputed narratives
 
 The skill must not lock an angle that depends on suppressing uncertainty.
 
@@ -719,7 +719,7 @@ When credible interpretations conflict:
 - avoid a title that states one interpretation as fact;
 - disqualify the affected angle when the emphasis is inherently subjective or reputationally sensitive; if fewer than three candidates remain, return `NO_SUITABLE_SHORTLIST`.
 
-## 27. Breaking-news protocol
+## 21. Breaking-news protocol
 
 For fast-moving events:
 
@@ -734,7 +734,7 @@ For fast-moving events:
 
 Do not use speed as justification for lower factual standards.
 
-## 28. Evergreen opportunity protocol
+## 22. Evergreen opportunity protocol
 
 For educational or durable content:
 
@@ -747,7 +747,7 @@ For educational or durable content:
 7. avoid unnecessary time-sensitive framing.
 8. define a future refresh cadence.
 
-## 29. ETF opportunity protocol
+## 23. ETF opportunity protocol
 
 ETF candidates require additional checks:
 

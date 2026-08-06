@@ -2,23 +2,23 @@
 
 ## Contents
 
-- 3. Core operating principles
-- 16. Quality gates
-- 25. Security and confidentiality
-- 26. Compliance and financial-content safeguards
-- 28. Acceptance tests
-- 30. Completion criteria
-- 32. Final rule
+- 1. Core operating principles
+- 2. Quality gates
+- 3. Security and confidentiality
+- 4. Compliance and financial-content safeguards
+- 5. Acceptance tests
+- 6. Completion criteria
+- 7. Final rule
 
-## 3. Core operating principles
+## 1. Core operating principles
 
-### 3.1 Assembly, not authorship
+### 1.1 Assembly, not authorship
 
 The skill assembles approved components. It does not become a second Writer, Verifier, SEO optimizer or Reviewer.
 
 It may normalize labels, dates, field order, typography and presentation. It must not change the meaning of reader-facing content.
 
-### 3.2 Approved article is immutable
+### 1.2 Approved article is immutable
 
 The final approved article body is a locked artifact.
 
@@ -42,7 +42,7 @@ The skill must not:
 - change source attribution;
 - alter the disclaimer.
 
-### 3.3 One source of truth per field
+### 1.3 One source of truth per field
 
 Every package field must have one authoritative upstream source.
 
@@ -58,7 +58,7 @@ Examples:
 
 When two upstream outputs conflict, do not choose silently. Return `EDITORIAL_INPUT_REQUIRED` or `BLOCKED` with the exact conflict.
 
-### 3.4 Public and internal content separation
+### 1.4 Public and internal content separation
 
 The package contains two classes of content:
 
@@ -90,7 +90,7 @@ The package contains two classes of content:
 
 Public and internal content must be emitted as different files. Labels, color, page breaks or section headings are not sufficient separation inside one DOCX.
 
-### 3.5 Traceability by design
+### 1.5 Traceability by design
 
 Every substantive package element must be traceable to its origin.
 
@@ -104,7 +104,7 @@ Traceability must identify:
 - approval state;
 - field-level provenance when relevant.
 
-### 3.6 Deterministic package structure
+### 1.6 Deterministic package structure
 
 The order and naming of sections must remain stable across articles unless the content type explicitly requires a documented variation.
 
@@ -117,7 +117,7 @@ Stable structure enables:
 - historical comparison;
 - future API integration.
 
-## 16. Quality gates
+## 2. Quality gates
 
 ### Gate 1 — Upstream approval
 
@@ -153,7 +153,7 @@ Pass only when requested export files can be generated without dropping mandator
 
 If any mandatory gate fails, return `PACKAGE_REVISION_REQUIRED`, `EDITORIAL_INPUT_REQUIRED` or `BLOCKED` according to the nature of the defect.
 
-## 25. Security and confidentiality
+## 3. Security and confidentiality
 
 The package must not expose:
 
@@ -169,7 +169,7 @@ The package must not expose:
 
 Internal technical metadata may be included only in clearly marked internal sections.
 
-## 26. Compliance and financial-content safeguards
+## 4. Compliance and financial-content safeguards
 
 The package must preserve all approved disclaimers and compliance language.
 
@@ -185,7 +185,7 @@ It must not:
 
 Any suspected compliance regression must be routed back to the Reviewer or Verifier.
 
-## 28. Acceptance tests
+## 5. Acceptance tests
 
 ### Test 1 — Approved standard article
 
@@ -243,7 +243,7 @@ Given a valid Workflow Report but no Publication Package, the skill returns `BLO
 
 Given different article hashes in the Publication Package and Workflow Report, the skill returns `BLOCKED` and reports the mismatch.
 
-## 30. Completion criteria
+## 6. Completion criteria
 
 The skill is complete only when:
 
@@ -260,7 +260,7 @@ The skill is complete only when:
 - the handoff state is explicit;
 - no unresolved mandatory placeholder remains.
 
-## 32. Final rule
+## 7. Final rule
 
 The purpose of the Publication Package is to minimize human-review and CMS friction. The purpose of the Workflow Report is to preserve the temporary operational evidence needed to improve the Content Factory.
 

@@ -2,10 +2,14 @@
 
 ## Contents
 
-- 11. Output contract
-- 16. Compatibility with the MacroAlloc Article Package
+- 1. Output contract
+- 2. Compatibility with the MacroAlloc Article Package
 
-## 11. Output contract
+## Version field resolution
+
+Populate any field marked `read_from_bundle_manifest` from this deployment's `skill-versions.json` bundle manifest (the `version` entry for `verify-financial-article`). If no bundle manifest is reachable, for example when this skill runs as a standalone package, state the version declared in this skill's own package metadata instead. If neither is available, use `UNKNOWN` rather than inventing a version number.
+
+## 1. Output contract
 
 Return a structured object containing every field below.
 
@@ -144,7 +148,7 @@ BlockedReport:
   next_actor: write-macro-insight | HUMAN_EDITORIAL_REVIEW | STOP_WORKFLOW
 ```
 
-## 16. Compatibility with the MacroAlloc Article Package
+## 2. Compatibility with the MacroAlloc Article Package
 
 The following verifier outputs are mandatory inputs to the future `.docx` Article Package:
 

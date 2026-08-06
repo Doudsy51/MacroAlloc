@@ -2,16 +2,16 @@
 
 ## Contents
 
-- 0. Workflow invariants
-- 7. Blocking conditions
-- 8. Dual-document architecture
-- 9. Content-type variations
-- 10. Word formatting standard
-- 14. Conflict-resolution rules
-- 24. Error handling
-- 29. Evaluation dataset recommendations
+- 1. Workflow invariants
+- 2. Blocking conditions
+- 3. Dual-document architecture
+- 4. Content-type variations
+- 5. Word formatting standard
+- 6. Conflict-resolution rules
+- 7. Error handling
+- 8. Evaluation dataset recommendations
 
-## 0. Workflow invariants
+## 1. Workflow invariants
 
 - Require traceable upstream status `TOPIC_SELECTED` and explicit user-selection evidence tied to the preserved shortlist.
 - Require the primary article, metadata and package to remain in US English (`en-US`).
@@ -19,7 +19,7 @@
 - Do not translate, replace, broaden, reselect or rewrite the approved primary content during assembly.
 - Place any approved secondary-language adaptation in a clearly separate optional artifact; never substitute it for the US-English primary package.
 
-## 7. Blocking conditions
+## 2. Blocking conditions
 
 Return `BLOCKED` without assembling the package when:
 
@@ -45,7 +45,7 @@ Return `EDITORIAL_INPUT_REQUIRED` when:
 - the title and meta title are both valid but a human must choose between approved alternatives;
 - public visibility of the source list is a policy decision not supplied by the workflow.
 
-## 8. Dual-document architecture
+## 3. Dual-document architecture
 
 Generate two independent DOCX files. Never place Workflow Report sections after the article in the Publication Package.
 
@@ -80,7 +80,7 @@ When embedding an upstream job record or another historical artifact, label it e
 
 The detailed mappings below identify the owning document for each component.
 
-### 8.1 Workflow Report cover page
+### 3.1 Workflow Report cover page
 
 Required fields:
 
@@ -100,7 +100,7 @@ Required fields:
 
 Do not display internal model names or technical costs prominently on the cover page.
 
-### 8.2 Workflow Report document control page
+### 3.2 Workflow Report document control page
 
 Include:
 
@@ -116,13 +116,13 @@ Include:
 - canonical URL placeholder or confirmed value;
 - document classification.
 
-### 8.3 Workflow Report table of contents
+### 3.3 Workflow Report table of contents
 
 The Word package must include a Word-compatible automatic table of contents field or a clearly marked placeholder that updates when opened.
 
 Use heading styles consistently so the table of contents can be refreshed automatically.
 
-### 8.4 Workflow Report executive summary
+### 3.4 Workflow Report executive summary
 
 Include the approved executive summary.
 
@@ -130,7 +130,7 @@ This section must be concise, factual and consistent with the article.
 
 Do not generate a new summary during packaging.
 
-### 8.5 Workflow Report readiness dashboard
+### 3.5 Workflow Report readiness dashboard
 
 Include a compact internal dashboard containing:
 
@@ -146,7 +146,7 @@ Include a compact internal dashboard containing:
 
 Use `NOT_ASSESSED` for unavailable scores. Never invent or average missing values.
 
-### 8.6 Publication Package SEO appendix and Workflow Report SEO rationale
+### 3.6 Publication Package SEO appendix and Workflow Report SEO rationale
 
 Include:
 
@@ -170,7 +170,7 @@ Include:
 
 In the Publication Package, label this section `SEO FOR PUBLICATION` and include only fields required for human review or CMS entry. Put content-memory notes, cannibalization analysis, scoring, rationale, unresolved options, review timing and lifecycle diagnostics in the Workflow Report only.
 
-### 8.7 Publication Package approved article
+### 3.7 Publication Package approved article
 
 Include the exact final approved article.
 
@@ -188,7 +188,7 @@ Required ordering:
 
 Internal annotations must not appear in the reader-facing article.
 
-### 8.8 Publication asset details and internal visual rationale
+### 3.8 Publication asset details and internal visual rationale
 
 Include, when supplied:
 
@@ -208,7 +208,7 @@ The skill must not create a visual prompt that introduces unsupported facts or d
 
 In the Publication Package, include only the approved filename, alt text, caption, aspect ratio and rights note needed for publication. Put concepts, prompts, alternatives, charts, infographics and social-preview recommendations in the Workflow Report only.
 
-### 8.9 Workflow Report source register
+### 3.9 Workflow Report source register
 
 The source register must be normalized into a table.
 
@@ -230,7 +230,7 @@ Do not expose internal reliability scores publicly unless explicitly requested.
 
 Keep the reader-facing public source list in the Publication Package when required. Keep the normalized evidence register and reliability notes in the Workflow Report only.
 
-### 8.10 Workflow Report fact-check and claim ledger
+### 3.10 Workflow Report fact-check and claim ledger
 
 Include:
 
@@ -246,7 +246,7 @@ Include:
 
 The package must preserve causal-pivot and context-reconciliation findings.
 
-### 8.11 Workflow Report AI editorial review summary
+### 3.11 Workflow Report AI editorial review summary
 
 Include the approved AI Review Summary:
 
@@ -266,7 +266,7 @@ Include the approved AI Review Summary:
 
 If the decision is `PUBLISH`, required revisions must be `None` or limited to optional post-package actions.
 
-### 8.12 Workflow Report detailed editorial review
+### 3.12 Workflow Report detailed editorial review
 
 Include the structured issue register and accepted limitations.
 
@@ -281,7 +281,7 @@ Recommended columns:
 - acceptance test;
 - resolution status.
 
-### 8.13 Workflow Report distribution package
+### 3.13 Workflow Report distribution package
 
 Include only approved or supplied assets.
 
@@ -300,7 +300,7 @@ Possible fields:
 
 Distribution assets must be marked `INTERNAL — DISTRIBUTION ASSETS`.
 
-### 8.14 Workflow Report analytics and lifecycle page
+### 3.14 Workflow Report analytics and lifecycle page
 
 Create a structured placeholder for post-publication tracking.
 
@@ -327,7 +327,7 @@ Recommended fields:
 
 Do not populate unknown performance values with zeros. Use blank fields or `PENDING`.
 
-### 8.15 Workflow Report technical metadata and provenance
+### 3.15 Workflow Report technical metadata and provenance
 
 Include:
 
@@ -347,9 +347,9 @@ Include:
 - export formats generated;
 - package validation result.
 
-## 9. Content-type variations
+## 4. Content-type variations
 
-### 9.1 Morning Macro Insight
+### 4.1 Morning Macro Insight
 
 Prioritize:
 
@@ -360,7 +360,7 @@ Prioritize:
 - same-day freshness and update warnings;
 - day-ahead watchlist when approved.
 
-### 9.2 Evening Macro Insight
+### 4.2 Evening Macro Insight
 
 Prioritize:
 
@@ -370,7 +370,7 @@ Prioritize:
 - next-session watchlist;
 - short review interval.
 
-### 9.3 Market Analysis
+### 4.3 Market Analysis
 
 Allow:
 
@@ -380,7 +380,7 @@ Allow:
 - multi-asset source mapping;
 - longer lifecycle and refresh plan.
 
-### 9.4 ETF Research
+### 4.4 ETF Research
 
 Require, when applicable:
 
@@ -399,7 +399,7 @@ Require, when applicable:
 
 Do not infer missing product data.
 
-### 9.5 Education Article
+### 4.5 Education Article
 
 Prioritize:
 
@@ -412,11 +412,11 @@ Prioritize:
 - longer refresh interval;
 - educational internal links.
 
-## 10. Word formatting standard
+## 5. Word formatting standard
 
 The DOCX output must be professional, stable and suitable for repeated production.
 
-### 10.1 Page setup
+### 5.1 Page setup
 
 Default unless a MacroAlloc template overrides it:
 
@@ -428,7 +428,7 @@ Default unless a MacroAlloc template overrides it:
 - section breaks between major package groups;
 - no orphaned headings when technically avoidable.
 
-### 10.2 Styles
+### 5.2 Styles
 
 Use named Word styles rather than manual formatting.
 
@@ -450,7 +450,7 @@ Required styles:
 - Status badge or equivalent;
 - Disclaimer.
 
-### 10.3 Branding
+### 5.3 Branding
 
 Apply the approved MacroAlloc visual identity when assets are available.
 
@@ -464,7 +464,7 @@ The package may use:
 
 Do not invent a logo or brand asset. If no official asset is supplied, use a text-based MacroAlloc header.
 
-### 10.4 Typography
+### 5.4 Typography
 
 Use a professional sans-serif font supported by the execution environment.
 
@@ -472,7 +472,7 @@ Prefer consistency and portability over decorative styling.
 
 Do not embed or distribute font files.
 
-### 10.5 Tables
+### 5.5 Tables
 
 Tables must:
 
@@ -484,19 +484,19 @@ Tables must:
 - split across pages cleanly;
 - avoid tiny unreadable fonts.
 
-### 10.6 Hyperlinks
+### 5.6 Hyperlinks
 
 Preserve verified URLs as clickable links.
 
 Do not create hyperlinks from incomplete or unverified URLs.
 
-### 10.7 Table of contents
+### 5.7 Table of contents
 
 Use heading levels consistently.
 
 The document must contain an updateable TOC field or a clear instruction to refresh the table of contents when opened.
 
-## 14. Conflict-resolution rules
+## 6. Conflict-resolution rules
 
 Use the following precedence only when the fields are not semantically conflicting.
 
@@ -517,9 +517,9 @@ Examples requiring a block:
 - editorial decision is `PUBLISH` but mandatory revisions remain open;
 - author name differs between approved metadata sources.
 
-## 24. Error handling
+## 7. Error handling
 
-### 24.1 Recoverable packaging errors
+### 7.1 Recoverable packaging errors
 
 Examples:
 
@@ -532,7 +532,7 @@ Examples:
 
 Correct automatically when deterministic, then record the transformation.
 
-### 24.2 Non-recoverable errors
+### 7.2 Non-recoverable errors
 
 Examples:
 
@@ -546,7 +546,7 @@ Examples:
 
 Stop and return a structured error.
 
-## 29. Evaluation dataset recommendations
+## 8. Evaluation dataset recommendations
 
 Test the skill with at least:
 

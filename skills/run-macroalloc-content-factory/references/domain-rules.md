@@ -2,10 +2,10 @@
 
 ## Contents
 
-- 4. Normalized workflow state
-- 16. Error handling
+- 1. Normalized workflow state
+- 2. Error handling
 
-## 4. Normalized workflow state
+## 1. Normalized workflow state
 
 Create and maintain one `ArticleJob` object for every run.
 
@@ -36,7 +36,7 @@ article_job:
 
 The `ArticleJob` object is the source of truth for the run.
 
-## 16. Error handling
+## 2. Error handling
 
 Classify errors as:
 

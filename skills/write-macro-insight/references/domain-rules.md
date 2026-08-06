@@ -2,22 +2,22 @@
 
 ## Contents
 
-- 4. Editorial scope
-- 5. Core writing standard
-- 6. Evidence and attribution rules
-- 7. Facts, interpretation, scenarios and forecasts
-- 8. MacroAlloc analysis standard
-- 9. Context-completeness control
-- 10. Historical comparisons
-- 11. Title and opening requirements
-- 12. Key takeaways
-- 13. “What to Watch Next” standard
-- 20. Regression fixtures
-- 21. Version notes
+- 1. Editorial scope
+- 2. Core writing standard
+- 3. Evidence and attribution rules
+- 4. Facts, interpretation, scenarios and forecasts
+- 5. MacroAlloc analysis standard
+- 6. Context-completeness control
+- 7. Historical comparisons
+- 8. Title and opening requirements
+- 9. Key takeaways
+- 10. “What to Watch Next” standard
+- 11. Regression fixtures
+- 12. Version notes
 
-## 4. Editorial scope
+## 1. Editorial scope
 
-### 4.1 In scope
+### 1.1 In scope
 
 - monetary policy;
 - inflation, growth, labor, fiscal policy and public finance;
@@ -27,7 +27,7 @@
 - material repricing across equities, rates, credit, currencies or commodities;
 - Morning and Evening Macro Insights for an international audience, with US organic search as the priority market.
 
-### 4.2 Out of scope
+### 1.2 Out of scope
 
 - ETF product research;
 - individual-security recommendations;
@@ -39,9 +39,9 @@
 - final Word assembly;
 - publication or CMS actions.
 
-## 5. Core writing standard
+## 2. Core writing standard
 
-### 5.1 Language and tone
+### 2.1 Language and tone
 
 Write in clear, professional US English.
 
@@ -67,7 +67,7 @@ Avoid:
 - repeated conclusions;
 - recommendations framed as what investors “should” buy, sell or hold.
 
-### 5.2 Target length
+### 2.2 Target length
 
 - Standard article: 700–1,000 words.
 - Complex topic: 1,000–1,300 words.
@@ -75,7 +75,7 @@ Avoid:
 
 Do not lengthen an article merely to meet a target.
 
-### 5.3 Required editorial architecture
+### 2.3 Required editorial architecture
 
 The draft should normally include:
 
@@ -92,9 +92,9 @@ The draft should normally include:
 
 The structure may be adapted when the topic demands it, but the essential functions must remain present.
 
-## 6. Evidence and attribution rules
+## 3. Evidence and attribution rules
 
-### 6.1 No unsupported facts
+### 3.1 No unsupported facts
 
 Every externally verifiable claim must be traceable to the research dossier or source register.
 
@@ -114,7 +114,7 @@ This includes:
 
 Do not infer a missing number, date, quote, position or cause.
 
-### 6.2 Source markers
+### 3.2 Source markers
 
 Use discreet numbered markers such as `[1]`, `[2]` and `[3]` in the body.
 
@@ -123,18 +123,19 @@ Use discreet numbered markers such as `[1]`, `[2]` and `[3]` in the body.
 - List full URLs only in the final Sources section.
 - Do not invent or normalize a URL that was not supplied or verified.
 
-### 6.3 Source hierarchy
+### 3.3 Source hierarchy
 
 Prefer:
 
 1. authoritative primary sources;
-2. Reuters, Bloomberg, Financial Times, Wall Street Journal, Associated Press or similarly rigorous financial/news organizations;
-3. recognized institutions, exchanges and research organizations;
-4. other sources only when necessary and explicitly qualified.
+2. recognized official data providers and exchanges;
+3. Reuters, Bloomberg, Financial Times, Wall Street Journal, Associated Press or similarly rigorous financial news organizations;
+4. recognized research institutions, index providers and ETF issuers;
+5. other sources only when necessary and clearly qualified.
 
 A primary source does not eliminate the need for independent corroboration when the interpretation is disputed or when the source is an interested party.
 
-### 6.4 Attribution of uncertain or interested-party claims
+### 3.4 Attribution of uncertain or interested-party claims
 
 Claims from governments, armed forces, companies, political actors, state media or anonymous officials must remain explicitly attributed unless independently established.
 
@@ -147,23 +148,23 @@ Use formulations such as:
 
 Never convert an attributed allegation into an established fact.
 
-## 7. Facts, interpretation, scenarios and forecasts
+## 4. Facts, interpretation, scenarios and forecasts
 
 The article must distinguish four layers:
 
-### 7.1 Confirmed facts
+### 4.1 Confirmed facts
 
 Events and data supported by the evidence dossier.
 
-### 7.2 Uncertainty
+### 4.2 Uncertainty
 
 Missing, provisional, disputed or fast-changing information.
 
-### 7.3 MacroAlloc interpretation
+### 4.3 MacroAlloc interpretation
 
 The analytical inference drawn from facts. It must be clearly framed as analysis, not fact.
 
-### 7.4 Scenarios or forecasts
+### 4.4 Scenarios or forecasts
 
 Conditional outcomes that depend on future developments. Use explicit conditional language.
 
@@ -175,11 +176,11 @@ Prohibited certainty formulations include:
 - “the market will”;
 - “investors must.”
 
-## 8. MacroAlloc analysis standard
+## 5. MacroAlloc analysis standard
 
 The article must add more than a news summary.
 
-### 8.1 Required analytical chain
+### 5.1 Required analytical chain
 
 Where relevant, explain:
 
@@ -194,7 +195,7 @@ Examples include:
 - fiscal issuance → term premium → financing conditions → housing and long-duration assets;
 - labor data → income and demand → policy expectations → curve and currency repricing.
 
-### 8.2 Central causal pivot
+### 5.2 Central causal pivot
 
 Identify the one to three claims on which the central thesis depends.
 
@@ -206,13 +207,13 @@ For each causal pivot:
 - do not build a conclusion on a single ambiguous remark or market move;
 - flag the pivot explicitly in internal notes for enhanced verifier scrutiny.
 
-### 8.3 Alternative explanations
+### 5.3 Alternative explanations
 
 When plausible alternatives materially affect the interpretation, include them or explain their exclusion in internal notes.
 
 Do not manufacture false balance. Alternatives must be evidence-based and relevant.
 
-### 8.4 Specificity of market implications
+### 5.4 Specificity of market implications
 
 Avoid generic conclusions such as:
 
@@ -231,11 +232,11 @@ Instead, connect each implication to a mechanism supported by the article, such 
 
 If the evidence does not support asset-specific implications, state that limitation rather than filling space.
 
-## 9. Context-completeness control
+## 6. Context-completeness control
 
 This control is mandatory before finalizing the draft.
 
-### 9.1 Source-to-draft reconciliation
+### 6.1 Source-to-draft reconciliation
 
 Review every primary source and every material secondary source used in the research dossier.
 
@@ -258,7 +259,7 @@ A material contextual factor includes information that could:
 
 No material factor present in a cited source may disappear silently between research and drafting.
 
-### 9.2 Central-bank communication granularity
+### 6.2 Central-bank communication granularity
 
 When describing a central bank or policymaker, distinguish when relevant between:
 
@@ -271,7 +272,7 @@ When describing a central bank or policymaker, distinguish when relevant between
 
 Do not collapse these into a single claim.
 
-### 9.3 Macro-data decomposition
+### 6.3 Macro-data decomposition
 
 For important data releases, check whether the headline move reflects:
 
@@ -285,7 +286,7 @@ For important data releases, check whether the headline move reflects:
 
 Include the decomposition when it materially changes the reader’s interpretation.
 
-## 10. Historical comparisons
+## 7. Historical comparisons
 
 Use a historical comparison only when:
 
@@ -298,9 +299,9 @@ Do not force a historical benchmark into every rates, spreads or market-move art
 
 When no reliable comparison exists, omit it and record `NOT_USED_NO_RELIABLE_BENCHMARK` in internal notes.
 
-## 11. Title and opening requirements
+## 8. Title and opening requirements
 
-### 11.1 H1
+### 8.1 H1
 
 The H1 must be descriptive and analytical.
 
@@ -318,7 +319,7 @@ Avoid vague titles such as:
 
 Do not optimize for an exact SEO keyword at the expense of factual precision. The SEO skill may later refine presentation without changing meaning.
 
-### 11.2 Opening answer
+### 8.2 Opening answer
 
 Within the first 100–150 words, answer:
 
@@ -329,7 +330,7 @@ Within the first 100–150 words, answer:
 
 Do not delay the answer with scene-setting or generic background.
 
-## 12. Key takeaways
+## 9. Key takeaways
 
 Provide exactly three concise takeaways.
 
@@ -341,7 +342,7 @@ Each must contain a distinct function:
 
 Do not repeat the title or three versions of the same claim.
 
-## 13. “What to Watch Next” standard
+## 10. “What to Watch Next” standard
 
 List concrete observables, not generic risks.
 
@@ -361,7 +362,7 @@ Distinguish between:
 - conditional developments;
 - fast-changing items requiring a publication recheck.
 
-## 20. Regression fixtures
+## 11. Regression fixtures
 
 At minimum, test this skill against:
 
@@ -376,7 +377,7 @@ At minimum, test this skill against:
 9. A dossier with a material context factor that is silently omitted, which must fail the output gate.
 10. A compliant, fully sourced article that should pass on revision attempt 0.
 
-## 21. Version notes
+## 12. Version notes
 
 ### 1.1.0
 

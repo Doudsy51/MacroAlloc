@@ -4,12 +4,12 @@
 
 - 1. Mission
 - 2. Position in the workflow
-- 4. Responsibilities
-- 5. Non-responsibilities
-- 6. Inputs
-- 8. Execution pipeline
-- 34. Revision mode
-- 39. Handoff to `review-article`
+- 3. Responsibilities
+- 4. Non-responsibilities
+- 5. Inputs
+- 6. Execution pipeline
+- 7. Revision mode
+- 8. Handoff to `review-article`
 
 ## 1. Mission
 
@@ -58,7 +58,7 @@ Required downstream action:
 - for `BLOCKED`, stop the workflow;
 - never publish or declare the article finally approved.
 
-## 4. Responsibilities
+## 3. Responsibilities
 
 The skill is responsible for:
 
@@ -79,7 +79,7 @@ The skill is responsible for:
 15. preparing controlled distribution derivatives that introduce no new claims;
 16. producing the normalized `DiscoverabilityPackage` for final review and Word assembly.
 
-## 5. Non-responsibilities
+## 4. Non-responsibilities
 
 This skill must not:
 
@@ -98,9 +98,9 @@ This skill must not:
 - approve the article for publication;
 - fabricate keyword metrics, traffic estimates, rankings or competitor data.
 
-## 6. Inputs
+## 5. Inputs
 
-### 6.1 Mandatory inputs
+### 5.1 Mandatory inputs
 
 The skill must receive:
 
@@ -124,7 +124,7 @@ The skill must receive:
 - `DISCLAIMER_TEXT`;
 - `REVISION_ATTEMPT`: `0`, `1`, or `2`.
 
-### 6.2 Recommended inputs
+### 5.2 Recommended inputs
 
 - `PRIMARY_KEYWORD_HYPOTHESIS`;
 - `SECONDARY_KEYWORD_HYPOTHESES`;
@@ -146,7 +146,7 @@ The skill must receive:
 - `SCHEMA_CAPABILITIES`;
 - `DISTRIBUTION_CHANNELS`.
 
-### 6.3 Blocking conditions
+### 5.3 Blocking conditions
 
 Return `BLOCKED` when:
 
@@ -170,7 +170,7 @@ Return `EDITORIAL_DECISION_REQUIRED` when:
 - a competitor gap can only be closed by adding new research;
 - the article cannot satisfy both breaking-news freshness and evergreen depth without a scope decision.
 
-## 8. Execution pipeline
+## 6. Execution pipeline
 
 Execute in this order:
 
@@ -197,7 +197,7 @@ Execute in this order:
 
 No downstream package may be produced if the substance-preservation gate fails.
 
-## 34. Revision mode
+## 7. Revision mode
 
 When `REVISION_ATTEMPT` is `1` or `2`:
 
@@ -211,7 +211,7 @@ No third automatic revision is allowed.
 
 If material defects remain after attempt `2`, return `EDITORIAL_DECISION_REQUIRED`.
 
-## 39. Handoff to `review-article`
+## 8. Handoff to `review-article`
 
 When status is `DISCOVERABILITY_READY_FOR_REVIEW`, pass:
 

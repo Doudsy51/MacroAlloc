@@ -2,20 +2,20 @@
 
 ## Contents
 
-- 11. Metadata normalization rules
-- 12. Traceability ledger
-- 15. Package integrity checks
-- 17. Package issue taxonomy
-- 19. Export specifications
-- 20. Normalized output contract
-- 21. Human-readable output order
-- 22. File naming convention
-- 23. Package manifest
-- 27. Observability fields
+- 1. Metadata normalization rules
+- 2. Traceability ledger
+- 3. Package integrity checks
+- 4. Package issue taxonomy
+- 5. Export specifications
+- 6. Normalized output contract
+- 7. Human-readable output order
+- 8. File naming convention
+- 9. Package manifest
+- 10. Observability fields
 
-## 11. Metadata normalization rules
+## 1. Metadata normalization rules
 
-### 11.1 Dates
+### 1.1 Dates
 
 Store machine-readable dates in ISO 8601 format.
 
@@ -23,13 +23,13 @@ Display dates according to the package language and publication market.
 
 Never change the underlying timestamp.
 
-### 11.2 Article identifiers
+### 1.2 Article identifiers
 
 Article IDs must remain stable across revisions.
 
 Package versions may change without changing the article ID.
 
-### 11.3 Versioning
+### 1.3 Versioning
 
 Use semantic versioning for the package template and skills.
 
@@ -42,7 +42,7 @@ Example:
 - package skill version: read from the bundle's authoritative version manifest;
 - package file revision: `2`.
 
-### 11.4 Status vocabulary
+### 1.4 Status vocabulary
 
 Allowed terminal package statuses:
 
@@ -53,7 +53,7 @@ Allowed terminal package statuses:
 
 `DRAFT_DUAL_ARTIFACTS`, `PUBLICATION_PACKAGE_READY_FOR_EXPORT`, `EXPORTED`, and `ARCHIVED` may be recorded only as internal lifecycle events; they are not terminal skill outputs. This skill must never emit `PUBLISHED`.
 
-## 12. Traceability ledger
+## 2. Traceability ledger
 
 The package must contain a normalized provenance ledger.
 
@@ -83,9 +83,9 @@ Examples of allowed transformations:
 
 Any transformation affecting meaning is forbidden.
 
-## 15. Package integrity checks
+## 3. Package integrity checks
 
-### 15.1 Article immutability check
+### 3.1 Article immutability check
 
 Compare the packaged public article against the approved article.
 
@@ -100,31 +100,31 @@ Allowed differences:
 
 Any other difference fails the check.
 
-### 15.2 Version consistency check
+### 3.2 Version consistency check
 
 All upstream objects must refer to the same article ID and compatible article version.
 
-### 15.3 Status consistency check
+### 3.3 Status consistency check
 
 The package status must reflect all upstream states.
 
-### 15.4 Metadata completeness check
+### 3.4 Metadata completeness check
 
 All mandatory publication and SEO fields must be complete or explicitly marked for human input.
 
-### 15.5 Source integrity check
+### 3.5 Source integrity check
 
 All source IDs referenced in claims must exist in the source register.
 
-### 15.6 Claim integrity check
+### 3.6 Claim integrity check
 
 All material verified claims must retain their resolution status.
 
-### 15.7 Review integrity check
+### 3.7 Review integrity check
 
 No unresolved mandatory revision may remain when the decision is `PUBLISH`.
 
-### 15.8 Placeholder check
+### 3.8 Placeholder check
 
 Detect and block unresolved placeholders such as:
 
@@ -136,21 +136,21 @@ Detect and block unresolved placeholders such as:
 - template instructions;
 - empty required table cells.
 
-### 15.9 Public/internal separation check
+### 3.9 Public/internal separation check
 
 Fail if any internal score, workflow note, prompt, claim ledger, stage result, run ID, skill version, revision history, provenance field, diagnostic, analytics placeholder or non-public rationale appears anywhere in the Publication Package.
 
 Confirm that the Workflow Report is marked `INTERNAL — NOT FOR PUBLICATION` on its cover and header or footer.
 
-### 15.10 Hyperlink check
+### 3.10 Hyperlink check
 
 Verify syntax and presence of supplied links. Do not claim live HTTP validation unless an appropriate tool performed it.
 
-### 15.11 Export check
+### 3.11 Export check
 
 Confirm that both generated DOCX files open successfully and contain only their expected sections when the execution environment supports validation. A successful single-file export is incomplete and must return `PACKAGE_REVISION_REQUIRED`.
 
-## 17. Package issue taxonomy
+## 4. Package issue taxonomy
 
 Use the following issue categories:
 
@@ -191,9 +191,9 @@ Each issue must include:
 - acceptance test;
 - resolution status.
 
-## 19. Export specifications
+## 5. Export specifications
 
-### 19.1 DOCX
+### 5.1 DOCX
 
 DOCX is the required human-review format.
 
@@ -204,7 +204,7 @@ Generate two files:
 
 Each file must have professional MacroAlloc formatting appropriate to its purpose. The publication document prioritizes uninterrupted reading and simple CMS handoff. The report prioritizes traceability and analysis.
 
-### 19.2 Markdown
+### 5.2 Markdown
 
 Markdown export should:
 
@@ -214,7 +214,7 @@ Markdown export should:
 - clearly separate public and internal sections;
 - avoid Word-specific field instructions except as comments.
 
-### 19.3 HTML
+### 5.3 HTML
 
 HTML export should:
 
@@ -224,13 +224,13 @@ HTML export should:
 - avoid embedding unsupported scripts;
 - avoid claiming CMS compatibility without testing.
 
-### 19.4 JSON
+### 5.4 JSON
 
 JSON is the canonical machine-readable package.
 
 It should preserve every field, provenance entry, issue and state without formatting loss.
 
-## 20. Normalized output contract
+## 6. Normalized output contract
 
 Return a machine-readable object with the following structure. The top-level status is authoritative and both nested documents must match it.
 
@@ -399,7 +399,7 @@ WorkflowReport:
     notes: []
 ```
 
-## 21. Human-readable output order
+## 7. Human-readable output order
 
 Return a concise status and manifest, then link the two documents.
 
@@ -423,7 +423,7 @@ Workflow Report order:
 8. formatting, accessibility and render QA;
 9. lifecycle, provenance, manifest and next human action.
 
-## 22. File naming convention
+## 8. File naming convention
 
 Use:
 
@@ -441,7 +441,7 @@ For the skill distribution package, use:
 
 Avoid characters that create cross-platform file-system problems.
 
-## 23. Package manifest
+## 9. Package manifest
 
 Every export manifest must contain one entry for each document, including:
 
@@ -459,7 +459,7 @@ Every export manifest must contain one entry for each document, including:
 - cross-reference to the paired document;
 - article hash shared by both documents.
 
-## 27. Observability fields
+## 10. Observability fields
 
 The workflow should log:
 

@@ -2,13 +2,17 @@
 
 ## Contents
 
-- 29. Headline package
-- 30. Metadata package
-- 36. Normalized output contract
-- 37. Human-readable output order
-- 40. Compatibility and migration
+- 1. Headline package
+- 2. Metadata package
+- 3. Normalized output contract
+- 4. Human-readable output order
+- 5. Compatibility and migration
 
-## 29. Headline package
+## Version field resolution
+
+Populate any field marked `read_from_bundle_manifest` from this deployment's `skill-versions.json` bundle manifest (the `version` entry for `optimize-content-discoverability`). If no bundle manifest is reachable, for example when this skill runs as a standalone package, state the version declared in this skill's own package metadata instead. If neither is available, use `UNKNOWN` rather than inventing a version number. Apply the same resolution to the "contract version declared compatible by the bundle manifest" check in Section 5.
+
+## 1. Headline package
 
 Generate:
 
@@ -37,7 +41,7 @@ For each candidate provide:
 - main strength;
 - material risk.
 
-## 30. Metadata package
+## 2. Metadata package
 
 Produce:
 
@@ -61,7 +65,7 @@ Produce:
 - author field requirement;
 - robots recommendation only when context justifies it.
 
-### 30.1 Slug rules
+### 2.1 Slug rules
 
 - concise;
 - lowercase;
@@ -72,14 +76,14 @@ Produce:
 - no keyword stuffing;
 - preserve existing slug when changing it would create migration risk, unless a redirect plan is approved.
 
-### 30.2 Canonical rules
+### 2.2 Canonical rules
 
 - do not invent the final production URL;
 - use `CANONICAL_PENDING` when the domain or path is unknown;
 - identify duplicate or syndicated-content risks;
 - do not recommend cross-domain canonicalization without an explicit publishing arrangement.
 
-## 36. Normalized output contract
+## 3. Normalized output contract
 
 Return a structured `DiscoverabilityPackage` containing the following fields.
 
@@ -216,7 +220,7 @@ handoff:
 
 Set `next_actor: review-article` only for `DISCOVERABILITY_READY_FOR_REVIEW`. Set `next_actor: HUMAN_EDITORIAL_DECISION` for `CONSOLIDATION_DECISION_REQUIRED`. Route substantive changes to `verify-financial-article`; use `STOP_WORKFLOW` for blocking dependencies.
 
-## 37. Human-readable output order
+## 4. Human-readable output order
 
 In addition to the normalized object, provide the package in this order for the future MacroAlloc Article Package:
 
@@ -239,7 +243,7 @@ In addition to the normalized object, provide the package in this order for the 
 17. Final optimized article.
 18. Technical handoff metadata.
 
-## 40. Compatibility and migration
+## 5. Compatibility and migration
 
 Use only the canonical skill name `optimize-content-discoverability` in active workflows and handoffs.
 

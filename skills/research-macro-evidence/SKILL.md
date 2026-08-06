@@ -28,6 +28,7 @@ description: Builds a traceable macroeconomic and market evidence dossier for on
 - Allowed terminal statuses: `EVIDENCE_DOSSIER_READY_FOR_WRITING`, `RESEARCH_REVISION_REQUIRED`, `EDITORIAL_DECISION_REQUIRED`, or `BLOCKED`.
 - Do not draft article prose beyond short evidence summaries and exact handoff fields.
 - Do not treat the dossier as independent verification of the later article.
+- This skill is deliberately narrower than its downstream neighbors: it builds one evidence dossier and does not carry its own severity taxonomy, scoring model, or editorial-quality engine. Fact-level scoring belongs to `verify-financial-article`; editorial-quality scoring belongs to `review-article`.
 
 ## Load references
 

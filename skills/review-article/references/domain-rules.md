@@ -2,16 +2,16 @@
 
 ## Contents
 
-- 0. Workflow invariants
-- 8. Editorial review modules
-- 10. Scoring model
-- 12. Decision rules
-- 17. Human-readable AI Review Summary
-- 18. Writing requirements for the review report
-- 20. Content-type adaptations
-- 22. Evaluation dataset recommendations
+- 1. Workflow invariants
+- 2. Editorial review modules
+- 3. Scoring model
+- 4. Decision rules
+- 5. Human-readable AI Review Summary
+- 6. Writing requirements for the review report
+- 7. Content-type adaptations
+- 8. Evaluation dataset recommendations
 
-## 0. Workflow invariants
+## 1. Workflow invariants
 
 - Require traceable upstream status `TOPIC_SELECTED` and explicit user-selection evidence tied to the preserved shortlist.
 - Require the primary article and metadata to remain in US English (`en-US`).
@@ -19,9 +19,9 @@
 - Do not translate, replace, broaden or reselect the topic during review.
 - Any requested language adaptation belongs to a separate downstream artifact after approval of the US-English package.
 
-## 8. Editorial review modules
+## 2. Editorial review modules
 
-### 8.1 Editorial Quality Engine
+### 2.1 Editorial Quality Engine
 
 Evaluate the article as a complete piece of professional financial publishing.
 
@@ -46,7 +46,7 @@ Questions:
 - Can any section be removed without loss?
 - Does the article feel edited rather than merely generated?
 
-### 8.2 Reader Experience Engine
+### 2.2 Reader Experience Engine
 
 Evaluate:
 
@@ -63,7 +63,7 @@ Evaluate:
 
 The target is not entertainment. The target is efficient, rewarding comprehension.
 
-### 8.3 Educational Value Engine
+### 2.3 Educational Value Engine
 
 Evaluate whether the article improves the reader's mental model.
 
@@ -77,7 +77,7 @@ A strong article should help the reader understand at least one of:
 - a scenario framework;
 - a monitoring framework.
 
-### 8.4 Insight Quality Engine
+### 2.4 Insight Quality Engine
 
 Rate the insight as:
 
@@ -89,7 +89,7 @@ Rate the insight as:
 
 A `GENERIC` result is a hard barrier to `PUBLISH` unless the content type is a basic educational article whose purpose is purely explanatory and the explanation itself is unusually clear.
 
-### 8.5 Narrative Flow Engine
+### 2.5 Narrative Flow Engine
 
 Map each section to a function:
 
@@ -104,7 +104,7 @@ Map each section to a function:
 
 Identify missing functions, duplicate functions and illogical ordering.
 
-### 8.6 Reader Questions Engine
+### 2.6 Reader Questions Engine
 
 Produce a table containing:
 
@@ -117,7 +117,7 @@ Produce a table containing:
 
 Any unanswered high-importance question must prevent `PUBLISH` unless it falls clearly outside the locked angle.
 
-### 8.7 Cognitive Load Engine
+### 2.7 Cognitive Load Engine
 
 Classify cognitive load as:
 
@@ -128,7 +128,7 @@ Classify cognitive load as:
 
 `EXCESSIVE` prevents `PUBLISH`.
 
-### 8.8 Objectivity and Trust Engine
+### 2.8 Objectivity and Trust Engine
 
 Evaluate:
 
@@ -141,7 +141,7 @@ Evaluate:
 - absence of advice language;
 - consistency with source quality.
 
-### 8.9 Brand Consistency Engine
+### 2.9 Brand Consistency Engine
 
 Evaluate whether the article reflects MacroAlloc's positioning:
 
@@ -153,7 +153,7 @@ Evaluate whether the article reflects MacroAlloc's positioning:
 - no unsupported bravado;
 - no artificial personalization.
 
-### 8.10 Publication Decision Engine
+### 2.10 Publication Decision Engine
 
 Use scores and hard gates to select the final decision.
 
@@ -161,11 +161,11 @@ The decision must not be based on the global score alone.
 
 A high average cannot compensate for a critical defect.
 
-## 10. Scoring model
+## 3. Scoring model
 
 Score each dimension from 0 to 100.
 
-### 10.1 Editorial Quality — 20%
+### 3.1 Editorial Quality — 20%
 
 Measures:
 
@@ -175,7 +175,7 @@ Measures:
 - economy;
 - polish.
 
-### 10.2 Reader Experience — 15%
+### 3.2 Reader Experience — 15%
 
 Measures:
 
@@ -185,7 +185,7 @@ Measures:
 - navigability;
 - fatigue.
 
-### 10.3 Educational Value — 15%
+### 3.3 Educational Value — 15%
 
 Measures:
 
@@ -194,7 +194,7 @@ Measures:
 - mechanism understanding;
 - usefulness.
 
-### 10.4 Insight Quality — 15%
+### 3.4 Insight Quality — 15%
 
 Measures:
 
@@ -203,7 +203,7 @@ Measures:
 - prioritization;
 - cross-asset or macro relevance.
 
-### 10.5 Objectivity and Trust — 10%
+### 3.5 Objectivity and Trust — 10%
 
 Measures:
 
@@ -213,7 +213,7 @@ Measures:
 - attribution;
 - non-promotional tone.
 
-### 10.6 MacroAlloc Brand Fit — 10%
+### 3.6 MacroAlloc Brand Fit — 10%
 
 Measures:
 
@@ -223,7 +223,7 @@ Measures:
 - professional tone;
 - audience fit.
 
-### 10.7 Structural and Metadata Alignment — 5%
+### 3.7 Structural and Metadata Alignment — 5%
 
 Measures:
 
@@ -232,7 +232,7 @@ Measures:
 - conclusion alignment;
 - metadata fidelity.
 
-### 10.8 Originality and Added Value — 5%
+### 3.8 Originality and Added Value — 5%
 
 Measures:
 
@@ -240,13 +240,13 @@ Measures:
 - differentiated contribution;
 - avoidance of commodity commentary.
 
-### 10.9 Package Completeness — 5%
+### 3.9 Package Completeness — 5%
 
 Measures:
 
 - presence and consistency of required deliverables.
 
-### 10.10 Global score
+### 3.10 Global score
 
 Compute the weighted score.
 
@@ -254,9 +254,9 @@ Use one decimal place.
 
 Do not fabricate mathematical precision. The score supports judgment; it does not replace it.
 
-## 12. Decision rules
+## 4. Decision rules
 
-### 12.1 PUBLISH
+### 4.1 PUBLISH
 
 Return `PUBLISH` only when:
 
@@ -273,7 +273,7 @@ Output state:
 
 - `PUBLISH`.
 
-### 12.2 MINOR_REVISIONS
+### 4.2 MINOR_REVISIONS
 
 Return `MINOR_REVISIONS` when:
 
@@ -287,7 +287,7 @@ Output state:
 
 - `MINOR_REVISIONS`.
 
-### 12.3 MAJOR_REVISIONS
+### 4.3 MAJOR_REVISIONS
 
 Return `MAJOR_REVISIONS` when:
 
@@ -301,7 +301,7 @@ Output state:
 
 - `MAJOR_REVISIONS`.
 
-### 12.4 REJECT
+### 4.4 REJECT
 
 Return `REJECT` when:
 
@@ -318,15 +318,15 @@ Output state:
 
 - `REJECT`.
 
-### 12.5 EDITORIAL_DECISION_REQUIRED
+### 4.5 EDITORIAL_DECISION_REQUIRED
 
-Return when a human editorial decision is necessary under Section 6.3.
+Return when a human editorial decision is necessary under the blocking conditions in [references/workflow.md](workflow.md) Section 5.3.
 
-### 12.6 BLOCKED
+### 4.6 BLOCKED
 
 Return when the review cannot be performed reliably because mandatory inputs or valid upstream states are missing.
 
-## 17. Human-readable AI Review Summary
+## 5. Human-readable AI Review Summary
 
 Produce a concise page-ready summary for the MacroAlloc Article Package.
 
@@ -362,7 +362,7 @@ A concise explanation of why the article did or did not receive approval.
 
 The summary must not conceal material issues behind the global score.
 
-## 18. Writing requirements for the review report
+## 6. Writing requirements for the review report
 
 The report must be:
 
@@ -384,9 +384,9 @@ Avoid:
 - excessive commentary on minor wording;
 - pretending to know reader behavior without evidence.
 
-## 20. Content-type adaptations
+## 7. Content-type adaptations
 
-### 20.1 Morning Macro Insight
+### 7.1 Morning Macro Insight
 
 Prioritize:
 
@@ -396,7 +396,7 @@ Prioritize:
 - observable day-ahead watchlist;
 - avoidance of stale recap.
 
-### 20.2 Evening Macro Insight
+### 7.2 Evening Macro Insight
 
 Prioritize:
 
@@ -405,7 +405,7 @@ Prioritize:
 - distinction between event and market interpretation;
 - next-session or next-data watchlist.
 
-### 20.3 Market Analysis
+### 7.3 Market Analysis
 
 Require:
 
@@ -415,7 +415,7 @@ Require:
 - alternatives and risks;
 - a clear time horizon.
 
-### 20.4 ETF Research
+### 7.4 ETF Research
 
 Require:
 
@@ -426,7 +426,7 @@ Require:
 - clear separation between index, fund and market exposure;
 - appropriate risk disclosure.
 
-### 20.5 Education Article
+### 7.5 Education Article
 
 Prioritize:
 
@@ -437,7 +437,7 @@ Prioritize:
 - avoidance of unnecessary market commentary;
 - long-term usefulness.
 
-## 22. Evaluation dataset recommendations
+## 8. Evaluation dataset recommendations
 
 Test the skill against at least:
 

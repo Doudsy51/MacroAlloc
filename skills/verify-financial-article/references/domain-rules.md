@@ -2,12 +2,12 @@
 
 ## Contents
 
-- 0. Workflow invariants
-- 8. Scoring model
-- 10. AI Review Summary
-- 12. Decision rules
+- 1. Workflow invariants
+- 2. Scoring model
+- 3. AI Review Summary
+- 4. Decision rules
 
-## 0. Workflow invariants
+## 1. Workflow invariants
 
 - Require traceable upstream status `TOPIC_SELECTED` and explicit user-selection evidence tied to the preserved shortlist.
 - Require the primary article language to be exactly `en-US`.
@@ -15,7 +15,7 @@
 - Do not translate, replace, broaden or reselect the topic during verification.
 - Preserve these invariants in every revision request and downstream handoff.
 
-## 8. Scoring model
+## 2. Scoring model
 
 Produce six component scores from 0 to 100:
 
@@ -37,7 +37,7 @@ Calculate the global verification score using:
 
 A high average cannot override a hard gate.
 
-### 8.1 Approval threshold
+### 2.1 Approval threshold
 
 `APPROVED_FOR_SEO` requires:
 
@@ -52,15 +52,15 @@ A high average cannot override a hard gate.
 - no unresolved contradiction;
 - recheck requirements operationally defined.
 
-### 8.2 Revision threshold
+### 2.2 Revision threshold
 
 Return `REVISION_REQUIRED` when defects are correctable without changing the locked topic, angle or source architecture.
 
-### 8.3 Human escalation threshold
+### 2.3 Human escalation threshold
 
 Return `EDITORIAL_DECISION_REQUIRED` when automated correction would require a substantive editorial choice.
 
-## 10. AI Review Summary
+## 3. AI Review Summary
 
 The verifier must generate a concise review summary for the future MacroAlloc Article Package.
 
@@ -83,9 +83,9 @@ Use only these confidence labels:
 
 The AI Review Summary must not call the article "published", "approved for publication" or "ready to publish". The maximum positive status at this stage is `APPROVED_FOR_SEO`.
 
-## 12. Decision rules
+## 4. Decision rules
 
-### 12.1 `APPROVED_FOR_SEO`
+### 4.1 `APPROVED_FOR_SEO`
 
 Return only when every approval threshold is met.
 
@@ -96,7 +96,7 @@ downstream_actions:
   - optimize-content-discoverability
 ```
 
-### 12.2 `REVISION_REQUIRED`
+### 4.2 `REVISION_REQUIRED`
 
 Return when all material issues are correctable within the locked scope and revision attempt is below 2.
 
@@ -107,7 +107,7 @@ downstream_actions:
   - write-macro-insight
 ```
 
-### 12.3 `BLOCKED`
+### 4.3 `BLOCKED`
 
 Return when verification cannot reliably continue or a critical defect invalidates the draft.
 
@@ -118,7 +118,7 @@ downstream_actions:
   - STOP_WORKFLOW
 ```
 
-### 12.4 `EDITORIAL_DECISION_REQUIRED`
+### 4.4 `EDITORIAL_DECISION_REQUIRED`
 
 Return when a human decision is needed on thesis, scope, disputed evidence or compliance framing.
 

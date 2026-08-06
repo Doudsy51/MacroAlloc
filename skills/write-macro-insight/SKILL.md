@@ -8,7 +8,7 @@ description: Writes or revises a publication-quality US-English MacroAlloc Morni
 ## Preconditions
 
 - Confirm the primary artifact and metadata are in US English.
-- Preserve `TOPIC_SELECTED`, the explicit selection evidence, the selected topic, and the locked angle.
+- Require `EVIDENCE_DOSSIER_READY_FOR_WRITING` from `research-macro-evidence` and preserve the `TOPIC_SELECTED` lineage, explicit selection evidence, and locked angle it carries.
 - Treat missing mandatory evidence, ambiguous human decisions, and contract mismatches as blocking.
 - Never invent a human approval, external fact, source, status, or completed action.
 
