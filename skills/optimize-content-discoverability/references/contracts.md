@@ -94,6 +94,7 @@ skill:
 status: DISCOVERABILITY_READY_FOR_REVIEW | DISCOVERABILITY_REVISION_REQUIRED | CONSOLIDATION_DECISION_REQUIRED | BLOCKED | EDITORIAL_DECISION_REQUIRED
 lineage:
   upstream_status: APPROVED_FOR_SEO
+  region: US | EUROPE | ASIA
   shortlist_id:
   selected_topic_id:
   selection_evidence:

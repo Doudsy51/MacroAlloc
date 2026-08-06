@@ -156,7 +156,11 @@ The skill should be evaluated on at least:
 - an ambiguous user reply after the shortlist, which must remain `AWAITING_USER_SELECTION`;
 - an explicit selection by shortlist number, which must return `TOPIC_SELECTED` for that exact option;
 - a scheduled event where the best opportunity is a pre-event explainer;
-- a market move with no defensible single cause.
+- a market move with no defensible single cause;
+- a run where Asia has fewer than 3 qualified candidates while US and Europe each have 5, which must return a valid shortlist for US and Europe and a region-scoped `NO_SUITABLE_SHORTLIST` for Asia only;
+- a run where all three regions fail to qualify, which must return the top-level `NO_SUITABLE_SHORTLIST`;
+- a selection-confirmation turn where the user selects a topic for US and Europe but leaves Asia unaddressed, which must return `TOPIC_SELECTED` for US and Europe while Asia remains `AWAITING_USER_SELECTION`;
+- a candidate with relevance to two regions at once, which must be assigned to the region where its primary economic or market effect is concentrated, not duplicated across both regional shortlists.
 
 ## 5. Governance
 

@@ -28,9 +28,10 @@ The Workflow Report must include the skill versions and job ID. The Publication 
 
 ## 2. Mandatory artifacts
 
-The final job record must contain:
+`OpportunityShortlist` is produced once, covering all three regions.
 
-- `OpportunityShortlist`
+For **each region that reached `TOPIC_SELECTED`**, that region's job record must independently contain:
+
 - `SelectedResearchBrief`
 - `EvidenceDossier`
 - `SourceRegister`
@@ -44,7 +45,7 @@ The final job record must contain:
 - `ExecutionLog`
 - `RevisionHistory`
 
-If any mandatory artifact is absent, the job cannot be marked complete.
+If any mandatory artifact is absent for a region that reached `TOPIC_SELECTED`, that region's job cannot be marked complete. This does not block the other regions from being marked complete independently.
 
 ## 3. Final orchestrator statuses
 
@@ -75,24 +76,29 @@ Return:
 
 ```yaml
 orchestrator_result:
-  job_id: ""
-  final_status: ""
-  selected_topic: ""
-  selection_evidence: ""
-  article_title: ""
-  content_type: ""
+  run_id: ""
   language: ""
-  skill_versions: {}
-  stage_results: []
-  revision_summary: {}
-  warnings: []
-  blocking_issues: []
-  final_artifacts:
-    evidence_dossier: null
-    source_register: null
-    publication_package_docx: null
-    workflow_report_docx: null
-    execution_log: null
-    review_summary: null
-  next_human_action: ""
+  regions:
+    - region: US | EUROPE | ASIA
+      job_id: ""
+      final_status: ""
+      selected_topic: ""
+      selection_evidence: ""
+      article_title: ""
+      content_type: ""
+      skill_versions: {}
+      stage_results: []
+      revision_summary: {}
+      warnings: []
+      blocking_issues: []
+      final_artifacts:
+        evidence_dossier: null
+        source_register: null
+        publication_package_docx: null
+        workflow_report_docx: null
+        execution_log: null
+        review_summary: null
+      next_human_action: ""
 ```
+
+Each entry in `regions` is fully independent. A region with no confirmed selection is omitted from this array rather than represented with empty/null fields.

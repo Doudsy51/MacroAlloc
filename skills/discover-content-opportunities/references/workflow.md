@@ -43,9 +43,9 @@ Possible outputs:
 
 Required downstream action:
 
-- if `AWAITING_USER_SELECTION`: present 3 to 5 qualified topics and stop the turn;
-- if `TOPIC_SELECTED`: hand off only the topic explicitly selected by the user from the active shortlist;
-- if `NO_SUITABLE_SHORTLIST`: stop without forcing publication or padding the shortlist;
+- if `AWAITING_USER_SELECTION`: present 3 to 5 qualified topics per region (US, Europe, Asia) and stop the turn;
+- if `TOPIC_SELECTED`: hand off only the topics explicitly selected by the user, one per confirmed region, each from its own active shortlist;
+- if `NO_SUITABLE_SHORTLIST`: stop without forcing publication or padding the shortlist — this applies per region; a region with no qualified candidates does not force the same outcome on the other two;
 - if `BLOCKED`: stop and state the missing inputs.
 
 The skill is a strategic discovery and ranking component, not an autonomous topic selector or publisher.
@@ -54,11 +54,11 @@ The skill is a strategic discovery and ranking component, not an autonomous topi
 
 Discovery and selection are separate turns.
 
-1. During discovery, return exactly 3 to 5 qualified topics and `AWAITING_USER_SELECTION`.
-2. End the response immediately after requesting the user's choice.
+1. During discovery, return exactly 3 to 5 qualified topics **for each of the three regional focuses (US, Europe, Asia)** evaluated in this run, and `AWAITING_USER_SELECTION`. A region that cannot produce 3 qualified candidates returns its own `NO_SUITABLE_SHORTLIST` note for that region only; it does not block the other regions.
+2. End the response immediately after requesting the user's choice for every region that has a shortlist.
 3. Do not create a locked brief, research dossier, draft, SEO package or article package in that turn.
-4. Resume only after the user explicitly selects one option by its shortlist number, `OPPORTUNITY_ID`, or unambiguous exact title.
-5. Return `TOPIC_SELECTED` only for that exact option. Never infer selection from ranking, score, urgency, a request to “continue,” or a request to run the full workflow.
+4. Resume only after the user explicitly selects one option per region by its shortlist number, `OPPORTUNITY_ID`, or unambiguous exact title. A region may be left unselected if the user chooses not to proceed with it; this does not invalidate the selections made for the other regions.
+5. Return `TOPIC_SELECTED` only for the exact options selected, one per confirmed region. Never infer selection from ranking, score, urgency, a request to “continue,” or a request to run the full workflow.
 
 This gate cannot be overridden by execution mode, deadlines, automation requests or contradictory user parameters.
 
@@ -106,7 +106,7 @@ The skill must receive or resolve from explicit orchestrator defaults:
 
 - `CURRENT_DATETIME`
 - `TARGET_LANGUAGE`
-- `TARGET_MARKET`: normally international audience with US organic search priority
+- `TARGET_REGIONS`: the three regional focuses evaluated independently in every run — `US`, `EUROPE`, `ASIA`
 - `EDITORIAL_CATEGORIES`
 - `CATEGORY_FREQUENCY_RULES`
 - `TARGET_PUBLICATION_WINDOW`
@@ -167,8 +167,9 @@ Return `BLOCKED` when:
 
 ## 6. Handoff contract
 
-When `TOPIC_SELECTED`, the next component may receive:
+When `TOPIC_SELECTED`, the next component receives one complete selected-opportunity object **per confirmed region**, each carrying:
 
+- its `region` (`US`, `EUROPE`, or `ASIA`);
 - the complete selected-opportunity object;
 - the locked topic and angle;
 - research questions;
@@ -178,8 +179,10 @@ When `TOPIC_SELECTED`, the next component may receive:
 - timing and recheck requirements;
 - relevant content-memory results.
 
-The research stage must return an evidence-backed dossier before any writing skill executes.
+Each region's object is handed off and processed independently by the downstream chain; a defect, revision loop, or block in one region's article must never alter or delay another region's object.
+
+The research stage must return an evidence-backed dossier before any writing skill executes, for each region in turn.
 
 The writing skill must not silently change the locked topic or angle. A material change requires a return to this skill or human editorial approval.
 
-No handoff is permitted while the status is `AWAITING_USER_SELECTION`, `NO_SUITABLE_SHORTLIST` or `BLOCKED`.
+No handoff is permitted for a region while its status is `AWAITING_USER_SELECTION`, `NO_SUITABLE_SHORTLIST` or `BLOCKED`.

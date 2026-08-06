@@ -22,6 +22,7 @@ EditorialReview:
     workflow_version: string
   identity:
     shortlist_id: string
+    region: US | EUROPE | ASIA
     selected_topic_id: string
     selection_evidence: string
     content_type: string
