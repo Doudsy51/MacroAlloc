@@ -66,7 +66,16 @@ EditorialReview:
     structural_metadata_alignment: 0-100
     originality_added_value: 0-100
     package_completeness: 0-100
+    human_writing_score: 0-100
     global_score: 0-100
+  human_voice_audit:
+    human_writing_score: 0-100
+    deductions:
+      - criterion: string
+        instances_found: integer
+        points_deducted: integer
+        example_location: string
+    em_dash_count: integer
   qualitative_classifications:
     insight_classification: DISTINCTIVE | STRONG | ADEQUATE | LIMITED | GENERIC
     cognitive_load: LOW | CONTROLLED | HIGH_BUT_JUSTIFIED | EXCESSIVE
@@ -86,6 +95,8 @@ EditorialReview:
     metadata_fidelity: PASS | FAIL
     compliance_signal: PASS | FAIL
     package_completeness: PASS | FAIL
+    human_voice_score: PASS | FAIL
+    no_em_dash: PASS | FAIL
   strengths:
     - strength_id: STR-001
       description: string
