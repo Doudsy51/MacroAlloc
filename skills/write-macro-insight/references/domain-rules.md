@@ -92,6 +92,21 @@ The draft should normally include:
 
 The structure may be adapted when the topic demands it, but the essential functions must remain present.
 
+### 2.4 Human-sounding prose
+
+The objective is that a reader concludes a person wrote this, not a machine. This is a distinct requirement from accuracy or compliance: an article can pass every factual gate and still read as generated. Apply the following, and read the finished draft aloud (mentally or literally) before returning it. A sentence a careful human editor would never actually say out loud is a signal to rewrite it.
+
+- **Vary sentence rhythm deliberately.** Do not let every sentence land at roughly the same length. Mix a short, direct sentence next to a longer one that carries more than one idea. Uniform medium-length sentences throughout a section are a tell, not a style.
+- **Do not open consecutive sentences the same way.** Three sentences in a row starting with "The," or with the same subject-verb pattern, reads as generated even when each sentence is individually fine.
+- **Avoid mechanical transition words.** "Moreover," "Furthermore," "Additionally," "It is worth noting that," and "Importantly," used more than once in an article, or used to open more than one paragraph, are a tell. Prefer a transition implied by the content itself, or no explicit transition at all.
+- **Do not force a "rule of three" or an "on one hand / on the other hand" balance by default.** Three parallel items, or a symmetric two-sided framing, are fine when the material genuinely has three items or two genuinely balanced sides, not as a reflexive structure applied to everything. Some points need one clause; some need five.
+- **Avoid generic signposting.** Phrases like "Let's break this down," "Here's what this means," or "In today's environment" announce that a point is coming instead of making it. State the point.
+- **Do not hedge every sentence identically.** This skill's own separation of facts, uncertainty, interpretation and scenarios (Section 4) already tells you where evidence is solid and where it is not. State a well-supported point plainly; reserve explicit hedges ("it remains unclear whether...", "this cannot be resolved from available evidence") for where the uncertainty is real, not as a uniform verbal tic repeated across every paragraph regardless of how solid that particular claim is.
+- **Never use the em dash ("—") or a double hyphen used as one ("--").** This is a zero-tolerance rule, not a matter of degree: use a comma, a period, parentheses, or restructure the sentence instead. `review-article`'s downstream check will fail the article on a single occurrence, independently of every other score.
+- **Do not make every section the same length or the same shape.** A section that only needs three sentences should have three sentences, not be padded to match its neighbors.
+
+None of this may be used to soften a hedge that the evidence requires, omit a source marker, or drop a required structural element from Section 2.3. Human-sounding and rigorous are both required; neither substitutes for the other.
+
 ## 3. Evidence and attribution rules
 
 ### 3.1 No unsupported facts

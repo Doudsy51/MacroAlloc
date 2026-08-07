@@ -161,6 +161,42 @@ The decision must not be based on the global score alone.
 
 A high average cannot compensate for a critical defect.
 
+### 2.11 AI-Pattern and Human-Voice Engine
+
+Assess whether a reader would conclude a person wrote this article. This is independent of factual accuracy and of the Editorial Quality Engine (2.1): a flawlessly accurate article can still read as generated. This assessment is performed by `review-article` only. `write-macro-insight` follows the writing rules in its own domain-rules Section 2.4 but never scores or certifies its own draft.
+
+**Important limitation to disclose alongside every score**: this is a structured rubric applied by the reviewing skill itself, not an independently trained AI-detection classifier. Report it as `human_writing_score`, not as the output of a third-party detection tool, and never imply a certainty level that a rubric-based self-assessment cannot support.
+
+#### Scoring method
+
+Start at 100 and apply every deduction that applies, once per distinct instance found (not once per criterion):
+
+| Criterion | Deduction per instance | Cap |
+|---|---|---|
+| A section where sentences run uniform length/rhythm throughout, with no deliberate short/long mix | -15 | -15 (once per article) |
+| Three or more consecutive sentences opening with the same word or grammatical construction | -10 | -20 |
+| A mechanical transition word ("Moreover," "Furthermore," "Additionally," "It is worth noting that," "Importantly") repeated a second time in the article, or opening a second paragraph | -10 | -20 |
+| A "rule of three" list or "on one hand / on the other hand" framing applied where the material does not call for exactly three items or two balanced sides | -10 | -20 |
+| Generic signposting ("Let's break this down," "Here's what this means," "In today's environment") | -10 | -20 |
+| A hedge phrase repeated identically across paragraphs regardless of the actual certainty of each claim | -15 | -15 (once per article) |
+| Section lengths/shapes suspiciously uniform rather than matched to what each section needs | -10 | -10 (once per article) |
+
+Floor the result at 0. Record every deduction applied, with its location, in `human_voice_audit.deductions`. Do not return a bare number without the itemized basis for it.
+
+`ai_pattern_risk` is a derived label for quick reading, not a separate judgment: `LOW` for a score of 90-100, `MEDIUM` for 80-89, `HIGH` for below 80.
+
+#### Em dash: separate, zero-tolerance check
+
+Count every em dash ("—", and any double-hyphen "--" used as an em-dash substitute) in the article body. This is checked independently of the score above:
+
+- `em_dash_count` must be exactly `0`.
+- Any occurrence fails Gate 15 (quality-and-tests.md) regardless of the `human_writing_score`, and regardless of whether the em dash is arguably well-used. There is no minimum-instance exception.
+- Route a failure with the exact sentence and location; the required correction is to replace the em dash with a comma, a period, parentheses, or a restructured sentence. Keeping it because removal feels awkward is not an acceptable resolution.
+
+#### Publication threshold
+
+`PUBLISH` requires `human_writing_score >= 80` **and** `em_dash_count == 0`, both independently of every other score (see Gates 14 and 15 in quality-and-tests.md). Route a failure on either to `write-macro-insight` with the specific patterns and locations found. A vague instruction such as "make it sound more human" is not an acceptable revision instruction; name the exact repeated phrase, transition, structural tic, or em dash location.
+
 ## 3. Scoring model
 
 Score each dimension from 0 to 100.

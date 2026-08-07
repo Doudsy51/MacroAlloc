@@ -216,6 +216,18 @@ Pass only if:
 
 - all mandatory article-package components required at this stage are present.
 
+### Gate 14 — Human writing score
+
+Pass only if:
+
+- `human_writing_score` (Section 2.11 of domain-rules.md, rubric-based, computed by `review-article` only) is `80` or higher.
+
+### Gate 15 — No em dash
+
+Pass only if:
+
+- `em_dash_count` is exactly `0`. No minimum-instance exception; this gate is independent of Gate 14 and of every other score.
+
 ## 4. Regression checks
 
 When a previous version exists, verify that revisions did not:

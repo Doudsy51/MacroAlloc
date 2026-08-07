@@ -26,6 +26,7 @@ description: Performs the final independent editorial review of a verified and o
 - Upstream producer: `optimize-content-discoverability` with its preservation ledger.
 - Downstream consumer: `generate-article-package` only after `PUBLISH`.
 - Allowed terminal statuses: `PUBLISH`, `MINOR_REVISIONS`, `MAJOR_REVISIONS`, `EDITORIAL_DECISION_REQUIRED`, `REJECT`, or `BLOCKED`.
+- Never return `PUBLISH` unless `human_writing_score` (a rubric-based self-assessment this skill computes, not a third-party AI-detector result) is at least 80 **and** `em_dash_count` is exactly 0; route the exact repeated phrases, structural tics, or em-dash locations back to `write-macro-insight`, not a vague "sound more human" instruction.
 - Keep the public article separate from internal workflow evidence.
 - Ask only for information that cannot be retrieved safely from the available artifacts.
 

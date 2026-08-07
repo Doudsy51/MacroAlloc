@@ -27,6 +27,8 @@ description: Writes or revises a publication-quality US-English MacroAlloc Morni
 - Downstream consumer: `verify-financial-article` with `DRAFT_READY_FOR_VERIFICATION`.
 - Allowed terminal statuses: `DRAFT_READY_FOR_VERIFICATION`, `REVISION_REQUIRED`, `EDITORIAL_DECISION_REQUIRED`, or `BLOCKED`.
 - Write every source's content in independent wording; at most one direct quotation of 15 words or fewer per article, and never a passage that echoes a source's original phrasing closely enough to read as copied.
+- Write so a reader would conclude a person wrote it: vary sentence rhythm, avoid mechanical transitions and reflexive "rule of three" framing, and hedge only where evidence is genuinely uncertain, not as a uniform tic.
+- Never use the em dash ("—") or a double hyphen as a substitute for one. Zero tolerance, no exceptions.
 - Keep the public article separate from internal workflow evidence.
 - Ask only for information that cannot be retrieved safely from the available artifacts.
 
