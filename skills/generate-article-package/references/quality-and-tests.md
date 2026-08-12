@@ -151,6 +151,10 @@ Pass only when heading hierarchy, tables, hyperlinks and document-control elemen
 
 Pass only when requested export files can be generated without dropping mandatory sections.
 
+### Gate 9 — French disclosure (French-render mode only)
+
+Pass only when the French Publication Package carries the `disclosure` statement from `adapt-article-french` verbatim and visibly, and shares the same `article_id` and `approved_article_hash` as the English package it adapts.
+
 If any mandatory gate fails, return `PACKAGE_REVISION_REQUIRED`, `EDITORIAL_INPUT_REQUIRED` or `BLOCKED` according to the nature of the defect.
 
 ## 3. Security and confidentiality

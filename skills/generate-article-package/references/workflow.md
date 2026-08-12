@@ -52,6 +52,10 @@ Required downstream states:
 
 No automatic publication is allowed.
 
+### 2.1 French-render mode trigger
+
+A separate, later invocation of this skill, in French-render mode, is expected when `adapt-article-french` returns `FRENCH_ADAPTATION_READY_FOR_PACKAGING`. This happens only after the region's human `APPROVE` on the English package; it is not part of the sequence above and must not be started earlier. In this mode, the only expected upstream state is `FRENCH_ADAPTATION_READY_FOR_PACKAGING`, and the only required downstream state is `FRENCH_ARTIFACT_READY` or `BLOCKED`. See domain-rules.md Section 3.16.
+
 ## 3. Responsibilities
 
 The skill is responsible for:

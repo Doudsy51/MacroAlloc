@@ -38,6 +38,7 @@ The orchestrator must never publish content automatically during the launch phas
    5. `review-article`
    6. `generate-article-package` produces both required DOCX files for that region
    7. Human final approval for that region
+   8. On `APPROVE` only: automatically invoke `adapt-article-french` then `generate-article-package` (French-render mode) for that region — see Section 12.1
 
 The orchestrator must not skip a stage unless this skill explicitly defines the stage as optional. It must not start a region's step 3-9 sequence before the previous region's sequence has reached its own human final-validation gate.
 
@@ -56,7 +57,7 @@ If a region has no confirmed selection (the user did not select a topic for it),
 
 Before execution:
 
-1. Confirm that all seven specialist skills are available to the current execution environment.
+1. Confirm that all eight specialist skills, including `adapt-article-french`, are available to the current execution environment.
 2. Record their versions.
 3. Confirm that web research is available for current-event content.
 4. Set the primary language to `en-US` and record any other requested language as an optional secondary adaptation.
@@ -366,7 +367,17 @@ No CMS or social publication may occur for this region without its own `APPROVE`
 
 If changes are requested, route them according to issue ownership and rerun all affected downstream gates **for this region only**, then return to this same gate for this region before moving on.
 
-Once this region's gate resolves (`APPROVE`, `REJECT`, or an explicitly deferred `REQUEST_CHANGES`), proceed to the next region in order (US → Europe → Asia) that has a confirmed `TOPIC_SELECTED`, starting again at Stage 3. A region resolved as `REJECT` or `BLOCKED` does not cancel or delay the remaining regions. When every selected region has passed through this gate, return `COMPLETED` with a summary covering all regions.
+### 12.1 Automatic French adaptation (after `APPROVE` only)
+
+Immediately after this region's gate returns `APPROVE` — and only then, never after `REQUEST_CHANGES` or `REJECT` — automatically invoke `adapt-article-french` on the just-approved English package, then `generate-article-package` in French-render mode on its output. This runs unconditionally for every approved article; it is not optional and requires no separate human request.
+
+- Pass `adapt-article-french` the approved article body, its `article_id`, its `approved_article_hash`, and the region.
+- Expected successful chain: `adapt-article-french` returns `FRENCH_ADAPTATION_READY_FOR_PACKAGING`, then `generate-article-package` (French-render mode) returns `FRENCH_ARTIFACT_READY`.
+- On `BLOCKED` from either skill, report the block for that region's French artifact alone. It does not reopen the region's `APPROVE` decision, does not block the region's overall completion, and does not delay the next region.
+- The resulting French artifact carries `adapt-article-french`'s mandatory disclosure statement that no independent human-in-language review occurred; never add, imply, or fabricate a separate French approval.
+- This step runs at most once per region, strictly after that region's own `APPROVE`, and strictly before moving to the next region.
+
+Once this region's gate resolves — `APPROVE` (after the automatic French adaptation above completes or reports `BLOCKED`), `REJECT`, or an explicitly deferred `REQUEST_CHANGES` — proceed to the next region in order (US → Europe → Asia) that has a confirmed `TOPIC_SELECTED`, starting again at Stage 3. A region resolved as `REJECT` or `BLOCKED` does not cancel or delay the remaining regions. When every selected region has passed through this gate, return `COMPLETED` with a summary covering all regions, including each region's French-artifact status.
 
 ## 13. Revision-routing matrix
 
