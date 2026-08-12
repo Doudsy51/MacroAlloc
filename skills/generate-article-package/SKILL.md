@@ -1,6 +1,6 @@
 ---
 name: generate-article-package
-description: Creates two separate Word deliverables from an approved US-English MacroAlloc article: a public Publication Package and an internal Workflow Report. Use only after final editorial PUBLISH approval. Do not rewrite the article, mix internal workflow data into the public document, accept missing TOPIC_SELECTED lineage, or package inconsistent article versions.
+description: Creates two separate Word deliverables from an approved US-English MacroAlloc article: a public Publication Package and an internal Workflow Report. Also renders a third, French-language Publication Package once adapt-article-french has produced a fidelity-audited translation, in a distinct French-render mode. Use only after final editorial PUBLISH approval (English mode) or after adapt-article-french's FRENCH_ADAPTATION_READY_FOR_PACKAGING (French-render mode). Do not rewrite the article, mix internal workflow data into the public document, accept missing TOPIC_SELECTED lineage, or package inconsistent article versions.
 ---
 
 # Generate Article Package
@@ -23,9 +23,10 @@ description: Creates two separate Word deliverables from an approved US-English 
 
 ## Boundaries
 
-- Upstream producer: `review-article` with `PUBLISH` and all authoritative artifacts.
-- Downstream consumer: The human final-validation gate; never direct publication.
-- Allowed terminal statuses: `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION`, `PACKAGE_REVISION_REQUIRED`, `EDITORIAL_INPUT_REQUIRED`, or `BLOCKED`.
+- Upstream producer: `review-article` with `PUBLISH` and all authoritative artifacts (English mode); `adapt-article-french` with `FRENCH_ADAPTATION_READY_FOR_PACKAGING` (French-render mode).
+- Downstream consumer: The human final-validation gate (English mode); direct delivery alongside it, with no separate gate (French-render mode, per its own documented disclosure).
+- Allowed terminal statuses: `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION`, `FRENCH_ARTIFACT_READY`, `PACKAGE_REVISION_REQUIRED`, `EDITORIAL_INPUT_REQUIRED`, or `BLOCKED`.
+- In French-render mode, never re-render, alter, or regenerate the English Publication Package or the Workflow Report; only the third, French file is produced.
 - Keep the public article separate from internal workflow evidence.
 - Ask only for information that cannot be retrieved safely from the available artifacts.
 

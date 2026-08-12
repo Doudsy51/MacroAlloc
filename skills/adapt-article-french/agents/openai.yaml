@@ -1,0 +1,4 @@
+interface:
+  display_name: "Adapt Article French"
+  short_description: "Translate an approved article into French"
+  default_prompt: "Use $adapt-article-french to produce the French adaptation of this already human-approved MacroAlloc article."

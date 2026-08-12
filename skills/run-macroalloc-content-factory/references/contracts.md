@@ -47,6 +47,13 @@ For **each region that reached `TOPIC_SELECTED`**, that region's job record must
 
 If any mandatory artifact is absent for a region that reached `TOPIC_SELECTED`, that region's job cannot be marked complete. This does not block the other regions from being marked complete independently.
 
+For **each region that reached `APPROVE`** at its human final-validation gate, that region's job record must additionally contain:
+
+- `FrenchAdaptation` (the `adapt-article-french` output, including its `fidelity_audit` and `disclosure` block)
+- `FrenchPublicationPackageDOCX`
+
+or, if the French chain returned `BLOCKED`, the recorded blocking issue in place of these two artifacts. A missing or blocked French artifact never reopens the region's `APPROVE` decision and never blocks that region's or another region's completion.
+
 ## 3. Final orchestrator statuses
 
 - `AWAITING_USER_SELECTION`
@@ -61,6 +68,8 @@ If any mandatory artifact is absent for a region that reached `TOPIC_SELECTED`, 
 - `PUBLISH`
 - `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION`
 - `AWAITING_FINAL_HUMAN_VALIDATION`
+- `FRENCH_ADAPTATION_READY_FOR_PACKAGING`
+- `FRENCH_ARTIFACT_READY`
 - `PUBLICATION_PACKAGE_READY_FOR_EXPORT`
 - `HUMAN_EDITORIAL_INTERVENTION_REQUIRED`
 - `HUMAN_FINAL_APPROVAL_REQUIRED`
@@ -96,8 +105,10 @@ orchestrator_result:
         source_register: null
         publication_package_docx: null
         workflow_report_docx: null
+        french_publication_package_docx: null
         execution_log: null
         review_summary: null
+      french_adaptation_status: ""
       next_human_action: ""
 ```
 

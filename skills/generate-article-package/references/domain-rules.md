@@ -17,7 +17,7 @@
 - Require the primary article, metadata and package to remain in US English (`en-US`).
 - Return `BLOCKED` if the topic or angle differs materially from the human-selected topic or locked brief.
 - Do not translate, replace, broaden, reselect or rewrite the approved primary content during assembly.
-- Place any approved secondary-language adaptation in a clearly separate optional artifact; never substitute it for the US-English primary package.
+- Place any approved secondary-language adaptation in a clearly separate optional artifact; never substitute it for the US-English primary package. This skill does not perform the translation itself: `adapt-article-french` produces the fidelity-audited French content, and this skill only renders it, in a distinct French-render mode (Section 3.16), after the English package has already been delivered.
 
 ## 2. Blocking conditions
 
@@ -346,6 +346,19 @@ Include:
 - file checksum or content hash when available;
 - export formats generated;
 - package validation result.
+
+### 3.16 French-render mode
+
+A third document, produced only when `adapt-article-french` returns `FRENCH_ADAPTATION_READY_FOR_PACKAGING`, after the English Publication Package and Workflow Report already exist.
+
+Required content, in order:
+
+1. publication header, in French, mirroring the English header's fields;
+2. the `disclosure` statement from `adapt-article-french`'s output, verbatim, displayed visibly on the first page, not in a footnote;
+3. the complete translated article, including French key takeaways, disclaimer, and public sources;
+4. a `SEO POUR PUBLICATION` appendix with the translated metadata fields only.
+
+This document must never include the Workflow Report's internal content, must never be generated without the `disclosure` statement, and must never replace or be substituted for the English Publication Package, which remains the primary deliverable.
 
 ## 4. Content-type variations
 

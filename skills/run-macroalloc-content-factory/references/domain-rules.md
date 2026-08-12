@@ -32,6 +32,9 @@ run:
           discoverability: 0
           reviewer: 0
           package: 0
+        french_adaptation:
+          status: "NOT_STARTED"
+          blocking_issue: null
         skill_versions: {}
         artifacts: {}
         decisions: []
@@ -44,6 +47,8 @@ run:
 ```
 
 Each region's `article_job` is the source of truth for that region's production only. A region with no confirmed `TOPIC_SELECTED` after Stage 2 stays at `current_stage: "DISCOVERY"` and is never advanced. No field under one region's `article_job` may read from or write to another region's.
+
+`french_adaptation.status` moves from `NOT_STARTED` to `READY_FOR_PACKAGING` to `ARTIFACT_READY`, or to `BLOCKED` with `blocking_issue` set, and only ever changes after this region's own `human_final_approval` is `true`.
 
 ## 2. Error handling
 

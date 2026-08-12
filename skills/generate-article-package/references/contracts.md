@@ -48,10 +48,21 @@ Allowed terminal package statuses:
 
 - `PACKAGE_REVISION_REQUIRED`
 - `EDITORIAL_INPUT_REQUIRED`
-- `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION`
+- `DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION` (English mode)
+- `FRENCH_ARTIFACT_READY` (French-render mode)
 - `BLOCKED`
 
 `DRAFT_DUAL_ARTIFACTS`, `PUBLICATION_PACKAGE_READY_FOR_EXPORT`, `EXPORTED`, and `ARCHIVED` may be recorded only as internal lifecycle events; they are not terminal skill outputs. This skill must never emit `PUBLISHED`.
+
+### 1.5 French-render mode
+
+Triggered only by `adapt-article-french` returning `FRENCH_ADAPTATION_READY_FOR_PACKAGING`. In this mode the skill:
+
+- renders exactly one additional file, the French Publication Package, and nothing else;
+- never re-renders, alters, or touches the English Publication Package or the Workflow Report already produced in English mode;
+- copies the `disclosure` block from `adapt-article-french`'s output verbatim onto the French file's cover area, visibly, not buried in a footer;
+- uses the same `article_id` and `approved_article_hash` as the English package it adapts, so the two remain traceably linked;
+- returns `FRENCH_ARTIFACT_READY` on success or `BLOCKED` if the French content, hash, or disclosure is missing or inconsistent with the approved English package.
 
 ## 2. Traceability ledger
 
@@ -432,14 +443,16 @@ Use:
 
 - `MacroAlloc_<content-type>_<region>_<YYYY-MM-DD>_<short-slug>_Publication_<article-version>.docx`
 - `MacroAlloc_<content-type>_<region>_<YYYY-MM-DD>_<short-slug>_Workflow-Report_<report-version>.docx`
+- `MacroAlloc_<content-type>_<region>_<YYYY-MM-DD>_<short-slug>_Publication-FR_<article-version>.docx` (French-render mode only)
 
-`<region>` is `US`, `Europe`, or `Asia`. It is mandatory whenever the orchestrator's run covers more than one region, so that two regions' files for the same content type and date are never confused with each other.
+`<region>` is `US`, `Europe`, or `Asia`. It is mandatory whenever the orchestrator's run covers more than one region, so that two regions' files for the same content type and date are never confused with each other. The `-FR` suffix on the French file's document-type segment is mandatory and non-negotiable; a French file must never share a filename pattern with its English counterpart beyond that suffix, so the two are never confused in a folder listing.
 
 Examples:
 
 - `MacroAlloc_Evening-Macro-Insight_US_2026-08-03_fed-hawkish-dissents_Publication_v1.0.docx`
 - `MacroAlloc_Evening-Macro-Insight_US_2026-08-03_fed-hawkish-dissents_Workflow-Report_v1.0.docx`
 - `MacroAlloc_Morning-Macro-Insight_Europe_2026-08-06_ecb-rate-path_Publication_v1.0.docx`
+- `MacroAlloc_Morning-Macro-Insight_Europe_2026-08-06_ecb-rate-path_Publication-FR_v1.0.docx`
 
 For the skill distribution package, use:
 

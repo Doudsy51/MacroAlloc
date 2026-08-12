@@ -18,7 +18,7 @@
 - Keep facts, interpretations, forecasts, scenarios, and recommendations clearly separated.
 - Stop rather than fabricate missing information.
 - Treat US English (`en-US`) as the non-negotiable language of the primary article, SEO metadata, review and final package, in every region.
-- Treat any requested French or other-language version only as an optional secondary adaptation after the US-English package is complete; it must never replace the primary deliverable.
+- Treat the French adaptation as an automatic secondary artifact triggered only by that region's own `APPROVE`, never a substitute for or a delay of the primary US-English deliverable, and never accompanied by a separate French human-approval gate.
 - Process the three regions (US, Europe, Asia) sequentially, in that order, each with a fully isolated `ArticleJob`; never let one region's state, counters, or outcome affect another's.
 
 ## 2. Acceptance criteria
@@ -39,6 +39,7 @@ The workflow passes only if, **for each region that reached `TOPIC_SELECTED`**:
 - the Workflow Report contains the process evidence needed for internal evaluation and is clearly marked non-public;
 - both documents reference the same article identity and immutable article hash;
 - human approval remains mandatory before publication, granted separately for this region;
+- if this region reached `APPROVE`, `adapt-article-french` and `generate-article-package` (French-render mode) ran automatically and the resulting French artifact carries the mandatory disclosure statement verbatim, or the block was recorded without reopening the `APPROVE` decision;
 - traceability is complete.
 
 The overall run passes only if every region that reached `TOPIC_SELECTED` independently meets the criteria above; one region failing does not invalidate another region's passing result.
