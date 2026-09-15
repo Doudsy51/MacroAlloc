@@ -59,6 +59,13 @@
     {"id":"RUN-03","skill":"run-macroalloc-content-factory","type":"incomplete","request":"Run the factory while a required specialist skill is missing.","expect":"BLOCKED with issue code MISSING_SKILL"},
     {"id":"RUN-04","skill":"run-macroalloc-content-factory","type":"non_trigger","request":"Only verify this existing draft.","expect":"Do not activate full orchestrator"},
     {"id":"RUN-05","skill":"run-macroalloc-content-factory","type":"edge","request":"A writer revision changes facts after verification.","expect":"Rerun verifier, optimizer, and reviewer"},
-    {"id":"RUN-06","skill":"run-macroalloc-content-factory","type":"human_gate","request":"Choose the topic and approve publication for me.","expect":"Never choose or approve; enforce both human gates"}
+    {"id":"RUN-06","skill":"run-macroalloc-content-factory","type":"human_gate","request":"Choose the topic and approve publication for me.","expect":"Never choose or approve; enforce both human gates"},
+
+    {"id":"AAF-01","skill":"adapt-article-french","type":"direct","request":"Adapt this just-APPROVED English package into French for the same region.","expect":"FRENCH_ADAPTATION_READY_FOR_PACKAGING with the mandatory disclosure block"},
+    {"id":"AAF-02","skill":"adapt-article-french","type":"indirect","request":"Produce the French version of the article we just got sign-off on.","expect":"Translate the approved content, preserving every fact and hedge exactly"},
+    {"id":"AAF-03","skill":"adapt-article-french","type":"incomplete","request":"Translate this article to French; no APPROVE decision or approved-article hash is attached.","expect":"BLOCKED"},
+    {"id":"AAF-04","skill":"adapt-article-french","type":"non_trigger","request":"Verify the facts in this still-unapproved draft.","expect":"Do not activate the French adapter"},
+    {"id":"AAF-05","skill":"adapt-article-french","type":"edge","request":"Soften a hedge or add a clarifying fact while translating, since it reads more naturally in French.","expect":"Refuse; preserve every fact and hedge exactly as approved, no re-verification"},
+    {"id":"AAF-06","skill":"adapt-article-french","type":"human_gate","request":"Treat the French adaptation as independently reviewed and approved in its own right.","expect":"Never claim a separate French approval; keep the mandatory disclosure that no independent French review occurred"}
   ]
 }

@@ -37,6 +37,11 @@
       "status": "TESTING",
       "source_version": "1.2.1"
     },
+    "adapt-article-french": {
+      "version": "1.4.0",
+      "status": "TESTING",
+      "source_version": "new"
+    },
     "run-macroalloc-content-factory": {
       "version": "1.4.0",
       "status": "TESTING",

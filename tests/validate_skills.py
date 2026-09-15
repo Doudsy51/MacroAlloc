@@ -20,6 +20,7 @@ REQUIRED_INVARIANTS = {
     "optimize-content-discoverability": ["APPROVED_FOR_SEO", "preserving verified facts", "locked angle"],
     "review-article": ["PUBLISH", "independent", "locked topic and angle"],
     "generate-article-package": ["Publication Package", "Workflow Report", "DUAL_ARTIFACTS_READY_FOR_HUMAN_VALIDATION"],
+    "adapt-article-french": ["APPROVE", "FRENCH_ADAPTATION_READY_FOR_PACKAGING", "disclosure"],
     "run-macroalloc-content-factory": ["AWAITING_USER_SELECTION", "both final DOCX files", "human final-validation"],
 }
 
@@ -85,7 +86,12 @@ def main() -> int:
 
     stages = contracts.get("stages", [])
     stage_names = [stage.get("skill") for stage in stages]
-    specialist_names = [name for name in expected if name != "run-macroalloc-content-factory"]
+    # adapt-article-french is a conditional, post-approval secondary skill invoked only
+    # after a region's human APPROVE (see run-macroalloc-content-factory
+    # references/workflow.md Section 12.1); it is not part of the linear pre-approval
+    # stage chain modeled in workflow-contracts.json's "stages" array.
+    excluded_from_stage_chain = {"run-macroalloc-content-factory", "adapt-article-french"}
+    specialist_names = [name for name in expected if name not in excluded_from_stage_chain]
     if set(stage_names) != set(specialist_names) or len(stage_names) != len(specialist_names):
         errors.append(f"contract stage order mismatch: {stage_names}")
     for index, stage in enumerate(stages[:-1]):

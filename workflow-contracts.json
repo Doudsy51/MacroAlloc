@@ -64,9 +64,12 @@
       "optimize-content-discoverability",
       "review-article",
       "generate-article-package",
-      "HUMAN_FINAL_VALIDATION"
+      "HUMAN_FINAL_VALIDATION",
+      "adapt-article-french",
+      "generate-article-package"
     ],
     "mandatory_stops": ["AWAITING_USER_SELECTION", "AWAITING_FINAL_HUMAN_VALIDATION"],
-    "never_autonomous": ["TOPIC_SELECTED", "PUBLISHED", "FINAL_HUMAN_APPROVAL"]
+    "never_autonomous": ["TOPIC_SELECTED", "PUBLISHED", "FINAL_HUMAN_APPROVAL"],
+    "notes": "adapt-article-french and the second generate-article-package entry (French-render mode) run only after HUMAN_FINAL_VALIDATION returns APPROVE for a given region; they are conditional and not part of the linear stage chain above."
   }
 }
