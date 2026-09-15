@@ -257,7 +257,7 @@ Assess whether the content strengthens MacroAlloc's positioning in:
 - financial education;
 - cross-asset interpretation.
 
-Return a `MATERIALITY_SCORE` from 0 to 100, but block candidates that fail any hard gate regardless of score.
+Return a `MATERIALITY_SCORE` from 0 to 100, but block candidates that fail any hard gate regardless of score. This raw 0-100 assessment feeds the weighted "Materiality" dimension in Section 15.1; the `materiality_score` field in the output contract reports that weighted 0-20 contribution, not this raw 0-100 value.
 
 ## 6. Audience-demand engine
 
@@ -545,11 +545,11 @@ Apply transparent penalties for:
 
 - `85–100`: exceptional opportunity;
 - `75–84`: strong opportunity;
-- `65–74`: viable with a clear angle and evidence plan;
-- `50–64`: weak; select only after human editorial decision;
+- `65–74`: below the qualification threshold; record as a rejected candidate with this band as the stated reason;
+- `50–64`: below the qualification threshold; weak, record as rejected;
 - `<50`: reject.
 
-The qualification threshold is 75, subject to all hard gates.
+The qualification threshold is 75, subject to all hard gates. Bands below 75 are diagnostic only, used to explain a rejection in `rejected_candidates`; they never create a path to the shortlist or to selection, and no separate "human editorial decision" bypass exists in this skill. The only way a sub-75 candidate reaches a human is the unrelated case in Section 17.2: a user naming a topic outside the active shortlist, which this skill treats as `BLOCKED` and refers to an editorial exception entirely outside this workflow, not as a use of this scoring band.
 
 A lower-scoring topic may not outrank a stronger one merely because it is newer.
 

@@ -46,6 +46,9 @@ regions:
         evidence_score:
         timing_score:
         topical_authority_score:
+        discoverability_score:
+        cross_channel_score:
+        production_feasibility_score:
         evidence_risk:
         duplication_risk:
         why_now:
