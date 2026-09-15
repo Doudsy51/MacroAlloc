@@ -26,7 +26,7 @@ description: Orchestrates the complete MacroAlloc editorial workflow, producing 
 
 - Upstream producer: A user request to run the complete Content Factory.
 - Downstream consumer: Each region's own human final-validation gate after its two DOCX deliverables pass checks.
-- Allowed terminal statuses: The normalized specialist statuses plus `AWAITING_USER_SELECTION`, `AWAITING_FINAL_HUMAN_VALIDATION` (per region), `FRENCH_ARTIFACT_READY` (per region), `COMPLETED` (per region), or `BLOCKED` (per region).
+- Allowed terminal statuses: The normalized specialist statuses plus `AWAITING_USER_SELECTION`, `AWAITING_FINAL_HUMAN_VALIDATION` (per region), `FRENCH_ARTIFACT_READY` (per region), `BLOCKED` (per region), or `COMPLETED` (whole-run, returned once every selected region has passed through its own gate).
 - Keep the public article separate from internal workflow evidence, for every region.
 - Regions' machine-controlled stages (research through packaging) run concurrently once selected; only the human final-validation gate is serialized, presented one region at a time in the order each region's package becomes ready.
 - One region reaching `BLOCKED`, `REJECT`, or a loop-limit escalation must never stop or alter the other regions' independent progress.
