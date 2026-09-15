@@ -95,7 +95,7 @@ EditorialReview:
     metadata_fidelity: PASS | FAIL
     compliance_signal: PASS | FAIL
     package_completeness: PASS | FAIL
-    human_voice_score: PASS | FAIL
+    human_writing_score: PASS | FAIL
     no_em_dash: PASS | FAIL
   strengths:
     - strength_id: STR-001

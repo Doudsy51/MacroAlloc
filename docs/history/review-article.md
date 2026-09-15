@@ -10,6 +10,11 @@ All notable changes to this skill are documented here.
 - An independent, zero-tolerance `em_dash_count` hard gate: a single em dash blocks `PUBLISH` regardless of every other score (Gate 15), separate from the `human_writing_score` gate (Gate 14, threshold 80).
 - `region: US | EUROPE | ASIA` in the lineage contract.
 
+### Fixed
+
+- `references/workflow.md`: gave the two hard gates above their own explicit Step 18 in the execution sequence (previously the em-dash check was one bullet inside Step 17's qualitative "AI-pattern risk" review); renumbered the following three steps (18-20 -> 19-21), for a 21-step sequence with no gaps.
+- `references/contracts.md`: renamed the `quality_gates.human_voice_score` field to `human_writing_score`, matching its name everywhere else in this skill.
+
 This entry documents behavior already present in the skill's current files; it was not logged when originally shipped.
 
 ## [1.0.0] — 2026-08-02
