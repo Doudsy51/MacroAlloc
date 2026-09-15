@@ -35,6 +35,7 @@
 - Return `BLOCKED` if the topic or angle differs materially from the human-selected topic or locked brief.
 - Do not translate, replace, broaden or reselect the topic during optimization.
 - Treat French or other-language SEO as a separate secondary adaptation, never as a replacement for the US-English package.
+- When a module's required external data (competitor set, site taxonomy, content inventory, or similar) is unavailable, mark that module's output `NOT_ASSESSED` — never substitute an assumed absence (e.g. never report "no cannibalization" or "no competitor gap" when the underlying data was simply never supplied). This applies wherever a module below defines its own activation/data requirement (Modules 15-17) and to the scoring model's overall-score exclusions (Section 24.1).
 
 ## 2. Allowed transformations
 
@@ -299,6 +300,8 @@ Never invent:
 - weak or unsupported claims of authority;
 - E-E-A-T assessment;
 - recommendations for the CMS or author page.
+
+Modules 6, 7 and 8 below each run as an independent pass with a distinct target surface and output shape; none substitutes for another. Module 6 produces general-purpose answer blocks (35-80 words) for AI retrieval/citation systems broadly; Module 7 assesses readiness signals specifically for Google's AI Overview surface and can recommend lists/tables/definitions with no fixed word count; Module 8 produces exact, format-specific candidate text (paragraph, list, table, timeline, FAQ) per H2 for classic featured snippets. Producing one module's output does not satisfy another's required output fields.
 
 ## 9. Module 6 — AI search and retrieval engine
 
