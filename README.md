@@ -9,7 +9,7 @@ Repository for the MacroAlloc editorial skills and their shared workflow contrac
 - Primary production language: **en-US**
 - Target market: **United States**
 
-The bundle contains eight interoperable skills:
+The bundle contains nine interoperable skills:
 
 1. `discover-content-opportunities`
 2. `research-macro-evidence`
@@ -18,16 +18,21 @@ The bundle contains eight interoperable skills:
 5. `optimize-content-discoverability`
 6. `review-article`
 7. `generate-article-package`
-8. `run-macroalloc-content-factory`
+8. `adapt-article-french`
+9. `run-macroalloc-content-factory`
 
 ## Repository structure
 
-- `skills/`: one directory per Codex skill.
+- `skills/`: one directory per Codex skill — the development source of truth.
+- `.claude/skills/`: deployment copy for Claude Code, kept in sync with `skills/`.
+- `claude-online-skills/`: deployment copy for claude.ai, with ready-to-import `.zip` packages.
 - `docs/architecture.md`: canonical design and new-skill conventions.
+- `docs/artifact-policy.md`: protection rules for untracked article and test artifacts.
 - `docs/history/`: historical change records.
 - `skill-versions.json`: authoritative bundle and skill versions.
 - `workflow-contracts.json`: stage order, statuses, handoffs, and human gates.
-- `tests/`: structural validator and 51 behavioral evaluation fixtures.
+- `tests/`: structural validator and behavioral evaluation fixtures.
+- `test-packages/`, `docs/article-jobs/`, `docs/article-packages/`: generated test and production artifacts. Their presence is not an approval; they stay out of version control by default (see `docs/artifact-policy.md`).
 
 Every skill follows the standardized layout:
 
@@ -60,3 +65,4 @@ The validator checks structure, contracts, handoffs, metadata, reference routing
 - Discoverability optimization cannot alter verified substance.
 - Public publication content and internal workflow evidence are emitted as separate documents.
 - Final human validation is mandatory; the workflow never publishes automatically.
+- French adaptation runs only after that human approval, as a secondary artifact, never a substitute for the primary US-English package.

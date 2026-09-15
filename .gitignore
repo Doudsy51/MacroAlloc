@@ -7,3 +7,9 @@ Thumbs.db
 # Fichiers temporaires
 *.tmp
 *.log
+
+# Artefacts d'articles et de tests (docs/artifact-policy.md) :
+# jamais versionnés par défaut, ajout uniquement sur demande explicite.
+/docs/article-jobs/
+/docs/article-packages/
+/test-packages/
