@@ -52,7 +52,6 @@ regions:
         evidence_risk:
         duplication_risk:
         why_now:
-        rejection_reason:
     rejected_candidates:
       - candidate_id:
         reason:
