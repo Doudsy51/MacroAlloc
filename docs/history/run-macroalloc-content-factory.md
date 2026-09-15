@@ -1,5 +1,15 @@
 # Changelog - run-macroalloc-content-factory
 
+## Unreleased - Concurrent region processing (2026-09-15)
+
+### Changed
+
+- Regions with a confirmed topic selection now run their machine-controlled stages (research through packaging) concurrently instead of strictly in sequence (US, then Europe, then Asia).
+- The human final-validation gate remains serialized: exactly one region's gate is presented at a time, in the order its package becomes ready, never two at once.
+- Updated `references/workflow.md` (Sections 2, 2.1, 5, 6, 11, 12, 12.1, 15) and `references/quality-and-tests.md` accordingly; loop limits and region-isolation guarantees are unchanged.
+
+Note: this entry does not carry a numeric version because the versions between 1.2.1 and the skill's current `main` state (multi-region support, human-voice rule, French adaptation) were not recorded here; see Git history for that period instead.
+
 ## 1.2.1 - Packaging-state clarity
 
 ### Changed

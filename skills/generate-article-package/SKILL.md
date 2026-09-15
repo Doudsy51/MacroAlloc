@@ -36,6 +36,7 @@ description: Creates two separate Word deliverables from an approved US-English 
 - Read [references/contracts.md](references/contracts.md) whenever validating or emitting structured fields, statuses, versions, handoffs, filenames, or artifacts.
 - Read [references/domain-rules.md](references/domain-rules.md) for task-specific editorial, financial, SEO, research, writing, or formatting rules relevant to the request.
 - Read [references/quality-and-tests.md](references/quality-and-tests.md) before a terminal decision and when diagnosing failures, gates, regressions, security, or compliance.
+- Use [scripts/build_package.js](scripts/build_package.js) to render every DOCX file (Publication Package, Workflow Report, and French-render mode's Publication Package) instead of writing a new one-off script. Build a JSON config per the schema documented in `references/domain-rules.md` Section 9, then run `node scripts/build_package.js <config.json>`. Requires the `docx` npm package (install once per environment: `npm install docx`); does not require LibreOffice or pandoc. The script never overwrites an existing file. Its current template is a functional baseline, not yet a full implementation of the Section 5 Word formatting standard — see Section 9 for the known gap.
 
 ## Completion
 
