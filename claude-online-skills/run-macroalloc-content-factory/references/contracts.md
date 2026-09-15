@@ -73,8 +73,7 @@ or, if the French chain returned `BLOCKED`, the recorded blocking issue in place
 - `PUBLICATION_PACKAGE_READY_FOR_EXPORT`
 - `HUMAN_EDITORIAL_INTERVENTION_REQUIRED`
 - `HUMAN_FINAL_APPROVAL_REQUIRED`
-- `COMPLETED_APPROVED`
-- `COMPLETED_REJECTED`
+- `COMPLETED` (whole-run status, returned once every selected region has passed through its own final-validation gate; not a per-region status — see workflow.md Section 12.1)
 - `NO_SUITABLE_SHORTLIST`
 - `BLOCKED`
 - `FAILED`
