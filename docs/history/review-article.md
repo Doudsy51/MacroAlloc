@@ -2,7 +2,7 @@
 
 All notable changes to this skill are documented here.
 
-## Unreleased — Human-voice writing rule and region-aware lineage (documented 2026-09-15, previously unlogged)
+## 1.5.0 — Human-voice writing rule and region-aware lineage (documented 2026-09-15, previously unlogged)
 
 ### Added
 

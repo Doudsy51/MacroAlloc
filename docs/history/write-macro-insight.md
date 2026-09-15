@@ -1,6 +1,6 @@
 # Changelog — write-macro-insight
 
-## Unreleased — Human-sounding prose rule and region-aware lineage (documented 2026-09-15, previously unlogged)
+## 1.5.0 — Human-sounding prose rule and region-aware lineage (documented 2026-09-15, previously unlogged)
 
 ### Added
 

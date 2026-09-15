@@ -2,7 +2,7 @@
 
 All notable changes to this skill are documented here.
 
-## Unreleased — Region-aware lineage (documented 2026-09-15, previously unlogged)
+## 1.5.0 — Region-aware lineage (documented 2026-09-15, previously unlogged)
 
 ### Added
 
