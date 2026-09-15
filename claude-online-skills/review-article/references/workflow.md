@@ -489,12 +489,26 @@ Detect signals associated with generic machine-generated writing:
 - generic “investors should monitor” conclusions;
 - artificial symmetry;
 - unnecessary recaps;
-- overuse of em dashes, colons or bold emphasis;
+- overuse of colons or bold emphasis;
 - excessive sectioning.
 
-Do not reject an article merely because it is structured. Reject formulaic writing that reduces credibility or readability.
+Do not reject an article merely because it is structured. Reject formulaic writing that reduces credibility or readability. This step produces a qualitative judgment; it does not include the em-dash count, which is a separate, mandatory hard gate — see Step 18.
 
-### Step 18 — Review discoverability integration
+### Step 18 — Compute the human-writing score and the em-dash count (hard gates)
+
+This step is mandatory for every review, never optional and never folded into Step 17's qualitative judgment.
+
+1. Compute `human_writing_score` using the itemized deduction rubric in `references/domain-rules.md` Section 2.11. Record every deduction applied, with its location, in `human_voice_audit.deductions`.
+2. Separately, count every em dash (`—`) or double-hyphen used as one (`--`) in the article body. Record the exact count as `em_dash_count`.
+
+Both values are hard gates, independent of every other score in this review and of each other:
+
+- `human_writing_score` below 80 blocks `PUBLISH` (Gate 14).
+- `em_dash_count` other than exactly 0 blocks `PUBLISH` regardless of `human_writing_score` or any other score (Gate 15), with zero tolerance and no minimum-instance exception.
+
+Route a failure on either to `write-macro-insight` with the exact repeated phrase, structural tic, or em-dash location found — never a vague "sound more human" instruction.
+
+### Step 19 — Review discoverability integration
 
 Confirm that optimization remains natural.
 
@@ -509,7 +523,7 @@ Check:
 - distribution variants preserve the original meaning;
 - no discoverability field introduces an unverified claim.
 
-### Step 19 — Review package completeness
+### Step 20 — Review package completeness
 
 Confirm that the final package contains, where required:
 
@@ -527,7 +541,7 @@ Confirm that the final package contains, where required:
 
 This skill assesses completeness but does not assemble the Word file.
 
-### Step 20 — Score, decide and route
+### Step 21 — Score, decide and route
 
 Apply all scoring rules and hard gates.
 
