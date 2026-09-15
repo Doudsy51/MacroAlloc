@@ -19,7 +19,7 @@
 - Stop rather than fabricate missing information.
 - Treat US English (`en-US`) as the non-negotiable language of the primary article, SEO metadata, review and final package, in every region.
 - Treat the French adaptation as an automatic secondary artifact triggered only by that region's own `APPROVE`, never a substitute for or a delay of the primary US-English deliverable, and never accompanied by a separate French human-approval gate.
-- Process the three regions (US, Europe, Asia) sequentially, in that order, each with a fully isolated `ArticleJob`; never let one region's state, counters, or outcome affect another's.
+- Process the three regions' machine-controlled stages (research through packaging) concurrently, each with a fully isolated `ArticleJob`; never let one region's state, counters, or outcome affect another's. Serialize only the human final-validation gate, presenting one region at a time in the order its package becomes ready.
 
 ## 2. Acceptance criteria
 

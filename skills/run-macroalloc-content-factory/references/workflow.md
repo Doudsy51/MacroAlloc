@@ -30,7 +30,7 @@ The orchestrator must never publish content automatically during the launch phas
 
 1. `discover-content-opportunities` — one call, producing three regional shortlists (US, Europe, Asia)
 2. Mandatory human topic selection in a separate turn — one selection per region the user wants to proceed with
-3. For each region with a confirmed selection, **in sequence: US, then Europe, then Asia**, run steps 3 through 9 to full completion before moving to the next region:
+3. For each region with a confirmed selection, run steps 3 through 9 **concurrently across regions** — a region's pipeline never waits for another region's pipeline to progress or complete:
    1. `research-macro-evidence`
    2. `write-macro-insight`
    3. `verify-financial-article`
@@ -40,11 +40,11 @@ The orchestrator must never publish content automatically during the launch phas
    7. Human final approval for that region
    8. On `APPROVE` only: automatically invoke `adapt-article-french` then `generate-article-package` (French-render mode) for that region — see Section 12.1
 
-The orchestrator must not skip a stage unless this skill explicitly defines the stage as optional. It must not start a region's step 3-9 sequence before the previous region's sequence has reached its own human final-validation gate.
+The orchestrator must not skip a stage unless this skill explicitly defines the stage as optional. Steps 1-6 (research through packaging) may run in parallel across regions; step 7 (human final approval) must always be presented to the user one region at a time, in the order each region's package becomes ready — never present two regions' final-validation gates in the same turn.
 
 ### 2.1 Region isolation (mandatory)
 
-Each region's `ArticleJob` — lineage, evidence dossier, draft, verification report, discoverability package, editorial review, revision-loop counters, and package — is a fully separate object. Before starting a region's step-3 sequence, confirm the previous region's object is closed (its human final-validation gate has returned `APPROVE`, `REQUEST_CHANGES` fully routed and resolved or explicitly deferred, or `REJECT`). Never:
+Each region's `ArticleJob` — lineage, evidence dossier, draft, verification report, discoverability package, editorial review, revision-loop counters, and package — is a fully separate object. Regions with a confirmed selection begin their steps 1-6 (research through packaging) concurrently; a region's pipeline never waits on another region's pipeline state or gate. Only the human final-validation gate (step 7) is serialized: present one region's gate at a time, in the order its package becomes ready, and never open a second region's gate before the previous one presented has received a response. Never:
 
 - reuse or carry over a revision-loop counter from one region into another;
 - let a `BLOCKED`, `REJECT`, or loop-limit escalation in one region change, pause, or cancel another region's independent progress;
@@ -131,11 +131,11 @@ Record, per region:
 - rejected candidates;
 - decision rationale.
 
-Once at least one region has `TOPIC_SELECTED`, proceed to Stage 3 **for that region**, in the order US, then Europe, then Asia, processing only the regions that have a confirmed selection.
+Once at least one region has `TOPIC_SELECTED`, proceed to Stage 3 **for that region**, concurrently with any other region that also has a confirmed selection, processing only the regions that have a confirmed selection.
 
 ## 6. Stage 3 — Research the selected topic
 
-*(Run once per region that has `TOPIC_SELECTED`, in order: US, then Europe, then Asia. The region currently in production is called "the active region" throughout Stages 3-9.)*
+*(Run once per region that has `TOPIC_SELECTED`; regions with a confirmed selection run this stage concurrently with each other. Whichever region a given invocation is working on is called "the active region" throughout Stages 3-9; concurrent regions each have their own active-region context and never share state.)*
 
 Invoke `research-macro-evidence` after the active region's `TOPIC_SELECTED`.
 
@@ -347,13 +347,13 @@ Return packaging issues to `generate-article-package`.
 Maximum package retries: 1, tracked independently per region.
 
 ### `BLOCKED`
-Stop and report missing or inconsistent artifacts. This blocks only the active region; proceed to the next region's Stage 3 once the block is reported.
+Stop and report missing or inconsistent artifacts. This blocks only the active region; every other region's pipeline continues unaffected, since regions run concurrently rather than in sequence.
 
 The package generator may format and assemble. It may not invent, rewrite, or override approved content.
 
 ## 12. Stage 9 — Human final-validation gate
 
-*(This gate runs separately for each region, immediately after that region's Stage 8. It is never combined across regions: US's two files are presented and resolved on their own, then Europe's, then Asia's.)*
+*(This gate runs separately for each region, immediately after that region's Stage 8 completes. It is never combined across regions: each region's two files are presented and resolved on their own, in the order that region's package becomes ready — not necessarily US, then Europe, then Asia, since regions' machine-controlled stages run concurrently and may finish in any order.)*
 
 Present the active region's two final DOCX files and a concise final status report for that region alone. Identify the Publication Package as the document for human review and website publication. Identify the Workflow Report as internal and not for publication.
 
@@ -375,9 +375,9 @@ Immediately after this region's gate returns `APPROVE` — and only then, never 
 - Expected successful chain: `adapt-article-french` returns `FRENCH_ADAPTATION_READY_FOR_PACKAGING`, then `generate-article-package` (French-render mode) returns `FRENCH_ARTIFACT_READY`.
 - On `BLOCKED` from either skill, report the block for that region's French artifact alone. It does not reopen the region's `APPROVE` decision, does not block the region's overall completion, and does not delay the next region.
 - The resulting French artifact carries `adapt-article-french`'s mandatory disclosure statement that no independent human-in-language review occurred; never add, imply, or fabricate a separate French approval.
-- This step runs at most once per region, strictly after that region's own `APPROVE`, and strictly before moving to the next region.
+- This step runs at most once per region, strictly after that region's own `APPROVE`.
 
-Once this region's gate resolves — `APPROVE` (after the automatic French adaptation above completes or reports `BLOCKED`), `REJECT`, or an explicitly deferred `REQUEST_CHANGES` — proceed to the next region in order (US → Europe → Asia) that has a confirmed `TOPIC_SELECTED`, starting again at Stage 3. A region resolved as `REJECT` or `BLOCKED` does not cancel or delay the remaining regions. When every selected region has passed through this gate, return `COMPLETED` with a summary covering all regions, including each region's French-artifact status.
+Once this region's gate resolves — `APPROVE` (after the automatic French adaptation above completes or reports `BLOCKED`), `REJECT`, or an explicitly deferred `REQUEST_CHANGES` — that region's job is finished. Because every selected region's steps 1-6 already run concurrently, there is no next region to start at this point; simply present each remaining region's gate as soon as its own package becomes ready, in whatever order that happens to be. A region resolved as `REJECT` or `BLOCKED` does not cancel or delay the remaining regions. When every selected region has passed through this gate, return `COMPLETED` with a summary covering all regions, including each region's French-artifact status.
 
 ## 13. Revision-routing matrix
 
@@ -413,14 +413,15 @@ When the user starts the pipeline:
 
 1. Run discovery once, across all three regions.
 2. Present 3 to 5 qualified topic choices per region (US, Europe, Asia), return `AWAITING_USER_SELECTION`, and end the turn.
-3. After the user selects one topic per region they want to proceed with, process the selected regions **sequentially, in the order US, then Europe, then Asia** — continuing automatically through each region's machine-controlled stages.
+3. After the user selects one topic per region they want to proceed with, process the selected regions' machine-controlled stages **concurrently** — do not wait for one region's pipeline to progress or finish before starting another's.
 4. Interrupt only for:
    - topic selection (once, covering all three regions);
    - a given region's editorial decision;
    - a given region's revision-limit escalation;
    - a given region's final human approval;
    - a given region's blocking failure.
-5. Present each region's final human-validation gate on its own, right after that region's two DOCX files are ready — do not wait for all three regions to finish before asking for the first region's approval.
+   Present each interruption to the user one at a time, even when two regions reach one at nearly the same moment; never combine two regions' decisions into a single request.
+5. Present each region's final human-validation gate on its own, right after that region's two DOCX files are ready, in whatever order regions finish — do not wait for all three regions to finish before asking for the first region's approval, and never present two regions' gates together.
 6. At completion of all selected regions, return a short summary covering each region's outcome.
 
-Do not narrate every internal stage unless requested. Show progress only when materially useful. When moving from one region to the next, a brief transition note (e.g. "US package approved — starting Europe now") is materially useful and should be shown.
+Do not narrate every internal stage unless requested. Show progress only when materially useful. Since regions run concurrently, a brief status note when one region's package becomes ready (e.g. "US package ready for review — Europe and Asia are still in progress") is materially useful and should be shown.

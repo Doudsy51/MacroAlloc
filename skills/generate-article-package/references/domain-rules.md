@@ -10,6 +10,7 @@
 - 6. Conflict-resolution rules
 - 7. Error handling
 - 8. Evaluation dataset recommendations
+- 9. Deterministic rendering script
 
 ## 1. Workflow invariants
 
@@ -587,3 +588,48 @@ Measure:
 - export completeness;
 - reproducibility across repeated runs;
 - compatibility with CMS mapping.
+
+## 9. Deterministic rendering script
+
+`scripts/build_package.js` is the required renderer for every DOCX produced by this skill. It replaces writing a new, near-identical Node script for each run: one reusable script, driven by a JSON config, produces the Publication Package, the Workflow Report, and (in French-render mode) the French Publication Package.
+
+### 9.1 Config schema
+
+Pass one JSON file as the script's only argument.
+
+Top-level fields:
+
+- `region`: `US` | `Europe` | `Asia`
+- `article_id`, `article_version`, `content_type`, `date` (`YYYY-MM-DD`), `slug`
+- `output_dir`: an existing directory to write into
+- one or more of `publication`, `workflow_report`, `french_publication`
+
+Each present top-level document key produces exactly one file, named per Section 8's file naming convention unless an explicit `filename` override is given inside that key.
+
+`publication` fields: `edition_label`, `h1`, `subtitle`, `key_takeaways` (array), `body_paragraphs` (array), `analysis_heading` / `analysis_text` (optional), `watch_heading` / `watch_text` (optional), `disclaimer`, `sources` (array of pre-formatted lines), `sources_heading` (optional), `seo_table` (optional, array of rows, first row is the header), `seo_heading` (optional).
+
+`workflow_report` fields: `region_label`, `edition_label`, `sections` (array of `{ heading, blocks }`). Each `blocks` entry is one of:
+
+- `{ "type": "paragraph", "text": "..." }`
+- `{ "type": "bold", "text": "..." }`
+- `{ "type": "italic", "text": "..." }`
+- `{ "type": "bullets", "items": ["...", "..."] }`
+- `{ "type": "table", "rows": [["Header1","Header2"], ["v1","v2"]], "widths": [optional DXA array] }`
+- `{ "type": "hr" }`
+- `{ "type": "heading2", "text": "..." }` (rarely needed; prefer the section-level `heading` instead)
+
+`french_publication` fields: same shape as `publication`, plus a mandatory `disclosure_text` rendered visibly on the cover, verbatim from `adapt-article-french`'s `disclosure` block (Section 3.16).
+
+### 9.2 Safety and integrity
+
+The script refuses to run if any target file already exists (protects artifacts per `docs/artifact-policy.md`) and prints one JSON line per file written, containing `path`, `sha256`, and `bytes`, so the caller can populate the package manifest (Section 3, Section 9 of `contracts.md`) without recomputing hashes separately. It performs no network access and touches only the paths it is told to write.
+
+### 9.3 Known gap versus the Section 5 Word formatting standard
+
+The script's current template is a functional baseline, not a full implementation of Section 5. Specifically, it does not yet:
+
+- use A4 page size (it uses US Letter);
+- define or apply the named Word styles listed in 5.2 (it uses `docx`'s built-in heading levels and ad hoc runs instead);
+- apply MacroAlloc brand colors, a header/footer with page numbers and article ID, or a table of contents field.
+
+This gap predates the script: it matches what was already being produced by hand before this script existed. Closing it (true named styles, brand palette, header/footer, TOC field) is a separate, larger task and should be scoped and confirmed before implementation, not assumed as part of this change.
