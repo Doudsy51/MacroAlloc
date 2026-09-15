@@ -1,5 +1,15 @@
 # Changelog — discover-content-opportunities
 
+## Unreleased — Multi-region discovery (documented 2026-09-15, previously unlogged)
+
+### Added
+
+- Independent parallel shortlists for the three regional focuses (US, Europe, Asia) in every discovery run, each with its own candidate universe, scoring, and 3-to-5-topic shortlist.
+- Per-region `NO_SUITABLE_SHORTLIST`: a region with too few qualified candidates returns that status for itself alone, without blocking or padding the other regions' shortlists.
+- `TOPIC_SELECTED` recorded independently per confirmed region; a user may select for only some regions in a given reply without invalidating the others.
+
+This entry documents behavior already present in the skill's current files; it was not logged when originally shipped.
+
 ## 1.1.0 — Mandatory human topic selection
 
 ### Changed

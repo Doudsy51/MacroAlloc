@@ -2,6 +2,16 @@
 
 All notable changes to this skill are documented here.
 
+## Unreleased — Human-voice writing rule and region-aware lineage (documented 2026-09-15, previously unlogged)
+
+### Added
+
+- `human_writing_score` rubric (Section 2.11): an itemized deduction scale detecting mechanical writing patterns (uniform sentence rhythm, repeated transitions, forced rule-of-three, generic signposting, repeated hedges, uniform section shapes).
+- An independent, zero-tolerance `em_dash_count` hard gate: a single em dash blocks `PUBLISH` regardless of every other score (Gate 15), separate from the `human_writing_score` gate (Gate 14, threshold 80).
+- `region: US | EUROPE | ASIA` in the lineage contract.
+
+This entry documents behavior already present in the skill's current files; it was not logged when originally shipped.
+
 ## [1.0.0] — 2026-08-02
 
 ### Added

@@ -34,5 +34,5 @@ Scores never override a failed hard gate.
 
 ## Completion criteria
 
-Return success only with an internally consistent lineage object, evidence dossier, source register, question coverage, gates, issues, and writer handoff. Keep the status `TESTING` until fresh-context integration tests pass.
+Return success only with an internally consistent lineage object, evidence dossier, source register, question coverage, gates, issues, and writer handoff. Keep this skill's entry in `skill-versions.json` at lifecycle status `TESTING` until fresh-context integration tests pass — this is the bundle-level status field, distinct from this skill's own terminal workflow status (`EVIDENCE_DOSSIER_READY_FOR_WRITING` | `RESEARCH_REVISION_REQUIRED` | `EDITORIAL_DECISION_REQUIRED` | `BLOCKED`).
 

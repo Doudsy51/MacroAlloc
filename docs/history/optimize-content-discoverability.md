@@ -2,6 +2,14 @@
 
 All notable changes to this skill are documented here.
 
+## Unreleased — Region-aware lineage (documented 2026-09-15, previously unlogged)
+
+### Added
+
+- `region: US | EUROPE | ASIA` in the lineage/output contract, so a region's discoverability package is traceable to it and never confused with another region's.
+
+This entry documents behavior already present in the skill's current files; it was not logged when originally shipped.
+
 ## [1.0.0] — 2026-08-02
 
 ### Added
