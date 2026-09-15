@@ -8,6 +8,10 @@
 - Explicit boundary that French or other-language adaptation is a future secondary request recorded but never produced by this skill.
 - `region: US | EUROPE | ASIA` in the lineage contract.
 
+### Fixed
+
+- `references/domain-rules.md`: removed a "Version notes" section that duplicated `docs/history/write-macro-insight.md` near-verbatim, against `docs/architecture.md`'s "runtime instructions must not duplicate" rule; replaced with a pointer to this file.
+
 This entry documents behavior already present in the skill's current files; it was not logged when originally shipped.
 
 ## 1.1.0 — 2026-08-02

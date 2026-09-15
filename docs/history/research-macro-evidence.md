@@ -11,4 +11,8 @@ This skill had no `docs/history/` file before this entry, even though it has exi
 - Never invents a source, fact, quotation, data point, or retrieval result; marks unavailable or unverified planned evidence explicitly.
 - Terminal statuses: `EVIDENCE_DOSSIER_READY_FOR_WRITING`, `RESEARCH_REVISION_REQUIRED`, `EDITORIAL_DECISION_REQUIRED`, `BLOCKED`.
 
+### Fixed
+
+- `references/quality-and-tests.md`: disambiguated a bare "status TESTING" reference, which read as ambiguous between `skill-versions.json`'s bundle-level lifecycle status and this skill's own terminal workflow status defined two paragraphs earlier in the same file. Now names the field explicitly.
+
 This 1.5.0 tag matches the shared bundle version in `skill-versions.json`, not a skill-by-skill semantic increment.

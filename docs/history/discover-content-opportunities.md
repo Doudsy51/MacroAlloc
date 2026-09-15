@@ -8,6 +8,10 @@
 - Per-region `NO_SUITABLE_SHORTLIST`: a region with too few qualified candidates returns that status for itself alone, without blocking or padding the other regions' shortlists.
 - `TOPIC_SELECTED` recorded independently per confirmed region; a user may select for only some regions in a given reply without invalidating the others.
 
+### Changed
+
+- `ranked_opportunities` output contract (`references/contracts.md`): now exposes all 9 weighted score fields from the Section 15.1 scoring model (`materiality_score`, `audience_value_score`, `differentiation_score`, `evidence_score`, `timing_score`, `topical_authority_score`, `discoverability_score`, `cross_channel_score`, `production_feasibility_score`), not just the first 6. This is an output-contract change per `docs/architecture.md`'s versioning rule; a consumer reading only the previous entries here would have missed it.
+
 This entry documents behavior already present in the skill's current files; it was not logged when originally shipped.
 
 ## 1.1.0 — Mandatory human topic selection
