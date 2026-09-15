@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Article"
+  short_description: "Run final independent editorial review"
+  default_prompt: "Use $review-article to perform the final editorial review of this verified and optimized MacroAlloc article."

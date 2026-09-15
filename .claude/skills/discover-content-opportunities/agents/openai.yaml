@@ -1,0 +1,4 @@
+interface:
+  display_name: "Discover Content Opportunities"
+  short_description: "Qualify topics and require human selection"
+  default_prompt: "Use $discover-content-opportunities to produce a qualified MacroAlloc topic shortlist and stop for my selection."
