@@ -1,6 +1,6 @@
 # Changelog - generate-article-package
 
-## Unreleased - Reusable DOCX rendering script (2026-09-15)
+## 1.5.0 - Reusable DOCX rendering script (2026-09-15)
 
 ### Added
 
@@ -8,7 +8,7 @@
 - Documented the script's config schema and safety guarantees (never overwrites an existing file) in `references/domain-rules.md` Section 9.
 - Flagged, in that same section, the script's current gap against the Section 5 Word formatting standard (US Letter and ad hoc styles rather than A4, named Word styles, brand colors, header/footer, and a table-of-contents field) as a known limitation, not yet closed by this change.
 
-Note: this entry does not carry a numeric version because the versions between 1.2.1 and the skill's current `main` state (region support, dual-mode rendering, French-render mode) were not recorded here; see Git history for that period instead.
+Note: the versions between 1.2.1 and this 1.5.0 entry (region support, dual-mode rendering, French-render mode) were shipped without a changelog entry; see Git history for that period instead. This 1.5.0 tag matches the shared bundle version in `skill-versions.json`, not a skill-by-skill semantic increment.
 
 ## 1.2.1 - Historical-state clarity
 
