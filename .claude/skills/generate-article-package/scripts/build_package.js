@@ -273,9 +273,10 @@ async function main() {
     });
   }
   if (cfg.workflow_report) {
+    const reportVersion = cfg.report_version || cfg.article_version;
     jobs.push({
       filename: cfg.workflow_report.filename ||
-        `MacroAlloc_${cfg.content_type}_${cfg.region}_${cfg.date}_${cfg.slug}_Workflow-Report_${cfg.article_version}.docx`,
+        `MacroAlloc_${cfg.content_type}_${cfg.region}_${cfg.date}_${cfg.slug}_Workflow-Report_${reportVersion}.docx`,
       build: () => buildWorkflowReportDoc(cfg, cfg.workflow_report),
     });
   }

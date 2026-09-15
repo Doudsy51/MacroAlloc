@@ -601,12 +601,13 @@ Top-level fields:
 
 - `region`: `US` | `Europe` | `Asia`
 - `article_id`, `article_version`, `content_type`, `date` (`YYYY-MM-DD`), `slug`
+- `report_version` (optional): the `<report-version>` used in the Workflow Report's default filename per `contracts.md` Section 8, so a re-exported Workflow Report can carry its own file revision distinct from `article_version` per Section 1.3's "package file revision" concept. Defaults to `article_version` when omitted, matching prior behavior.
 - `output_dir`: an existing directory to write into
 - one or more of `publication`, `workflow_report`, `french_publication`
 
 `article_id` and `article_version` are accepted for the caller's own bookkeeping (e.g. to populate the package manifest alongside the script's printed hashes) but are not themselves rendered into any document body; the Workflow Report's own document-control content comes from `workflow_report.sections`, not from these top-level fields.
 
-Each present top-level document key produces exactly one file, named per Section 8's file naming convention unless an explicit `filename` override is given inside that key.
+Each present top-level document key produces exactly one file, named per `contracts.md` Section 8's file naming convention (not this file's own Section 8, which covers evaluation datasets) unless an explicit `filename` override is given inside that key.
 
 `publication` fields: `edition_label`, `h1`, `subtitle`, `key_takeaways` (array), `body_paragraphs` (array), `analysis_heading` / `analysis_text` (optional), `watch_heading` / `watch_text` (optional), `disclaimer`, `sources` (array of pre-formatted lines), `sources_heading` (optional), `seo_table` (optional, array of rows, first row is the header), `seo_heading` (optional), `seo_table_widths` (optional, array of DXA column-width integers matching `seo_table`'s row length).
 
