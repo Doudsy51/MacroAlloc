@@ -1,5 +1,13 @@
 # Changelog — verify-financial-article
 
+## Unreleased — Region-aware lineage (documented 2026-09-15, previously unlogged)
+
+### Added
+
+- `region: US | EUROPE | ASIA` in the lineage contract, so a verification report is traceable to its region and never confused with another region's.
+
+This entry documents behavior already present in the skill's current files; it was not logged when originally shipped.
+
 ## 0.7.0 — 2026-08-02
 
 ### Added

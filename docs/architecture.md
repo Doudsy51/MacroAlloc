@@ -43,6 +43,9 @@ Create `scripts/` or `assets/` only when the skill actually needs deterministic 
 6. Prevent discoverability optimization from changing verified facts or thesis.
 7. Keep the public Publication Package separate from the internal Workflow Report.
 8. Require explicit human final validation; never invent approval or publication.
+9. Process each region (US, Europe, Asia) as a fully isolated `ArticleJob`; never share, sum, or let one region's state, counters, or outcome affect another's. Regions' machine-controlled stages may run concurrently, but the human final-validation gate is always serialized: one region presented at a time.
+10. Treat the French adaptation (`adapt-article-french`, invoked only after a region's human `APPROVE`) as a secondary artifact that never substitutes for or delays the primary US-English package, and never gets its own separate human-approval gate.
+11. Enforce the human-writing-score and em-dash checks in `review-article` as independent, zero-tolerance hard gates: a single em dash blocks `PUBLISH` regardless of every other score.
 
 ## New-skill workflow
 

@@ -1,5 +1,15 @@
 # Changelog — write-macro-insight
 
+## Unreleased — Human-sounding prose rule and region-aware lineage (documented 2026-09-15, previously unlogged)
+
+### Added
+
+- Human-sounding prose rules (Section 2.4): vary sentence rhythm, avoid mechanical transitions and reflexive rule-of-three framing, hedge only where evidence is genuinely uncertain, and a zero-tolerance em-dash rule at the writer level (review-article scores compliance independently; this skill never scores its own draft).
+- Explicit boundary that French or other-language adaptation is a future secondary request recorded but never produced by this skill.
+- `region: US | EUROPE | ASIA` in the lineage contract.
+
+This entry documents behavior already present in the skill's current files; it was not logged when originally shipped.
+
 ## 1.1.0 — 2026-08-02
 
 ### Changed

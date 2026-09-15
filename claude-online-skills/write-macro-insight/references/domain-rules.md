@@ -13,7 +13,6 @@
 - 9. Key takeaways
 - 10. “What to Watch Next” standard
 - 11. Regression fixtures
-- 12. Version notes
 
 ## 1. Editorial scope
 
@@ -402,24 +401,4 @@ At minimum, test this skill against:
 9. A dossier with a material context factor that is silently omitted, which must fail the output gate.
 10. A compliant, fully sourced article that should pass on revision attempt 0.
 
-## 12. Version notes
-
-### 1.1.0
-
-- Requires `TOPIC_SELECTED` plus explicit selection evidence tied to the preserved shortlist.
-- Blocks drafting during `AWAITING_USER_SELECTION` or when the selection is ambiguous.
-- Makes `en-US` immutable for the primary article and defers all translations to a separate downstream adaptation.
-
-### 0.7.0
-
-- Preserves the validated writer/verifier/SEO separation and `DRAFT_READY_FOR_VERIFICATION` status.
-- Adds the structured executive summary required by the future MacroAlloc Article Package.
-- Adds mandatory source-to-draft context reconciliation.
-- Adds central causal-pivot identification for enhanced verification.
-- Adds explicit protection against loss of material context already present in cited sources.
-- Adds central-bank communication granularity.
-- Adds macro-data decomposition checks.
-- Makes historical comparison conditional rather than automatic.
-- Adds a hard check against generic catch-all market conclusions.
-- Defines a strict machine-readable output contract for reliable downstream Word assembly.
-- Clarifies that final Word generation belongs to the orchestrated packaging layer, not the writer.
+Version history for this skill lives in `docs/history/write-macro-insight.md`, not here, per `docs/architecture.md`'s "runtime instructions must not duplicate" rule.

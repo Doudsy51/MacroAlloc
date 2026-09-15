@@ -50,7 +50,7 @@ Return `EDITORIAL_INPUT_REQUIRED` when:
 
 Generate two independent DOCX files. Never place Workflow Report sections after the article in the Publication Package.
 
-### 8.0A Publication Package — required order
+### 3.0A Publication Package — required order
 
 Keep this document short and directly usable by the human editor and CMS operator:
 
@@ -61,7 +61,7 @@ Keep this document short and directly usable by the human editor and CMS operato
 
 Do not add a cover sheet, document-control page, table of contents, executive workflow summary, readiness dashboard, scores, claim ledger, AI-review content, technical metadata, workflow identifiers, provenance, revision history, prompts, diagnostics, analytics placeholders or internal lifecycle notes.
 
-### 8.0B Workflow Report — required order
+### 3.0B Workflow Report — required order
 
 Keep this document internal and optimized for evaluation of the Content Factory:
 
