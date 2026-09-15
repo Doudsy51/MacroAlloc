@@ -69,7 +69,7 @@ EditorialReview:
     human_writing_score: 0-100
     global_score: 0-100
   human_voice_audit:
-    human_writing_score: 0-100
+    human_writing_score: 0-100  # must equal scores.human_writing_score above; this is the same value, repeated here alongside its audit trail, never a second independent computation
     deductions:
       - criterion: string
         instances_found: integer
