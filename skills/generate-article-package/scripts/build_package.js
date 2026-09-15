@@ -203,17 +203,19 @@ function buildWorkflowReportDoc(cfg, wf) {
 }
 
 function buildFrenchPublicationDoc(cfg, fr) {
+  // Required order per references/domain-rules.md Section 3.16:
+  // 1. header, 2. disclosure (verbatim, visible), 3. translated article, 4. SEO appendix.
   const children = [];
-  children.push(
-    new Paragraph({ children: [new TextRun({ text: FRENCH_DISCLOSURE_HEADING, bold: true, color: "B00000", size: 24 })], alignment: AlignmentType.CENTER, spacing: { after: 120 } }),
-    new Paragraph({ children: [new TextRun({ text: fr.disclosure_text, italics: true })], alignment: AlignmentType.CENTER, spacing: { after: 300 } }),
-    hr()
-  );
   children.push(
     new Paragraph({ text: `MacroAlloc — ${fr.edition_label}`, alignment: AlignmentType.CENTER, spacing: { after: 40 } }),
     new Paragraph({ text: cfg.date, alignment: AlignmentType.CENTER, spacing: { after: 300 } }),
     h1(fr.h1),
     pItalic(fr.subtitle),
+    hr()
+  );
+  children.push(
+    new Paragraph({ children: [new TextRun({ text: FRENCH_DISCLOSURE_HEADING, bold: true, color: "B00000", size: 24 })], alignment: AlignmentType.CENTER, spacing: { after: 120 } }),
+    new Paragraph({ children: [new TextRun({ text: fr.disclosure_text, italics: true })], alignment: AlignmentType.CENTER, spacing: { after: 300 } }),
     hr()
   );
   children.push(pBold(fr.key_takeaways_heading || "Points clés"));
@@ -235,6 +237,10 @@ function buildFrenchPublicationDoc(cfg, fr) {
   }));
   children.push(h2(fr.sources_heading || "Sources"));
   (fr.sources || []).forEach((t) => children.push(pPara(t, { size: 20 })));
+  if (fr.seo_table && fr.seo_table.length) {
+    children.push(h2(fr.seo_heading || "SEO POUR PUBLICATION"));
+    children.push(table(fr.seo_table, fr.seo_table_widths));
+  }
   return new Document({ sections: [{ properties: { page: PAGE_US_LETTER }, children }] });
 }
 

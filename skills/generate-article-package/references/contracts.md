@@ -445,7 +445,7 @@ Use:
 - `MacroAlloc_<content-type>_<region>_<YYYY-MM-DD>_<short-slug>_Workflow-Report_<report-version>.docx`
 - `MacroAlloc_<content-type>_<region>_<YYYY-MM-DD>_<short-slug>_Publication-FR_<article-version>.docx` (French-render mode only)
 
-`<region>` is `US`, `Europe`, or `Asia`. It is mandatory whenever the orchestrator's run covers more than one region, so that two regions' files for the same content type and date are never confused with each other. The `-FR` suffix on the French file's document-type segment is mandatory and non-negotiable; a French file must never share a filename pattern with its English counterpart beyond that suffix, so the two are never confused in a folder listing.
+`<region>` is the display-cased filename segment `US`, `Europe`, or `Asia` (distinct from the all-caps `region: US | EUROPE | ASIA` enum used in structured output above; do not swap one casing for the other). It is mandatory whenever the orchestrator's run covers more than one region, so that two regions' files for the same content type and date are never confused with each other. The `-FR` suffix on the French file's document-type segment is mandatory and non-negotiable; a French file must never share a filename pattern with its English counterpart beyond that suffix, so the two are never confused in a folder listing.
 
 Examples:
 

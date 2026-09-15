@@ -604,9 +604,11 @@ Top-level fields:
 - `output_dir`: an existing directory to write into
 - one or more of `publication`, `workflow_report`, `french_publication`
 
+`article_id` and `article_version` are accepted for the caller's own bookkeeping (e.g. to populate the package manifest alongside the script's printed hashes) but are not themselves rendered into any document body; the Workflow Report's own document-control content comes from `workflow_report.sections`, not from these top-level fields.
+
 Each present top-level document key produces exactly one file, named per Section 8's file naming convention unless an explicit `filename` override is given inside that key.
 
-`publication` fields: `edition_label`, `h1`, `subtitle`, `key_takeaways` (array), `body_paragraphs` (array), `analysis_heading` / `analysis_text` (optional), `watch_heading` / `watch_text` (optional), `disclaimer`, `sources` (array of pre-formatted lines), `sources_heading` (optional), `seo_table` (optional, array of rows, first row is the header), `seo_heading` (optional).
+`publication` fields: `edition_label`, `h1`, `subtitle`, `key_takeaways` (array), `body_paragraphs` (array), `analysis_heading` / `analysis_text` (optional), `watch_heading` / `watch_text` (optional), `disclaimer`, `sources` (array of pre-formatted lines), `sources_heading` (optional), `seo_table` (optional, array of rows, first row is the header), `seo_heading` (optional), `seo_table_widths` (optional, array of DXA column-width integers matching `seo_table`'s row length).
 
 `workflow_report` fields: `region_label`, `edition_label`, `sections` (array of `{ heading, blocks }`). Each `blocks` entry is one of:
 
@@ -618,7 +620,7 @@ Each present top-level document key produces exactly one file, named per Section
 - `{ "type": "hr" }`
 - `{ "type": "heading2", "text": "..." }` (rarely needed; prefer the section-level `heading` instead)
 
-`french_publication` fields: same shape as `publication`, plus a mandatory `disclosure_text` rendered visibly on the cover, verbatim from `adapt-article-french`'s `disclosure` block (Section 3.16).
+`french_publication` fields: the same shape as `publication` (including `seo_table` / `seo_heading` / `seo_table_widths`, required per Section 3.16 item 4), plus `key_takeaways_heading` (optional, defaults to "Points clés") and a mandatory `disclosure_text` rendered visibly right after the header, verbatim from `adapt-article-french`'s `disclosure` block (Section 3.16 item 2). Rendered order matches Section 3.16 exactly: header, then disclosure, then translated article, then the SEO appendix.
 
 ### 9.2 Safety and integrity
 
