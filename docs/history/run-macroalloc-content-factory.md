@@ -1,5 +1,18 @@
 # Changelog - run-macroalloc-content-factory
 
+## 1.6.0 - Content-selection tracking integration (2026-09-16)
+
+### Added
+
+- Preflight now queries the new auxiliary skill `track-content-selections` in QUERY mode, once per region, before Stage 1, to build that region's `RECENT_CONTENT_LIBRARY` input to `discover-content-opportunities` from prior human-confirmed `TOPIC_SELECTED` entries. An unavailable or `BLOCKED` result is treated as content memory being unavailable, not as a run-blocking failure.
+- Immediately after a region's `TOPIC_SELECTED` is recorded (Stage 2), the orchestrator now invokes `track-content-selections` in LOG mode for that region. A `BLOCKED` LOG result is surfaced as a warning; it never reopens the selection or delays any region's pipeline.
+- Added a required `run_mode` (`real` | `test`) established during preflight and threaded into every LOG call, so pipeline-QA runs never contaminate real production content memory.
+
+### Changed
+
+- Preflight item 1 now confirms nine specialist skills are available (previously eight); `track-content-selections` is explicitly the one auxiliary skill whose absence does not trigger `BLOCKED`/`MISSING_SKILL`.
+- Updated `references/workflow.md` (Sections 3, 4, 5) accordingly.
+
 ## 1.5.0 - Concurrent region processing (2026-09-15)
 
 ### Changed

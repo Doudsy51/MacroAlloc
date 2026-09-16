@@ -57,7 +57,7 @@ If a region has no confirmed selection (the user did not select a topic for it),
 
 Before execution:
 
-1. Confirm that all eight specialist skills, including `adapt-article-french`, are available to the current execution environment.
+1. Confirm that all nine specialist skills are available to the current execution environment. `track-content-selections` is the one auxiliary skill among them: its absence does not trigger `MISSING_SKILL` (see below) — its calls throughout this workflow are always treated as optional, non-blocking bookkeeping, per its own `SKILL.md` Boundaries.
 2. Record their versions.
 3. Confirm that web research is available for current-event content.
 4. Set the primary language to `en-US` and record any other requested language as an optional secondary adaptation.
@@ -65,10 +65,13 @@ Before execution:
 6. Confirm that the final output must contain both `PublicationPackageDOCX` and `WorkflowReportDOCX` for each region that reaches `TOPIC_SELECTED`.
 7. Confirm that final human approval remains mandatory, granted separately per region.
 8. Create the run ID and initialize logs; each region will derive its own job ID from it once selected.
+9. Establish `run_mode` for this execution (`real` for genuine editorial production, `test` for a pipeline or skill QA run) from what the user actually said; never infer it silently. This value is passed to every `track-content-selections` LOG call in the run.
 
-Resolve discovery inputs from user-provided artifacts or canonical project defaults. When absent, use these safe minimums: current system date/time; `en-US`; the three regional focuses US, Europe, and Asia evaluated independently; approved MacroAlloc categories; no forced publication frequency; the next reasonable publication window; official-primary-source-first policy; no known editorial-calendar conflict; the brand and compliance rules bundled with the relevant skills. Treat content memory, recent-content library, analytics, and competitor data as unavailable rather than inventing them. Ask the user only when an unavailable input creates a material duplication, timing, category, brand, or compliance decision.
+Resolve discovery inputs from user-provided artifacts or canonical project defaults. When absent, use these safe minimums: current system date/time; `en-US`; the three regional focuses US, Europe, and Asia evaluated independently; approved MacroAlloc categories; no forced publication frequency; the next reasonable publication window; official-primary-source-first policy; no known editorial-calendar conflict; the brand and compliance rules bundled with the relevant skills. Treat analytics and competitor data as unavailable rather than inventing them.
 
-If any required skill is unavailable, return:
+For content memory / recent-content library specifically: before Stage 1, call `track-content-selections` in QUERY mode once per region (`lookback_days` default 45, `include_test` only when this run's own `run_mode` is `test`) and use its `entries` as that region's `RECENT_CONTENT_LIBRARY` input to Stage 1. If `track-content-selections` is unavailable or returns `BLOCKED`, treat content memory as unavailable for that region rather than inventing it or halting the run — surface the block as a warning and proceed with discovery.
+
+If any of the eight non-auxiliary specialist skills is unavailable, return:
 
 Return `BLOCKED` with issue code `MISSING_SKILL`.
 
@@ -86,7 +89,7 @@ Pass:
 - language;
 - current date and search window;
 - MacroAlloc content priorities;
-- existing-content memory when available;
+- existing-content memory when available (this run's `RECENT_CONTENT_LIBRARY`, per region, from the preflight `track-content-selections` QUERY calls);
 - explicit user constraints.
 
 Expected successful status:
@@ -122,6 +125,8 @@ Return the exact status `AWAITING_USER_SELECTION`, request one number or exact t
 Wait for explicit topic selection. A request to run the complete workflow, choose the best option, proceed automatically, meet a deadline or produce the final article does not satisfy this gate, for any region. Ranking, score and urgency never constitute user selection.
 
 Resume only when the user's next message unambiguously identifies exactly one option per region from that region's active shortlist. The user is not required to select all three regions in the same reply — a region left unaddressed simply remains pending and does not block the regions that were selected. Record `TOPIC_SELECTED` for each region addressed, before that region's Stage 3. If a region's reply is ambiguous, that region alone remains at `AWAITING_USER_SELECTION`. If it identifies an unlisted topic for a region, stop that region and require a new discovery run for it — this does not affect the other regions' confirmed selections.
+
+Immediately after recording a region's `TOPIC_SELECTED`, invoke `track-content-selections` in LOG mode for that region with the selected opportunity's identifiers, content type, score, event date, freshness class, keywords, and locked angle, plus this run's `run_mode`. A `BLOCKED` result from this call is a warning to surface to the user; it never reopens the selection, blocks Stage 3, or delays any region.
 
 Record, per region:
 

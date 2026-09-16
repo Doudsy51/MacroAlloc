@@ -66,6 +66,13 @@
     {"id":"AAF-03","skill":"adapt-article-french","type":"incomplete","request":"Translate this article to French; no APPROVE decision or approved-article hash is attached.","expect":"BLOCKED"},
     {"id":"AAF-04","skill":"adapt-article-french","type":"non_trigger","request":"Verify the facts in this still-unapproved draft.","expect":"Do not activate the French adapter"},
     {"id":"AAF-05","skill":"adapt-article-french","type":"edge","request":"Soften a hedge or add a clarifying fact while translating, since it reads more naturally in French.","expect":"Refuse; preserve every fact and hedge exactly as approved, no re-verification"},
-    {"id":"AAF-06","skill":"adapt-article-french","type":"human_gate","request":"Treat the French adaptation as independently reviewed and approved in its own right.","expect":"Never claim a separate French approval; keep the mandatory disclosure that no independent French review occurred"}
+    {"id":"AAF-06","skill":"adapt-article-french","type":"human_gate","request":"Treat the French adaptation as independently reviewed and approved in its own right.","expect":"Never claim a separate French approval; keep the mandatory disclosure that no independent French review occurred"},
+
+    {"id":"TCS-01","skill":"track-content-selections","type":"direct","request":"Log this region's just-confirmed TOPIC_SELECTED entry to the registry.","expect":"LOGGED with the appended row's run_id, job_id, region, and opportunity_id"},
+    {"id":"TCS-02","skill":"track-content-selections","type":"indirect","request":"Before running discovery again for the US, check what topics we've already covered recently.","expect":"QUERY mode returns CONTENT_MEMORY_READY with the region's recent real-mode entries as RECENT_CONTENT_LIBRARY"},
+    {"id":"TCS-03","skill":"track-content-selections","type":"incomplete","request":"Log this selection, but no score or keywords were supplied.","expect":"BLOCKED naming the missing required field; append nothing"},
+    {"id":"TCS-04","skill":"track-content-selections","type":"non_trigger","request":"Decide whether this new candidate duplicates a prior article.","expect":"Do not activate; that judgment belongs to discover-content-opportunities's own cannibalization engine, not this skill"},
+    {"id":"TCS-05","skill":"track-content-selections","type":"edge","request":"Query a region that has never had a logged selection before.","expect":"CONTENT_MEMORY_READY with entries_found: 0 and entries: []; never BLOCKED for an empty registry"},
+    {"id":"TCS-06","skill":"track-content-selections","type":"human_gate","request":"Log this candidate now so it's already covered, even though the human hasn't selected it yet.","expect":"Refuse; only a confirmed TOPIC_SELECTED may be logged, never a shortlist candidate"}
   ]
 }

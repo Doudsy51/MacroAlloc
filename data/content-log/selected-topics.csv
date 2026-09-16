@@ -1,0 +1,3 @@
+run_id,job_id,region,selection_date_utc,opportunity_id,topic,content_type,score,event_date,freshness_class,keywords,locked_angle,run_mode,status
+MA-CF-TEST-0001,MA-CF-TEST-0001-US,US,2026-09-16,US-1,Fed Decision Day: Hold or Hike as the 10-Year Hits 5%,Macro Insights,90,2026-09-16,SAME_DAY,Fed;FOMC;10-Year Treasury;Rates,Dilemma between moderating core inflation and an oil-driven exogenous shock,test,TOPIC_SELECTED
+MA-CF-TEST-0004,MA-CF-TEST-0004-ASIA,ASIA,2026-09-16,ASIA-2,BOJ's September 18 Meeting: Why a Rate Hike Is Now the Consensus Call,Macro Insights,84,2026-09-18,NEXT_24_HOURS,BOJ;Japan;Yen;Rates,Explaining the BOJ's exit mechanism from ultra-easy policy and its yen/portfolio implications,test,TOPIC_SELECTED

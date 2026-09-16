@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "bundle_version": "1.5.0",
+  "bundle_version": "1.6.0",
   "canonical_language": "en-US",
   "stages": [
     {
@@ -56,8 +56,10 @@
   "orchestrator": {
     "skill": "run-macroalloc-content-factory",
     "required_order": [
+      "track-content-selections (QUERY, per region, feeds RECENT_CONTENT_LIBRARY)",
       "discover-content-opportunities",
       "HUMAN_TOPIC_SELECTION",
+      "track-content-selections (LOG, per confirmed region)",
       "research-macro-evidence",
       "write-macro-insight",
       "verify-financial-article",
@@ -70,6 +72,6 @@
     ],
     "mandatory_stops": ["AWAITING_USER_SELECTION", "AWAITING_FINAL_HUMAN_VALIDATION"],
     "never_autonomous": ["TOPIC_SELECTED", "PUBLISHED", "FINAL_HUMAN_APPROVAL"],
-    "notes": "adapt-article-french and the second generate-article-package entry (French-render mode) run only after HUMAN_FINAL_VALIDATION returns APPROVE for a given region; they are conditional and not part of the linear stage chain above."
+    "notes": "adapt-article-french and the second generate-article-package entry (French-render mode) run only after HUMAN_FINAL_VALIDATION returns APPROVE for a given region; they are conditional and not part of the linear stage chain above. track-content-selections is likewise auxiliary and excluded from the linear stage chain: it runs in QUERY mode before discover-content-opportunities (supplying RECENT_CONTENT_LIBRARY) and in LOG mode right after each region's TOPIC_SELECTED; a track-content-selections BLOCKED result is a warning surfaced to the user and never halts, delays, or gates the region's pipeline."
   }
 }

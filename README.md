@@ -4,12 +4,12 @@ Repository for the MacroAlloc editorial skills and their shared workflow contrac
 
 ## Current bundle
 
-- Bundle version: **1.4.0**
+- Bundle version: **1.6.0**
 - Lifecycle status: **TESTING**
 - Primary production language: **en-US**
 - Target market: **United States**
 
-The bundle contains nine interoperable skills:
+The bundle contains ten interoperable skills:
 
 1. `discover-content-opportunities`
 2. `research-macro-evidence`
@@ -20,6 +20,7 @@ The bundle contains nine interoperable skills:
 7. `generate-article-package`
 8. `adapt-article-french`
 9. `run-macroalloc-content-factory`
+10. `track-content-selections` — auxiliary: logs every human-confirmed `TOPIC_SELECTED` to the Git-tracked registry in `data/content-log/`, and answers the content-memory queries `discover-content-opportunities` uses to avoid re-proposing a topic it already covered.
 
 ## Repository structure
 
@@ -33,6 +34,7 @@ The bundle contains nine interoperable skills:
 - `workflow-contracts.json`: stage order, statuses, handoffs, and human gates.
 - `tests/`: structural validator and behavioral evaluation fixtures.
 - `test-packages/`, `docs/article-jobs/`, `docs/article-packages/`: generated test and production artifacts. Their presence is not an approval; they stay out of version control by default (see `docs/artifact-policy.md`).
+- `data/content-log/`: the `track-content-selections` registry (`selected-topics.csv` source of truth, `selected-topics.xlsx` human-readable export). Unlike the generated artifacts above, this registry is deliberately Git-tracked and append-only.
 
 Every skill follows the standardized layout:
 

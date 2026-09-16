@@ -1,0 +1,4 @@
+interface:
+  display_name: "Track Content Selections"
+  short_description: "Log selected topics and answer content-memory queries"
+  default_prompt: "Use $track-content-selections to log this region's just-selected topic, or to query prior selections before a discovery pass."

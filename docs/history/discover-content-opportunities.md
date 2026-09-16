@@ -1,5 +1,12 @@
 # Changelog — discover-content-opportunities
 
+## 1.6.0 — RECENT_CONTENT_LIBRARY sourcing clarified (2026-09-16)
+
+### Changed
+
+- Clarified in `references/workflow.md` §5.1 and `references/domain-rules.md` §13 that, when supplied, `RECENT_CONTENT_LIBRARY` is the raw per-region query result from the new auxiliary skill `track-content-selections` (prior human-confirmed `TOPIC_SELECTED` entries, `real`-mode only by default). This is a clarification of an existing input, not a new field: the content-memory and cannibalization engine's own classification logic (NO_OVERLAP / PARTIAL_OVERLAP / HIGH_CANNIBALIZATION_RISK / etc.) is unchanged.
+- Made explicit that a shared keyword or entity between two entries (e.g., two separate FOMC meetings both tagged `Fed`) is not by itself overlap; each entry's `event_date` must be used to distinguish a recurring institutional event from an actual duplicate.
+
 ## 1.5.0 — Multi-region discovery (documented 2026-09-15, previously unlogged)
 
 ### Added

@@ -461,6 +461,8 @@ Classify each opportunity as:
 
 ## 13. Content-memory and cannibalization engine
 
+When available, the content library for this section is the `RECENT_CONTENT_LIBRARY` the orchestrator supplies from `track-content-selections` — each entry is a topic a human actually selected in a prior run, with its region, content type, event date, freshness class, keywords, and locked angle. A shared keyword or entity across two entries (e.g., two separate FOMC meetings both tagged `Fed`) is not by itself overlap; compare the underlying event, angle, and search intent, using each entry's `event_date` to judge whether it is the same story or a legitimately new one.
+
 Search the available content library for:
 
 - identical topics;

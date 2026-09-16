@@ -1,51 +1,56 @@
 {
   "schema_version": 1,
-  "bundle_version": "1.5.0",
+  "bundle_version": "1.6.0",
   "skills": {
     "discover-content-opportunities": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "1.1.0"
     },
     "research-macro-evidence": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "new"
     },
     "write-macro-insight": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "1.1.0"
     },
     "verify-financial-article": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "1.1.0"
     },
     "optimize-content-discoverability": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "1.1.0"
     },
     "review-article": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "1.1.0"
     },
     "generate-article-package": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "1.2.1"
     },
     "adapt-article-french": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "new"
     },
     "run-macroalloc-content-factory": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "status": "TESTING",
       "source_version": "1.2.1"
+    },
+    "track-content-selections": {
+      "version": "1.6.0",
+      "status": "TESTING",
+      "source_version": "new"
     }
   }
 }

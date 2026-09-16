@@ -4,6 +4,9 @@ Thumbs.db
 .idea/
 .vscode/
 
+# Dépendances npm (package.json fait foi ; réinstallation via npm install)
+/node_modules/
+
 # Fichiers temporaires
 *.tmp
 *.log

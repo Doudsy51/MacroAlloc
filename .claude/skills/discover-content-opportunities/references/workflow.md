@@ -117,7 +117,7 @@ The skill must receive or resolve from explicit orchestrator defaults:
 - `COMPLIANCE_BOUNDARIES`
 - `EXECUTION_PHASE`: `DISCOVERY` or `SELECTION_CONFIRMATION`
 
-Do not require the user to restate safe canonical defaults already supplied by the orchestrator. Inputs marked unavailable remain unavailable; never simulate content memory, analytics, competitor evidence, or calendar events.
+Do not require the user to restate safe canonical defaults already supplied by the orchestrator. Inputs marked unavailable remain unavailable; never simulate content memory, analytics, competitor evidence, or calendar events. When the orchestrator supplies `RECENT_CONTENT_LIBRARY`, it is the raw, per-region query result from `track-content-selections` (prior human-confirmed `TOPIC_SELECTED` entries, `real`-mode only by default) — treat it exactly as the content-memory input this section already describes, and apply the content-memory and cannibalization engine (§13) to it; an empty or absent result is treated as content memory being unavailable, not as confirmation that no overlap exists.
 
 For event-driven execution, also require:
 
